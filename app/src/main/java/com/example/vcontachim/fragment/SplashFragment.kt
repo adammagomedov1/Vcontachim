@@ -9,7 +9,7 @@ import com.example.vcontachim.Screens
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class FragmentSplash : Fragment(R.layout.splash_fragment) {
+class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,7 +20,7 @@ class FragmentSplash : Fragment(R.layout.splash_fragment) {
         }
     }
 
-    fun transition() {
-        VcontachimApplication.router.replaceScreen(Screens.name())
+    private fun transition() {
+        VcontachimApplication.router.replaceScreen(Screens.accountLoginScreen())
     }
 }

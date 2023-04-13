@@ -15,7 +15,6 @@ class VcontachimApplication: Application() {
         navigatorHolder = cicerone.getNavigatorHolder()
     }
 
-
     companion object {
         private lateinit var cicerone: Cicerone<Router>
         lateinit var router: Router

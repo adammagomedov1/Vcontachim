@@ -15,11 +15,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        navigateFragment()
+        profileNome()
     }
 
-    private fun navigateFragment(){
-        VcontachimApplication.router.replaceScreen(Screens.home())
+    private fun profileNome(){
+        VcontachimApplication.router.replaceScreen(Screens.splash())
     }
 
     override fun onResume() {

@@ -1,12 +1,12 @@
 package com.example.vcontachim
 
-import com.example.vcontachim.fragment.FragmentAccountLoginScreen
-import com.example.vcontachim.fragment.FragmentSplash
+import com.example.vcontachim.fragment.AccountLoginScreenFragment
+import com.example.vcontachim.fragment.SplashFragment
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 object Screens {
 
-    fun home() = FragmentScreen { FragmentSplash() }
+    fun splash() = FragmentScreen { SplashFragment() }
 
-    fun name() = FragmentScreen { FragmentAccountLoginScreen() }
+    fun accountLoginScreen() = FragmentScreen { AccountLoginScreenFragment() }
 }
