@@ -16,14 +16,18 @@
         android:layout_gravity="center"
         android:src="@drawable/new_vk_logo_color_48" />
 
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="202dp"
         android:text="Войдите для продолжения"
         android:textColor="@color/black"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_screen_button"
@@ -35,7 +39,7 @@
         android:text="Войти"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:cornerRadius="8dp" />
 
     <Space
