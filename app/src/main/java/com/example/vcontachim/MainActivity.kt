@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         profileNome()
     }
 
-    private fun profileNome(){
+    private fun profileNome() {
         VcontachimApplication.router.replaceScreen(Screens.splash())
     }
 
@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onResume()
         VcontachimApplication.navigatorHolder.setNavigator(navigator)
     }
+
     override fun onPause() {
         super.onPause()
         VcontachimApplication.navigatorHolder.removeNavigator()
