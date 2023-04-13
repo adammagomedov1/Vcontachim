@@ -16,11 +16,11 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
         lifecycleScope.launch {
             delay(timeMillis = 3000)
-            transition()
+            navigateAccountLoginScreen()
         }
     }
 
-    private fun transition() {
+    private fun navigateAccountLoginScreen() {
         VcontachimApplication.router.replaceScreen(Screens.accountLoginScreen())
     }
 }
