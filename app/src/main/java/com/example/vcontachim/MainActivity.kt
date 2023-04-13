@@ -15,10 +15,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        goToTheLoginScreen()
+        goToSplashScreen()
     }
 
-    private fun goToTheLoginScreen() {
+    private fun goToSplashScreen() {
         VcontachimApplication.router.replaceScreen(Screens.splash())
     }
 
