@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // при перемоздпние икрана выполняется этот код
+        // добавил условие для того чтобы экран повторно не открывался при повороте экрана
         if (savedInstanceState == null) {
             goToSplashScreen()
         }
