@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Vcontachim</string>
+    <string name="app_name">Вконтачим</string>
     <string name="sign_in_to_continue">Войдите для продолжения</string>
     <string name="to_come_in">Войти</string>
-    <string name="vcontachim">Вконтачим</string>
 </resources>
