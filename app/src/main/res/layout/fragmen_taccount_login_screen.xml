@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Войдите для продолжения"
+        android:text="@string/sign_in_to_continue"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
@@ -36,7 +36,7 @@
         android:layout_gravity="center"
         android:layout_margin="24dp"
         android:backgroundTint="#2D81E0"
-        android:text="Войти"
+        android:text="@string/to_come_in"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
