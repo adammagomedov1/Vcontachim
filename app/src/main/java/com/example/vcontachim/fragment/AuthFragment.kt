@@ -1,18 +1,15 @@
 package com.example.vcontachim.fragment
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.FragmentAuthBinding
+import com.example.vcontachim.viewmodel.AuthViewModel
 
 class AuthFragment : Fragment(R.layout.fragment_auth) {
 
@@ -22,6 +19,10 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
             "&scope=12" +
             "&display=mobile" +
             "&response_type=token"
+
+    private val viewModel: AuthViewModel by lazy {
+        ViewModelProvider(this).get(AuthViewModel::class.java)
+    }
 
     private var binding: FragmentAuthBinding? = null
 
@@ -35,24 +36,8 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                 view: WebView,
                 request: WebResourceRequest
             ): Boolean {
-                val url: Uri = request.url
-                val urlString = url.toString()
-                val urlDecoded = Uri.decode(urlString)
-                val finalUrlDecoded = Uri.decode(urlDecoded)
-                if (finalUrlDecoded.contains("access_token")){
-                    val afterAccessToken = finalUrlDecoded.substringAfter("access_token=")
-                    val beforeAccessToken = afterAccessToken.substringBefore("&")
-
-                    val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
-                        "vcontachim_settings",
-                        Context.MODE_PRIVATE
-                    )
-
-                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                    editor.putString("auth", beforeAccessToken)
-                    editor.apply()
-
-                }
+                val url = request.url
+                viewModel.loadAuth(url)
                 return super.shouldOverrideUrlLoading(view, request)
 
             }
