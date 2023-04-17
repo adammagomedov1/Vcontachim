@@ -36,7 +36,8 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                 view: WebView,
                 request: WebResourceRequest
             ): Boolean {
-                viewModel.loadAuth(request)
+                val url = request.url
+                viewModel.loadAuth(url)
                 return super.shouldOverrideUrlLoading(view, request)
 
             }

@@ -10,9 +10,8 @@ import com.example.vcontachim.fragment.VcontachimApplication
 class AuthViewModel : ViewModel() {
 
     fun loadAuth(
-        request: WebResourceRequest
+        url: Uri
     ) {
-        val url: Uri = request.url
         val urlString = url.toString()
         val urlDecoded = Uri.decode(urlString)
         val finalUrlDecoded = Uri.decode(urlDecoded)
