@@ -8,7 +8,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/Authorizations" />
+        app:title="@string/authorizations" />
 
     <WebView
         android:id="@+id/id_web_view"
