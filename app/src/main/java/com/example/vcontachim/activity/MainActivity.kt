@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val rootLayout: View = findViewById(R.id.main_layout)
         binding = ActivityMainBinding.bind(rootLayout)
 
-        VcontachimApplication.router.replaceScreen(Screens.mainScreen())
+        if (savedInstanceState == null) {
+            VcontachimApplication.router.replaceScreen(Screens.mainScreen())
+        }
 
         binding!!.mainBottomNavigation.setOnItemSelectedListener(object :
             NavigationBarView.OnItemSelectedListener {
