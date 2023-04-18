@@ -1,11 +1,13 @@
-package com.example.vcontachim
+package com.example.vcontachim.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.vcontachim.R
+import com.example.vcontachim.Screens
 import com.example.vcontachim.fragment.VcontachimApplication
 import com.github.terrakok.cicerone.androidx.AppNavigator
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class LaunchActivity : AppCompatActivity(R.layout.activity_launch) {
 
     private val navigator = AppNavigator(this, R.id.fragment_main_container)
 
