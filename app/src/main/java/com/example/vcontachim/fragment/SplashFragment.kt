@@ -29,7 +29,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
             if (editor == null) {
                 navigateAccountLoginScreen()
             } else {
-                navigateAccountLoginScreen1()
+                navigateMain()
             }
         }
     }
@@ -38,7 +38,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         VcontachimApplication.router.replaceScreen(Screens.accountLoginScreen())
     }
 
-    private fun navigateAccountLoginScreen1() {
+    private fun navigateMain() {
         VcontachimApplication.router.replaceScreen(Screens.main())
     }
 }
