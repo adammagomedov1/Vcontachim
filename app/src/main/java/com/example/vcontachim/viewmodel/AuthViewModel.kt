@@ -21,7 +21,7 @@ class AuthViewModel : ViewModel() {
             val beforeAccessToken = afterAccessToken.substringBefore("&")
 
             val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
-                "vcontachim_settings",
+                "vcontachim",
                 Context.MODE_PRIVATE
             )
 
