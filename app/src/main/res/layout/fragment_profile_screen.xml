@@ -84,8 +84,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24.5dp"
                     android:src="@drawable/icon_friends" />
@@ -107,8 +107,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24.5dp"
                     android:src="@drawable/icon_communities" />
@@ -130,8 +130,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="25.5dp"
                     android:src="@drawable/icon_photos" />
@@ -153,8 +153,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
                     android:src="@drawable/icon_video" />
@@ -176,8 +176,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="22dp"
                     android:src="@drawable/icon_music" />
@@ -207,8 +207,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="21.5dp"
                     android:src="@drawable/icon_about_the_application" />
