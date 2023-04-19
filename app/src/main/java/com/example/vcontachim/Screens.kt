@@ -18,6 +18,6 @@ object Screens {
 
     fun mainScreen() = FragmentScreen { MainScreenFragment() }
 
-    fun profileScreen() = FragmentScreen { ProfileScreenFragment() }
+    fun profileScreen() = FragmentScreen { ProfileFragment() }
 
 }

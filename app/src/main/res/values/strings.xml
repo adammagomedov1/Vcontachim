@@ -3,4 +3,12 @@
     <string name="sign_in_to_continue">Войдите для продолжения</string>
     <string name="to_come_in">Войти</string>
     <string name="authorizations">Авторизация</string>
+    <string name="information">Полная информация</string>
+    <string name="friends">Друзья</string>
+    <string name="communities">Сообщества</string>
+    <string name="photos">Фотографии</string>
+    <string name="video">Видео</string>
+    <string name="music">Музыка</string>
+    <string name="about_the_application">О приложении</string>
+    <string name="go_out">Выйти</string>
 </resources>
