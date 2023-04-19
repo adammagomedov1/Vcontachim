@@ -3,6 +3,6 @@ package com.example.vcontachim.fragment
 import androidx.fragment.app.Fragment
 import com.example.vcontachim.R
 
-class ProfileFragment : Fragment(R.layout.fragment_profile_screen) {
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
 }
