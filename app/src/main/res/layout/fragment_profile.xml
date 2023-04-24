@@ -39,18 +39,18 @@
                     android:layout_margin="12dp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/first_name_last_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24.5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="Алидибир Ахбулатов" />
+                        <TextView
+                            android:id="@+id/nameSurname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24.5dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="Адам Магомедов" />
 
                     <TextView
                         android:id="@+id/number"
