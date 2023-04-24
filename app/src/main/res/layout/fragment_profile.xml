@@ -39,18 +39,35 @@
                     android:layout_margin="12dp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/first_name_last_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24.5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        tools:text="Алидибир Ахбулатов" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24.5dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="Алидибир" />
+
+                        <TextView
+                            android:id="@+id/surname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="24.5dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:text="Ахбулатов" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/number"
