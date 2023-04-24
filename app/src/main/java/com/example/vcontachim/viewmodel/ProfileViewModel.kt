@@ -26,8 +26,6 @@ class ProfileViewModel : ViewModel() {
                 val users: Users =
                     VcontachimApplication.vcontachimService.getUsers(
                         token = "Bearer ${profileEditor!!}",
-                        v = 5.131,
-                        fields = "contacts,photo_100"
                     )
 
                 profileLiveData.value = users
