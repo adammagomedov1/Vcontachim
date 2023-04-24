@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.FragmentProfileBinding
+import com.example.vcontachim.models.Response
 import com.example.vcontachim.viewmodel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -24,16 +25,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding = FragmentProfileBinding.bind(view)
 
         viewModel.profileLiveData.observe(
-            /* owner = */ viewLifecycleOwner
+            viewLifecycleOwner
         ) {
+            val responseList: Response = it.response[0]
 
             Glide.with(this@ProfileFragment)
-                .load(it!!.response[0].photo100)
+                .load(responseList.photo100)
                 .into(binding!!.iconViewProfile)
 
-            binding!!.nameSurname.text = "${it.response[0].firstName} ${it.response[0].lastName}"
+            binding!!.nameSurname.text = "${responseList.firstName} ${responseList.lastName}"
 
-            binding!!.number.text = it.response[0].mobilePhone
+            binding!!.number.text = responseList.mobilePhone
         }
 
         viewModel.errorLiveData.observe(
