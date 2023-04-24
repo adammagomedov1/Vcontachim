@@ -27,15 +27,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         viewModel.profileLiveData.observe(
             viewLifecycleOwner
         ) {
-            val responseList: Response = it.response[0]
+            val response: Response = it.response[0]
 
             Glide.with(this@ProfileFragment)
-                .load(responseList.photo100)
+                .load(response.photo100)
                 .into(binding!!.iconViewProfile)
 
-            binding!!.nameSurname.text = "${responseList.firstName} ${responseList.lastName}"
+            binding!!.nameSurname.text = "${response.firstName} ${response.lastName}"
 
-            binding!!.number.text = responseList.mobilePhone
+            binding!!.number.text = response.mobilePhone
         }
 
         viewModel.errorLiveData.observe(
