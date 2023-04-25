@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
+import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.FragmentProfileBinding
 import com.example.vcontachim.models.Response
 import com.example.vcontachim.viewmodel.ProfileViewModel
@@ -23,6 +24,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
+
+        binding!!.friends.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                VcontachimApplication.router.navigateTo(Screens.friends())
+            }
+        })
 
         viewModel.profileLiveData.observe(
             viewLifecycleOwner

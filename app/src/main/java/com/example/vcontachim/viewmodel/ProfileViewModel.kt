@@ -22,11 +22,8 @@ class ProfileViewModel : ViewModel() {
                 )
 
                 val profileEditor: String? = sharedPreferences.getString("auth", null)
-
                 val users: Users =
-                    VcontachimApplication.vcontachimService.getUsers(
-                        token = "Bearer ${profileEditor!!}",
-                    )
+                    VcontachimApplication.vcontachimService.getUsers(token = "Bearer ${profileEditor!!}")
 
                 profileLiveData.value = users
             } catch (e: Exception) {
