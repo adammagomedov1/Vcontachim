@@ -21,9 +21,9 @@ class ProfileViewModel : ViewModel() {
                     Context.MODE_PRIVATE
                 )
 
-                val profileSharedPreferences: String? = sharedPreferences.getString("auth", null)
+                val tookToken: String? = sharedPreferences.getString("auth", null)
                 val users: Users =
-                    VcontachimApplication.vcontachimService.getUsers(token = "Bearer ${profileSharedPreferences!!}")
+                    VcontachimApplication.vcontachimService.getUsers(token = "Bearer ${tookToken!!}")
 
                 profileLiveData.value = users
             } catch (e: Exception) {
