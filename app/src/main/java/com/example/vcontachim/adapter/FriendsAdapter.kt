@@ -37,13 +37,13 @@ class FriendsAdapter : RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder>() 
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: FriendsViewHolder, position: Int) {
-        val friends: Item = fieldsList[position]
+        val friend: Item = fieldsList[position]
 
         Glide.with(holder.itemView)
-            .load(friends.photo100)
+            .load(friend.photo100)
             .into(holder.binding.imageView)
 
-        holder.binding.textView.text = "${friends.firstName} ${friends.lastName}"
+        holder.binding.textView.text = "${friend.firstName} ${friend.lastName}"
 
     }
 

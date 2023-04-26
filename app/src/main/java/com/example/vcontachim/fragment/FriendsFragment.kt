@@ -29,9 +29,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         val friendsAdapter = FriendsAdapter()
         binding!!.recyclerView.adapter = friendsAdapter
 
-        val dividerFriends = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-        binding!!.recyclerView.addItemDecoration(dividerFriends)
-
         binding!!.toolbar.setNavigationOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.exit()
@@ -44,7 +41,7 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         }
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner, object : Observer<Boolean> {
-            override fun onChanged(t: Boolean?) {
+            override fun onChanged(t: Boolean) {
                 if (t == true) {
                     binding!!.progressBar.visibility = View.VISIBLE
                 } else {
