@@ -20,4 +20,6 @@ object Screens {
 
     fun profileScreen() = FragmentScreen { ProfileFragment() }
 
+    fun friends() = FragmentScreen { FriendsFragment() }
+
 }

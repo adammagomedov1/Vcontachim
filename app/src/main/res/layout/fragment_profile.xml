@@ -30,27 +30,30 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/icon_view_profile"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
-                    android:layout_margin="12dp" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/nameSurname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="24.5dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            tools:text="Адам Магомедов" />
+                    <TextView
+                        android:id="@+id/nameSurname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        tools:text="Адам Магомедов" />
 
                     <TextView
                         android:id="@+id/number"
@@ -63,6 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
+                        android:layout_marginBottom="13dp"
                         android:text="@string/information"
                         android:textColor="#2688EB" />
 
@@ -73,27 +77,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:background="@color/black" />
 
             <LinearLayout
+                android:id="@+id/friends"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="11.5dp"
+                android:background="?selectableItemBackground"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24.5dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="14.5dp"
                     android:src="@drawable/icon_friends" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="25.5dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
                     android:text="@string/friends"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -108,15 +116,17 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24.5dp"
+                    android:layout_marginStart="17.5dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15.5dp"
                     android:src="@drawable/icon_communities" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="14dp"
                     android:text="@string/communities"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -131,15 +141,17 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="25.5dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="14dp"
                     android:src="@drawable/icon_photos" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
                     android:text="@string/photos"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -154,15 +166,17 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:src="@drawable/icon_video" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
                     android:text="@string/video"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -177,15 +191,17 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="22dp"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="13dp"
                     android:src="@drawable/icon_music" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
                     android:text="@string/music"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -196,7 +212,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 android:background="@color/black" />
 
@@ -208,15 +224,17 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="21.5dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="14dp"
                     android:src="@drawable/icon_about_the_application" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="25.5dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
                     android:text="@string/about_the_application"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -227,20 +245,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 android:background="@color/black" />
 
-            <TextView
-                android:id="@+id/go_out_id"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="25.5dp"
-                android:text="@string/go_out"
-                android:textColor="#E64646"
-                android:textSize="16sp" />
+                android:layout_marginTop="11.5dp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/go_out_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:text="@string/go_out"
+                    android:textColor="#E64646"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
