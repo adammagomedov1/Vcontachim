@@ -3,7 +3,7 @@ package com.example.vcontachim.models
 import com.google.gson.annotations.SerializedName
 
 class Friends(
-    val response: ResponseFriends,
+    val response: ResponseFriends
 )
 
 data class ResponseFriends(

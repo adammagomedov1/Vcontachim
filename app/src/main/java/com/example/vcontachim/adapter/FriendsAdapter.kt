@@ -4,14 +4,11 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemFriendsBinding
-import com.example.vcontachim.models.Friends
 import com.example.vcontachim.models.Item
-import com.example.vcontachim.models.ResponseFriends
 
 class FriendsAdapter : RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder>() {
     var fieldsList: List<Item> = emptyList()
