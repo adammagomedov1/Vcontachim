@@ -14,7 +14,6 @@ class CommunitiesViewModel : ViewModel() {
     val progressBarLiveData = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<String>()
 
-
     fun loadCommunities() {
         viewModelScope.launch {
             try {

@@ -31,7 +31,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         })
 
-        binding!!.Communities.setOnClickListener(object : View.OnClickListener {
+        binding!!.communities.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.navigateTo(Screens.communities())
             }
