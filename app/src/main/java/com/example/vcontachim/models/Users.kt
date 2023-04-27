@@ -11,7 +11,7 @@ data class Response(
     val mobilePhone: String,
 
     @SerializedName("photo_200")
-    val photo100: String,
+    val photo200: String,
 
     @SerializedName("first_name")
     val firstName: String,

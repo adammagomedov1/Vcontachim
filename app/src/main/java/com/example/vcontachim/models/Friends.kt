@@ -12,7 +12,7 @@ data class ResponseFriends(
 
 data class Item(
     @SerializedName("photo_200")
-    val photo100: String,
+    val photo200: String,
 
     @SerializedName("first_name")
     val firstName: String,
