@@ -12,14 +12,14 @@ interface VcontachimService {
     suspend fun getUsers(
         @Header("Authorization") token: String,
         @Query("v") v: Double = 5.131,
-        @Query("fields") fields: String = "contacts,photo_100"
+        @Query("fields") fields: String = "contacts,photo_200"
     ): Users
 
     @GET("friends.get")
     suspend fun getFriends(
         @Header("Authorization") token: String,
         @Query("v") v: Double = 5.131,
-        @Query("fields") fields: String = "photo_100"
+        @Query("fields") fields: String = "photo_200"
     ): Friends
 
     @GET("groups.get")
