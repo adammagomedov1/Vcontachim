@@ -22,4 +22,6 @@ object Screens {
 
     fun friends() = FragmentScreen { FriendsFragment() }
 
+    fun communities() = FragmentScreen { CommunitiesFragment() }
+
 }

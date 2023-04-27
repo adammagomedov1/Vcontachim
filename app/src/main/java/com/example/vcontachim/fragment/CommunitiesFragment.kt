@@ -6,29 +6,29 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.vcontachim.R
-import com.example.vcontachim.adapter.FriendsAdapter
-import com.example.vcontachim.databinding.FragmentFriendsBinding
-import com.example.vcontachim.models.Friends
-import com.example.vcontachim.viewmodel.FriendsViewModel
+import com.example.vcontachim.adapter.CommunitiesAdapter
+import com.example.vcontachim.databinding.FragmentCommunitiesBinding
+import com.example.vcontachim.models.Communities
+import com.example.vcontachim.viewmodel.CommunitiesViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlin.io.path.fileVisitor
 
-class FriendsFragment : Fragment(R.layout.fragment_friends) {
+class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
 
-    private var binding: FragmentFriendsBinding? = null
+    private var binding: FragmentCommunitiesBinding? = null
 
-    private val viewModel: FriendsViewModel by lazy {
-        ViewModelProvider(this)[FriendsViewModel::class.java]
+    private val viewModel: CommunitiesViewModel by lazy {
+        ViewModelProvider(this)[CommunitiesViewModel::class.java]
     }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFriendsBinding.bind(view)
+        binding = FragmentCommunitiesBinding.bind(view)
 
-        val friendsAdapter = FriendsAdapter()
-        binding!!.recyclerView.adapter = friendsAdapter
+        val communitiesAdapter = CommunitiesAdapter()
+        binding!!.recyclerView.adapter = communitiesAdapter
 
         binding!!.toolbar.setNavigationOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -36,9 +36,9 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
             }
         })
 
-        viewModel.friendsLiveData.observe(viewLifecycleOwner) {
-            friendsAdapter.fieldsList = it.response.items
-            friendsAdapter.notifyDataSetChanged()
+        viewModel.communitiesLiveData.observe(viewLifecycleOwner) {
+            communitiesAdapter.communitiesList = it.response.items
+            communitiesAdapter.notifyDataSetChanged()
         }
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner, object : Observer<Boolean> {
@@ -52,18 +52,14 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val snackbar: Snackbar = Snackbar.make(
+            val snacbar: Snackbar = Snackbar.make(
                 requireView(),
                 it,
                 Snackbar.LENGTH_LONG
             )
-            snackbar.show()
+            snacbar.show()
         }
-        viewModel.loadList()
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        binding = null
+        viewModel.loadCommunities()
     }
 }
