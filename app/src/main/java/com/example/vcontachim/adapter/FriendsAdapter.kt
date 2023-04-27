@@ -37,7 +37,7 @@ class FriendsAdapter : RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder>() 
         val friend: Item = fieldsList[position]
 
         Glide.with(holder.itemView)
-            .load(friend.photo100)
+            .load(friend.photo200)
             .into(holder.binding.imageView)
 
         holder.binding.textView.text = "${friend.firstName} ${friend.lastName}"

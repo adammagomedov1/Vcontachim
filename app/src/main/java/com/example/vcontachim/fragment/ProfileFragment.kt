@@ -43,7 +43,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val response: Response = it.response[0]
 
             Glide.with(this@ProfileFragment)
-                .load(response.photo100)
+                .load(response.photo200)
                 .into(binding!!.iconViewProfile)
 
             binding!!.nameSurname.text = "${response.firstName} ${response.lastName}"
