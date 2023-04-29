@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
-        android:text="Лето 2022"
+        tools:text="Лето 2022"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
@@ -28,7 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:text="4 фотографии"
+        android:textColor="#818C99"
+        tools:text="4 фотографии"
         android:textSize="13sp" />
 
 </LinearLayout>
