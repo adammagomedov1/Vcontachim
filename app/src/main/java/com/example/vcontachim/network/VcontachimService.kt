@@ -2,6 +2,7 @@ package com.example.vcontachim.network
 
 import com.example.vcontachim.models.Communities
 import com.example.vcontachim.models.Friends
+import com.example.vcontachim.models.PhotoAlbums
 import com.example.vcontachim.models.Users
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -29,4 +30,11 @@ interface VcontachimService {
         @Query("extended") extended: Int = 1,
         @Query("fields") fields: String = "members_count,verified",
     ): Communities
+
+    @GET("photos.getAlbums")
+    suspend fun getAlbumsPhotos(
+        @Header("Authorization") token: String,
+        @Query("v") v: Double = 5.131,
+        @Query("need_covers") needCovers: Int = 1,
+    ): PhotoAlbums
 }

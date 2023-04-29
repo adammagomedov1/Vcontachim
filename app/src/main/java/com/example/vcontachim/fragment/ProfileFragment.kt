@@ -25,6 +25,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
 
+        binding!!.photoAlbums.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                VcontachimApplication.router.navigateTo(Screens.photoAlbums())
+            }
+        })
+
         binding!!.friends.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.navigateTo(Screens.friends())
