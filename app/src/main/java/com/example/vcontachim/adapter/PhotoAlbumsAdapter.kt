@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemPhotoAlbumsBinding
+import com.example.vcontachim.fragment.VcontachimApplication
 import com.example.vcontachim.models.ItemPhotoAlbums
 
 class PhotoAlbumsAdapter : RecyclerView.Adapter<PhotoAlbumsAdapter.PhotoAlbumsViewHolder>() {
@@ -37,16 +38,15 @@ class PhotoAlbumsAdapter : RecyclerView.Adapter<PhotoAlbumsAdapter.PhotoAlbumsVi
             .load(photoAlbums.thumbSrc)
             .into(holder.binding.imageViewPhotoAlbums)
 
-        if (photoAlbums.size == 0L) {
-            holder.binding.textViewNumberOfPhotos.text = "${photoAlbums.size} фотографий нет"
-        } else if (photoAlbums.size == 1L) {
-            holder.binding.textViewNumberOfPhotos.text = "${photoAlbums.size} фотография"
-        } else if (photoAlbums.size >= 5L) {
-            holder.binding.textViewNumberOfPhotos.text = "${photoAlbums.size} фотографий"
-        } else {
-            holder.binding.textViewNumberOfPhotos.text = "${photoAlbums.size} фотографии"
-        }
+        val followersCount: String = VcontachimApplication.context.resources.getQuantityString(
+            R.plurals.following_hint,
+            photoAlbums.size.toInt()
+        )
+
+        holder.binding.textViewNumberOfPhotos.text = "${photoAlbums.size} $followersCount"
+
         holder.binding.textViewName.text = photoAlbums.title
+
     }
 
     override fun getItemCount() = photoAlbumsList.size

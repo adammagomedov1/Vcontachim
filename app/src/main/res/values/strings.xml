@@ -13,4 +13,13 @@
     <string name="go_out">Выйти</string>
     <string name="friend">Друзья</string>
     <string name="photo_albums">Фотоальбомы</string>
+
+        <plurals name="following_hint">
+            <item quantity="one">фотография</item>
+            <item quantity="two">фотографии</item>
+            <item quantity="few">фотографии</item>
+            <item quantity="many">фотографий</item>
+            <item quantity="other">фотографий</item>
+
+        </plurals>
 </resources>
