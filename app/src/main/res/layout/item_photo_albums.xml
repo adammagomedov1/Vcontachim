@@ -10,6 +10,7 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_view_photo_albums"
         android:layout_width="156dp"
+        android:scaleType="centerCrop"
         android:layout_height="156dp"
         app:shapeAppearanceOverlay="@style/RoundedImageViewPhotoAlbums"
         tools:src="@tools:sample/avatars" />

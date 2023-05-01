@@ -39,7 +39,7 @@ class PhotoAlbumsAdapter : RecyclerView.Adapter<PhotoAlbumsAdapter.PhotoAlbumsVi
             .into(holder.binding.imageViewPhotoAlbums)
 
         val followersCount: String = VcontachimApplication.context.resources.getQuantityString(
-            R.plurals.following_hint,
+            R.plurals.number_of_photos,
             photoAlbums.size.toInt()
         )
 

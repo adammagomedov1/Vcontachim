@@ -14,7 +14,7 @@
     <string name="friend">Друзья</string>
     <string name="photo_albums">Фотоальбомы</string>
 
-        <plurals name="following_hint">
+        <plurals name="number_of_photos">
             <item quantity="one">фотография</item>
             <item quantity="few">фотографии</item>
             <item quantity="many">фотографий</item>
