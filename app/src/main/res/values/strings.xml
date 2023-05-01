@@ -16,7 +16,6 @@
 
         <plurals name="following_hint">
             <item quantity="one">фотография</item>
-            <item quantity="two">фотографии</item>
             <item quantity="few">фотографии</item>
             <item quantity="many">фотографий</item>
             <item quantity="other">фотографий</item>
