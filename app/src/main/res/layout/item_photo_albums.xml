@@ -10,8 +10,8 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_view_photo_albums"
         android:layout_width="156dp"
-        android:scaleType="centerCrop"
         android:layout_height="156dp"
+        android:scaleType="centerCrop"
         app:shapeAppearanceOverlay="@style/RoundedImageViewPhotoAlbums"
         tools:src="@tools:sample/avatars" />
 
@@ -20,9 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
-        tools:text="Лето 2022"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:text="Лето 2022" />
 
     <TextView
         android:id="@+id/text_view_number_of_photos"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:textColor="#818C99"
-        tools:text="4 фотографии"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        tools:text="4 фотографии" />
 
 </LinearLayout>
