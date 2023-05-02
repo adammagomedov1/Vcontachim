@@ -14,11 +14,12 @@
     <string name="friend">Друзья</string>
     <string name="photo_albums">Фотоальбомы</string>
 
-        <plurals name="number_of_photos">
-            <item quantity="one">фотография</item>
-            <item quantity="few">фотографии</item>
-            <item quantity="many">фотографий</item>
-            <item quantity="other">фотографий</item>
+    <plurals name="number_of_photos">
+        <item quantity="one">фотография</item>
+        <item quantity="two">фотографии</item>
+        <item quantity="few">фотографии</item>
+        <item quantity="many">фотографий</item>
+        <item quantity="other">фотографий</item>
 
-        </plurals>
+    </plurals>
 </resources>

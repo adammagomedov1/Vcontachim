@@ -27,7 +27,10 @@ object Screens {
 
     fun photoAlbums() = FragmentScreen { PhotoAlbumsFragment() }
 
-    fun photos(photoAlbums: ItemPhotoAlbums) = FragmentScreen { PhotosFragment.createFragment(
-        photoAlbums = photoAlbums) }
+    fun photos(photoAlbums: ItemPhotoAlbums) = FragmentScreen {
+        PhotosFragment.createFragment(
+            photoAlbums = photoAlbums
+        )
+    }
 
 }

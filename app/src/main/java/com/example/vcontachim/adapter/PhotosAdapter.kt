@@ -32,8 +32,9 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
-        val photos : ItemPhotos = photosList[position]
-        val sizes = photos.sizes[0]
+
+        val itemPhotos: ItemPhotos = photosList[position]
+        val sizes = itemPhotos.sizes[0]
 
         Glide.with(holder.itemView)
             .load(sizes.url)
