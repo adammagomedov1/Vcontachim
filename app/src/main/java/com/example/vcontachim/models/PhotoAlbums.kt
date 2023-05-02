@@ -18,5 +18,8 @@ data class ItemPhotoAlbums(
     val title: String,
 
     @SerializedName("thumb_src")
-    val thumbSrc: String
+    val thumbSrc: String,
+
+    @SerializedName("id")
+    val id : Long
 )

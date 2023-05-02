@@ -7,29 +7,32 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_photos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/back_icon"
-        app:title="@string/photo_albums" />
+        app:subtitle="4 фотографии"
+        app:subtitleTextColor="#818C99"
+        app:title="Лето 2022" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recycler_view_photos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/item_photo_albums" />
+            app:spanCount="3"
+            tools:listitem="@layout/item_photos" />
 
         <ProgressBar
-            android:id="@+id/progress_bar"
+            android:id="@+id/progress_bar_photos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
     </FrameLayout>
+
 </LinearLayout>

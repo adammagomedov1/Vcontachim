@@ -2,6 +2,7 @@ package com.example.vcontachim.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
 import com.example.vcontachim.adapter.PhotoAlbumsAdapter
 import com.example.vcontachim.databinding.FragmentPhotoAlbumsBinding
+import com.example.vcontachim.models.PhotoAlbums
 import com.example.vcontachim.viewmodel.PhotoAlbumsViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -29,9 +31,8 @@ class PhotoAlbumsFragment : Fragment(R.layout.fragment_photo_albums) {
                 VcontachimApplication.router.exit()
             }
         })
-
         val photoAlbumsAdapter = PhotoAlbumsAdapter()
-        binding!!.recyclerView1.adapter = photoAlbumsAdapter
+        binding!!.recyclerView.adapter = photoAlbumsAdapter
 
         viewModel.photoAlbumsLiveData.observe(viewLifecycleOwner) {
             photoAlbumsAdapter.photoAlbumsList =
@@ -49,12 +50,12 @@ class PhotoAlbumsFragment : Fragment(R.layout.fragment_photo_albums) {
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val snakbar: Snackbar = Snackbar.make(
+            val snackbar: Snackbar = Snackbar.make(
                 requireView(),
                 it,
                 Snackbar.LENGTH_LONG
             )
-            snakbar.show()
+            snackbar.show()
         }
         viewModel.loadList()
     }
