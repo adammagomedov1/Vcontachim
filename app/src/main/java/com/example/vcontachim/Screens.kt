@@ -24,4 +24,6 @@ object Screens {
 
     fun communities() = FragmentScreen { CommunitiesFragment() }
 
+    fun photoAlbums() = FragmentScreen { PhotoAlbumsFragment() }
+
 }
