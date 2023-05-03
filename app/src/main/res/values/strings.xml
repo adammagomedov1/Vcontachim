@@ -17,8 +17,6 @@
     <string name="cancel">Отмена</string>
     <string name="goOut">Выйти</string>
 
-
-
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>
         <item quantity="two">фотографии</item>
