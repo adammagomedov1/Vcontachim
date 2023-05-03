@@ -88,7 +88,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         )
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         builder.setTitle(R.string.logout)
-        builder.setPositiveButton(R.string.goOut, object : DialogInterface.OnClickListener {
+        builder.setPositiveButton(R.string.go_out, object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.remove("auth")
