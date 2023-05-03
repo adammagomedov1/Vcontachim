@@ -31,7 +31,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         binding!!.linearLayoutLogout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                showConfirmationDialog()
+                showExitConfirmationDialog()
             }
         })
 
@@ -81,14 +81,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         viewModel.loadProfile()
     }
 
-    private fun showConfirmationDialog() {
+    private fun showExitConfirmationDialog() {
         val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
             "vcontachim",
             Context.MODE_PRIVATE
         )
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Выход из аккаунта")
-        builder.setPositiveButton("Выйти", object : DialogInterface.OnClickListener {
+        builder.setTitle(R.string.logout)
+        builder.setPositiveButton(R.string.goOut, object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.remove("auth")
@@ -96,7 +96,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 VcontachimApplication.router.navigateTo(Screens.launch())
             }
         })
-        builder.setNegativeButton("Отмена", null)
+        builder.setNegativeButton(R.string.cancel, null)
 
         val exitDialog: AlertDialog = builder.create()
         exitDialog.show()
