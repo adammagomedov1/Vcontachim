@@ -40,14 +40,14 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
         val takeStringName = requireArguments().getString(SAVE_NAME_KEY)
         val findOutTheNumberOfPhotos = requireArguments().getLong(NUMBER_OF_PHOTOS_KEY)
 
-        val followersCount: String = VcontachimApplication.context.resources.getQuantityString(
+        val numberOfPhotos: String = VcontachimApplication.context.resources.getQuantityString(
             R.plurals.number_of_photos,
             findOutTheNumberOfPhotos.toInt()
         )
 
         binding!!.toolbarPhotos.title = takeStringName
 
-        binding!!.toolbarPhotos.subtitle = "$findOutTheNumberOfPhotos $followersCount"
+        binding!!.toolbarPhotos.subtitle = "$findOutTheNumberOfPhotos $numberOfPhotos"
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner, object : Observer<Boolean> {
             override fun onChanged(t: Boolean?) {
@@ -71,9 +71,9 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
     }
 
     companion object {
-        const val SAVE_PHOTO_KEY = "photo"
-        const val SAVE_NAME_KEY = "name"
-        const val NUMBER_OF_PHOTOS_KEY = "size"
+        private const val SAVE_PHOTO_KEY = "photo"
+        private const val SAVE_NAME_KEY = "name"
+        private const val NUMBER_OF_PHOTOS_KEY = "size"
 
 
         fun createFragment(photoAlbums: ItemPhotoAlbums): Fragment {
