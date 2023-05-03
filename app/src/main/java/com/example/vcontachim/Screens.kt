@@ -1,6 +1,7 @@
 package com.example.vcontachim
 
 import android.content.Intent
+import com.example.vcontachim.activity.LaunchActivity
 import com.example.vcontachim.activity.MainActivity
 import com.example.vcontachim.fragment.*
 import com.example.vcontachim.models.ItemPhotoAlbums
@@ -32,5 +33,7 @@ object Screens {
             photoAlbums = photoAlbums
         )
     }
+
+    fun launch() = ActivityScreen { Intent(it, LaunchActivity::class.java) }
 
 }

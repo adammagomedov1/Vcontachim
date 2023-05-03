@@ -1,8 +1,12 @@
 package com.example.vcontachim.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -24,6 +28,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
+
+        binding!!.linearLayoutLogout.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                showExitConfirmationDialog()
+            }
+        })
 
         binding!!.photoAlbums.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -70,4 +80,26 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         viewModel.loadProfile()
     }
+
+    private fun showExitConfirmationDialog() {
+        val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
+            "vcontachim",
+            Context.MODE_PRIVATE
+        )
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(R.string.logout)
+        builder.setPositiveButton(R.string.go_out, object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.remove("auth")
+                editor.apply()
+                VcontachimApplication.router.navigateTo(Screens.launch())
+            }
+        })
+        builder.setNegativeButton(R.string.cancel, null)
+
+        val exitDialog: AlertDialog = builder.create()
+        exitDialog.show()
+    }
+
 }

@@ -13,6 +13,8 @@
     <string name="go_out">Выйти</string>
     <string name="friend">Друзья</string>
     <string name="photo_albums">Фотоальбомы</string>
+    <string name="logout">Выход из аккаунта</string>
+    <string name="cancel">Отмена</string>
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>
