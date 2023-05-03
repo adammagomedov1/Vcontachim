@@ -3,6 +3,7 @@ package com.example.vcontachim
 import android.content.Intent
 import com.example.vcontachim.activity.MainActivity
 import com.example.vcontachim.fragment.*
+import com.example.vcontachim.models.ItemPhotoAlbums
 import com.github.terrakok.cicerone.androidx.ActivityScreen
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
@@ -25,5 +26,11 @@ object Screens {
     fun communities() = FragmentScreen { CommunitiesFragment() }
 
     fun photoAlbums() = FragmentScreen { PhotoAlbumsFragment() }
+
+    fun photos(photoAlbums: ItemPhotoAlbums) = FragmentScreen {
+        PhotosFragment.createFragment(
+            photoAlbums = photoAlbums
+        )
+    }
 
 }

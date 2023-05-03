@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
+import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.ItemPhotoAlbumsBinding
 import com.example.vcontachim.fragment.VcontachimApplication
 import com.example.vcontachim.models.ItemPhotoAlbums
@@ -46,6 +47,10 @@ class PhotoAlbumsAdapter : RecyclerView.Adapter<PhotoAlbumsAdapter.PhotoAlbumsVi
         holder.binding.textViewNumberOfPhotos.text = "${photoAlbums.size} $followersCount"
 
         holder.binding.textViewName.text = photoAlbums.title
+
+        holder.binding.linearLayoutPhotoAlbums.setOnClickListener {
+            VcontachimApplication.router.navigateTo(Screens.photos(photoAlbums))
+        }
 
     }
 
