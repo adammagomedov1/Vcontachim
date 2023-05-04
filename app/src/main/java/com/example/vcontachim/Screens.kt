@@ -36,4 +36,6 @@ object Screens {
 
     fun launch() = ActivityScreen { Intent(it, LaunchActivity::class.java) }
 
+    fun video() = FragmentScreen { VideoFragment() }
+
 }

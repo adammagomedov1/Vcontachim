@@ -29,6 +29,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
 
+        binding!!.linearLayoutVideo.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                VcontachimApplication.router.navigateTo(Screens.video())
+            }
+        })
+
         binding!!.linearLayoutLogout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 showExitConfirmationDialog()
