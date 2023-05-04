@@ -48,6 +48,13 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
         holder.binding.numberOfViews.text = "${itemVideo.views} $numberOfViews"
 
+        val hours = itemVideo.duration / 3600
+        val minutes = (itemVideo.duration % 3600) / 60
+        val seconds = itemVideo.duration % 60
+
+        val timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+        holder.binding.sizeVideo.text = timeString
+
     }
 
     override fun getItemCount() = videoList.size

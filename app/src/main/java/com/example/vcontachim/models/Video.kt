@@ -14,6 +14,9 @@ data class ItemVideo(
     @SerializedName("title")
     val title: String,
 
+    @SerializedName("duration")
+    val duration: Long,
+
     @SerializedName("views")
     val views: String,
 
