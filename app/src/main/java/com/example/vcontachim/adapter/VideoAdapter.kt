@@ -1,5 +1,6 @@
 package com.example.vcontachim.adapter
 
+import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.vcontachim.fragment.VcontachimApplication
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.models.ResponseVideo
 import com.example.vcontachim.models.Video
+import java.util.*
 
 class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
     var videoList: List<ItemVideo> = emptyList()
@@ -34,6 +36,7 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
         return VideoViewHolder(itemView)
     }
 
+    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val itemVideo: ItemVideo = videoList[position]
@@ -58,6 +61,10 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
         val timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds)
         holder.binding.sizeVideo.text = timeString
+
+        val formatter = SimpleDateFormat("d MMMM yyyy")
+        val dateString = formatter.format(Date(itemVideo.date * 1000))
+        holder.binding.dateAdded.text = dateString
 
     }
 
