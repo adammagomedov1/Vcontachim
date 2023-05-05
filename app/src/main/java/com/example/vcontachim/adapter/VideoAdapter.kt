@@ -36,7 +36,6 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
         return VideoViewHolder(itemView)
     }
 
-    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val itemVideo: ItemVideo = videoList[position]
@@ -59,8 +58,7 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
         val minutes = (itemVideo.duration % 3600) / 60
         val seconds = itemVideo.duration % 60
 
-        val timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds)
-        holder.binding.sizeVideo.text = timeString
+        holder.binding.videoDuration.text = "$hours:$minutes:$seconds"
 
         val formatter = SimpleDateFormat("d MMMM yyyy")
         val dateString = formatter.format(Date(itemVideo.date * 1000))

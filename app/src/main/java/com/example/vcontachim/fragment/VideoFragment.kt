@@ -32,12 +32,13 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
         val videoAdapter = VideoAdapter()
         binding!!.recyclerView.adapter = videoAdapter
 
-        viewModel.videoLiveData.observe(viewLifecycleOwner){
+        viewModel.videoLiveData.observe(viewLifecycleOwner) {
             videoAdapter.videoList = it.response.items
             videoAdapter.notifyDataSetChanged()
         }
 
-        viewModel.progressBarLiveData.observe(viewLifecycleOwner
+        viewModel.progressBarLiveData.observe(
+            viewLifecycleOwner
         ) { t ->
             if (t == true) {
                 binding!!.progressBar.visibility = View.VISIBLE

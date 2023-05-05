@@ -22,14 +22,14 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/size_video"
+            android:id="@+id/video_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp"
             android:layout_marginTop="44dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/video_size"
+            android:background="@drawable/video_duration"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
             tools:text="23:21:23" />
