@@ -163,8 +163,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout_video"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
                 android:orientation="horizontal">
 
                 <ImageView
