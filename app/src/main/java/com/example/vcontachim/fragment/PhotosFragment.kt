@@ -75,7 +75,6 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
         private const val SAVE_NAME_KEY = "name"
         private const val NUMBER_OF_PHOTOS_KEY = "size"
 
-
         fun createFragment(photoAlbums: ItemPhotoAlbums): Fragment {
             val fragment = PhotosFragment()
             val bundle = Bundle()
@@ -85,7 +84,6 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
             fragment.arguments = bundle
 
             return fragment
-
         }
     }
 }
