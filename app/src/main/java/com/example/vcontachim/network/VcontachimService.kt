@@ -39,7 +39,8 @@ interface VcontachimService {
     suspend fun getPhotos(
         @Header("Authorization") token: String,
         @Query("v") v: Double = 5.131,
-        @Query("album_id") albumId: Long,
+        @Query("extended") extended: Int = 1,
+        @Query("album_id") albumId: Long
     ): Photos
 
     @GET("video.get")
