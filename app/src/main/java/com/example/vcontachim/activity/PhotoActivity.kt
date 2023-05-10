@@ -17,12 +17,8 @@ import java.io.Serializable
 class PhotoActivity : AppCompatActivity(R.layout.activity_photo) {
     private val navigator = AppNavigator(this, R.id.fragment_photo_container)
 
-    private var binding: ActivityPhotoBinding? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val rootLayout: View = findViewById(R.id.photo_layout)
-        binding = ActivityPhotoBinding.bind(rootLayout)
 
         val photoSerializable: Serializable? = intent?.getSerializableExtra(SAVE_PHOTOS_KEY)
         val photo: ItemPhotos? = photoSerializable as? ItemPhotos
