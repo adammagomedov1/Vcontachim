@@ -27,15 +27,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_gravity="bottom">
+            android:layout_marginBottom="8dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="1"
                 android:background="?selectableItemBackground"
                 android:orientation="horizontal"
                 tools:ignore="NestedWeights">
@@ -56,10 +56,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="1"
                 android:background="?selectableItemBackground"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -78,10 +79,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?selectableItemBackground"
+                android:gravity="end"
                 android:orientation="horizontal">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -94,6 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
+                    android:layout_marginEnd="18dp"
                     android:textColor="@color/white"
                     tools:text="208" />
 
