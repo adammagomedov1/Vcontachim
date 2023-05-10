@@ -3,6 +3,7 @@ package com.example.vcontachim
 import android.content.Intent
 import com.example.vcontachim.activity.LaunchActivity
 import com.example.vcontachim.activity.MainActivity
+import com.example.vcontachim.activity.PhotoActivity
 import com.example.vcontachim.fragment.*
 import com.example.vcontachim.models.*
 import com.github.terrakok.cicerone.androidx.ActivityScreen
@@ -41,4 +42,8 @@ object Screens {
     fun photo(itemPhotos: ItemPhotos) =
         FragmentScreen { PhotoFragment.createFragment(photos = itemPhotos) }
 
+    fun photoActivity(itemPhotos: ItemPhotos) =
+        ActivityScreen { PhotoActivity.createIntent(photos = itemPhotos, context = it) }
+
+    fun photosExit() = FragmentScreen { PhotosFragment() }
 }

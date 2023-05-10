@@ -4,14 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.ItemPhotosBinding
 import com.example.vcontachim.fragment.VcontachimApplication
 import com.example.vcontachim.models.ItemPhotos
-import com.example.vcontachim.models.Size
 
 class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
     var photosList: List<ItemPhotos> = emptyList()
@@ -36,8 +34,8 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
         val sizes = itemPhotos.sizes[0]
 
         holder.binding.linearLayoutPhotos.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                VcontachimApplication.router.navigateTo(Screens.photo(itemPhotos))
+            override fun onClick(v: View) {
+                VcontachimApplication.router.navigateTo(Screens.photoActivity(itemPhotos))
             }
         })
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
+import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.FragmentPhotoBinding
 import com.example.vcontachim.models.ItemPhotos
 import java.io.Serializable
