@@ -45,5 +45,4 @@ object Screens {
     fun photoActivity(itemPhotos: ItemPhotos) =
         ActivityScreen { PhotoActivity.createIntent(photos = itemPhotos, context = it) }
 
-    fun photosExit() = FragmentScreen { PhotosFragment() }
 }
