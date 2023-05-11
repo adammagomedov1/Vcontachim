@@ -34,15 +34,15 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
         val photosSerializable: Serializable? = arguments?.getSerializable(SAVE_PHOTOS_KEY)
         val photos: ItemPhotos? = photosSerializable as? ItemPhotos
 
+        if (photos!!.likes.userLikes > 0) {
+            binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
+        }
+
         viewModel.likesLiveData.observe(viewLifecycleOwner) {
-            if (photos!!.likes.userLikes < 1) {
+            if (photos.likes.userLikes < 1) {
                 binding!!.textViewLikes.text = "${photos.likes.count + 1}"
                 binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
             }
-        }
-
-        if (photos!!.likes.userLikes > 0) {
-            binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
         }
 
         binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
