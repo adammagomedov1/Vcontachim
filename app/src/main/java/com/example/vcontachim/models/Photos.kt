@@ -14,6 +14,7 @@ data class ResponsePhotos(
 data class ItemPhotos(
     val sizes: List<Size>,
     val likes: Likes,
+    val id: String,
     val comments: Comments,
     val reposts: Reposts
 ) : Serializable {
@@ -25,7 +26,10 @@ data class ItemPhotos(
 
     data class Likes(
         @SerializedName("count")
-        val count: String
+        val count: Long,
+
+        @SerializedName("user_likes")
+        val userLikes: Int
     ) : Serializable
 
     data class Comments(
