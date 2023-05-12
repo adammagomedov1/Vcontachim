@@ -38,28 +38,6 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
             binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
         }
 
-        binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                viewModel.like(photos.id)
-            }
-        })
-
-        viewModel.likesLiveData.observe(viewLifecycleOwner) {
-            if (photos.likes.userLikes < 1) {
-                binding!!.textViewLikes.text = "${photos.likes.count + 1}"
-                binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
-            }
-        }
-
-        viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val snackbar: Snackbar = Snackbar.make(
-                requireView(),
-                it,
-                Snackbar.LENGTH_LONG
-            )
-            snackbar.show()
-        }
-
         if (photos != null) {
             binding!!.textViewLikes.text = photos.likes.count.toString()
 
@@ -71,6 +49,28 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
                 .load(photos.sizes[0].url)
                 .into(binding!!.imageView)
         }
+
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            val snackbar: Snackbar = Snackbar.make(
+                requireView(),
+                it,
+                Snackbar.LENGTH_LONG
+            )
+            snackbar.show()
+        }
+
+        viewModel.likesLiveData.observe(viewLifecycleOwner) {
+            if (photos.likes.userLikes < 1) {
+                binding!!.textViewLikes.text = "${photos.likes.count + 1}"
+                binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
+            }
+        }
+
+        binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                viewModel.like(photos.id)
+            }
+        })
     }
 
     companion object {
