@@ -38,18 +38,18 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
             binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
         }
 
+        binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                viewModel.like(photos.id)
+            }
+        })
+
         viewModel.likesLiveData.observe(viewLifecycleOwner) {
             if (photos.likes.userLikes < 1) {
                 binding!!.textViewLikes.text = "${photos.likes.count + 1}"
                 binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
             }
         }
-
-        binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                viewModel.like(photos.id)
-            }
-        })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
             val snackbar: Snackbar = Snackbar.make(
@@ -62,10 +62,14 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
 
         if (photos != null) {
             binding!!.textViewLikes.text = photos.likes.count.toString()
+
             binding!!.textViewRepos.text = photos.reposts.count
+
             binding!!.textViewCimentaries.text = photos.comments.count
 
-            Glide.with(this@PhotoFragment).load(photos.sizes[0].url).into(binding!!.imageView)
+            Glide.with(this@PhotoFragment)
+                .load(photos.sizes[0].url)
+                .into(binding!!.imageView)
         }
     }
 

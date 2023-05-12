@@ -52,7 +52,7 @@ interface VcontachimService {
     ): Video
 
     @POST("likes.add")
-    suspend fun addLikes(
+    suspend fun addLike(
         @Header("Authorization") token: String,
         @Query("v") v: Double = 5.131,
         @Query("type") type: String = "photo",
