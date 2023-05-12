@@ -50,6 +50,12 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
                 .into(binding!!.imageView)
         }
 
+        binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                viewModel.like(photos.id)
+            }
+        })
+
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
             val snackbar: Snackbar = Snackbar.make(
                 requireView(),
@@ -66,11 +72,6 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
             }
         }
 
-        binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                viewModel.like(photos.id)
-            }
-        })
     }
 
     companion object {
