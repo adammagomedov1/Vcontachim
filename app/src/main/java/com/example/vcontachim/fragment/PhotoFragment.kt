@@ -32,7 +32,7 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
         })
 
         val photosSerializable: Serializable? = arguments?.getSerializable(SAVE_PHOTOS_KEY)
-        val photos: ItemPhotos? = photosSerializable as? ItemPhotos
+        var photos: ItemPhotos? = photosSerializable as? ItemPhotos
 
         if (photos!!.likes.userLikes > 0) {
             binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
@@ -52,7 +52,11 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
 
         binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                viewModel.like(photos.id)
+                if (photos!!.likes.userLikes < 1) {
+                    viewModel.like(photos!!.id)
+                } else {
+                    viewModel.deleteLike(photos!!.id)
+                }
             }
         })
 
@@ -66,12 +70,27 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
         }
 
         viewModel.likesLiveData.observe(viewLifecycleOwner) {
-            if (photos.likes.userLikes < 1) {
-                binding!!.textViewLikes.text = "${photos.likes.count + 1}"
+            photos = photos!!.copy(
+                likes = photos!!.likes.copy(
+                    userLikes = if (photos!!.likes.userLikes == 1) {
+                        0
+                    } else {
+                        1
+                    },
+                    count = it.response.likes
+                )
+            )
+
+            if (photos!!.likes.userLikes < 1) {
+                binding!!.textViewLikes.text = "${photos!!.likes.count}"
+                binding!!.likesImageView.setImageResource(R.drawable.like_outline_24)
+
+            } else {
+                binding!!.textViewLikes.text = "${photos!!.likes.count}"
                 binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
+
             }
         }
-
     }
 
     companion object {
