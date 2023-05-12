@@ -3,6 +3,7 @@ package com.example.vcontachim.network
 import com.example.vcontachim.models.*
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface VcontachimService {
@@ -49,4 +50,12 @@ interface VcontachimService {
         @Query("v") v: Double = 5.131,
         @Query("extended") extended: Int = 1
     ): Video
+
+    @POST("likes.add")
+    suspend fun addLike(
+        @Header("Authorization") token: String,
+        @Query("v") v: Double = 5.131,
+        @Query("type") type: String = "photo",
+        @Query("item_id") itemId: String
+    ): Likes
 }
