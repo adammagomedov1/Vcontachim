@@ -31,28 +31,30 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
             }
         })
 
-        val photosSerializable: Serializable? = arguments?.getSerializable(SAVE_PHOTOS_KEY)
-        val photos: ItemPhotos? = photosSerializable as? ItemPhotos
+        val photosSerializable: Serializable = arguments?.getSerializable(SAVE_PHOTOS_KEY)!!
+        var photos: ItemPhotos = photosSerializable as ItemPhotos
 
-        if (photos!!.likes.userLikes > 0) {
+        if (photos.likes.userLikes > 0) {
             binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
         }
 
-        if (photos != null) {
-            binding!!.textViewLikes.text = photos.likes.count.toString()
+        binding!!.textViewLikes.text = photos.likes.count.toString()
 
-            binding!!.textViewRepos.text = photos.reposts.count
+        binding!!.textViewRepos.text = photos.reposts.count
 
-            binding!!.textViewCimentaries.text = photos.comments.count
+        binding!!.textViewCimentaries.text = photos.comments.count
 
-            Glide.with(this@PhotoFragment)
-                .load(photos.sizes[0].url)
-                .into(binding!!.imageView)
-        }
+        Glide.with(this@PhotoFragment)
+            .load(photos.sizes[0].url)
+            .into(binding!!.imageView)
 
         binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                viewModel.like(photos.id)
+                if (photos.likes.userLikes < 1) {
+                    viewModel.like(photos.id)
+                } else {
+                    viewModel.deleteLike(photos.id)
+                }
             }
         })
 
@@ -66,12 +68,27 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
         }
 
         viewModel.likesLiveData.observe(viewLifecycleOwner) {
+            photos = photos.copy(
+                likes = photos.likes.copy(
+                    userLikes = if (photos.likes.userLikes == 1) {
+                        0
+                    } else {
+                        1
+                    },
+                    count = it.response.likes
+                )
+            )
+
+            binding!!.textViewLikes.text = "${photos.likes.count}"
+
             if (photos.likes.userLikes < 1) {
-                binding!!.textViewLikes.text = "${photos.likes.count + 1}"
+                binding!!.likesImageView.setImageResource(R.drawable.like_outline_24)
+
+            } else {
                 binding!!.likesImageView.setImageResource(R.drawable.like_filled_red_28)
+
             }
         }
-
     }
 
     companion object {

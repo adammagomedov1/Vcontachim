@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vcontachim.fragment.VcontachimApplication
 import com.example.vcontachim.models.Likes
-import com.example.vcontachim.models.Photos
 import kotlinx.coroutines.launch
-import kotlin.Exception as Exception
 
 class PhotoViewModel : ViewModel() {
 
@@ -30,6 +28,27 @@ class PhotoViewModel : ViewModel() {
                     )
 
                 likesLiveData.value = likes
+            } catch (e: Exception) {
+                errorLiveData.value = e.message
+            }
+        }
+    }
+
+    fun deleteLike(idPhotos: String) {
+        viewModelScope.launch {
+            try {
+                val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
+                    "vcontachim",
+                    Context.MODE_PRIVATE
+                )
+                val tookToken: String? = sharedPreferences.getString("auth", null)
+                val deleteLike: Likes =
+                    VcontachimApplication.vcontachimService.deleteLike(
+                        token = "Bearer $tookToken",
+                        itemId = idPhotos
+                    )
+
+                likesLiveData.value = deleteLike
             } catch (e: Exception) {
                 errorLiveData.value = e.message
             }
