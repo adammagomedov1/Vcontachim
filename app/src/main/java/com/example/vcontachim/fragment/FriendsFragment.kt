@@ -6,11 +6,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.vcontachim.R
 import com.example.vcontachim.adapter.FriendsAdapter
 import com.example.vcontachim.databinding.FragmentFriendsBinding
-import com.example.vcontachim.models.Friends
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.viewmodel.FriendsViewModel
 import com.google.android.material.snackbar.Snackbar
 

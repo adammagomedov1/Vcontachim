@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vcontachim.R
 import com.example.vcontachim.Screens
-import com.example.vcontachim.fragment.VcontachimApplication
+import com.example.vcontachim.VcontachimApplication
 import com.github.terrakok.cicerone.androidx.AppNavigator
 
 class LaunchActivity : AppCompatActivity(R.layout.activity_launch) {

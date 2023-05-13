@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vcontachim.fragment.VcontachimApplication
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.Likes
 import kotlinx.coroutines.launch
 
@@ -37,11 +37,8 @@ class PhotoViewModel : ViewModel() {
     fun deleteLike(idPhotos: String) {
         viewModelScope.launch {
             try {
-                val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
-                    "vcontachim",
-                    Context.MODE_PRIVATE
-                )
-                val tookToken: String? = sharedPreferences.getString("auth", null)
+
+                val tookToken = VcontachimApplication.token.tookToken
                 val deleteLike: Likes =
                     VcontachimApplication.vcontachimService.deleteLike(
                         token = "Bearer $tookToken",

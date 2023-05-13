@@ -14,6 +14,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.FragmentProfileBinding
 import com.example.vcontachim.models.Response
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.viewmodel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 

@@ -1,13 +1,13 @@
 package com.example.vcontachim.fragment
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.vcontachim.R
 import com.example.vcontachim.Screens
+import com.example.vcontachim.VcontachimApplication
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
