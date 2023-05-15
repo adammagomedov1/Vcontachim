@@ -9,10 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
 import com.example.vcontachim.adapter.CommunitiesAdapter
 import com.example.vcontachim.databinding.FragmentCommunitiesBinding
-import com.example.vcontachim.models.Communities
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.viewmodel.CommunitiesViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlin.io.path.fileVisitor
 
 class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
 

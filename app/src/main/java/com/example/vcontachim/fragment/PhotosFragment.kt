@@ -9,6 +9,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.adapter.PhotosAdapter
 import com.example.vcontachim.databinding.FragmentPhotosBinding
 import com.example.vcontachim.models.ItemPhotoAlbums
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.viewmodel.PhotosViewModels
 import com.google.android.material.snackbar.Snackbar
 

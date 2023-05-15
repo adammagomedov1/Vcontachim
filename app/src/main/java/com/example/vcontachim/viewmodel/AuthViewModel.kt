@@ -1,12 +1,9 @@
 package com.example.vcontachim.viewmodel
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.net.Uri
-import android.webkit.WebResourceRequest
 import androidx.lifecycle.ViewModel
 import com.example.vcontachim.Screens
-import com.example.vcontachim.fragment.VcontachimApplication
+import com.example.vcontachim.VcontachimApplication
 
 class AuthViewModel : ViewModel() {
 
@@ -20,14 +17,7 @@ class AuthViewModel : ViewModel() {
             val afterAccessToken = finalUrlDecoded.substringAfter("access_token=")
             val beforeAccessToken = afterAccessToken.substringBefore("&")
 
-            val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
-                "vcontachim",
-                Context.MODE_PRIVATE
-            )
-
-            val editor: SharedPreferences.Editor = sharedPreferences.edit()
-            editor.putString("auth", beforeAccessToken)
-            editor.apply()
+            VcontachimApplication.sharedPreferencesHelper.savingToken(beforeAccessToken)
 
             VcontachimApplication.router.replaceScreen(Screens.main())
         }

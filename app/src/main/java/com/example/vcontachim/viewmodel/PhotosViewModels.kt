@@ -1,11 +1,9 @@
 package com.example.vcontachim.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vcontachim.fragment.VcontachimApplication
-import com.example.vcontachim.models.PhotoAlbums
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.Photos
 import kotlinx.coroutines.launch
 
@@ -20,15 +18,10 @@ class PhotosViewModels : ViewModel() {
             try {
                 progressBarLiveData.value = true
 
-                val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
-                    "vcontachim",
-                    Context.MODE_PRIVATE
-                )
-
-                val photosToken = sharedPreferences.getString("auth", null)
+                val tokenSetter = VcontachimApplication.sharedPreferencesHelper.tookToken
 
                 val photos: Photos = VcontachimApplication.vcontachimService.getPhotos(
-                    token = "Bearer ${photosToken!!}",
+                    token = "Bearer ${tokenSetter!!}",
                     albumId = photos
                 )
 

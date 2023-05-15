@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.ItemPhotosBinding
-import com.example.vcontachim.fragment.VcontachimApplication
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.ItemPhotos
 
 class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {

@@ -1,8 +1,10 @@
-package com.example.vcontachim.fragment
+package com.example.vcontachim
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import com.example.vcontachim.network.VcontachimService
+import com.example.vcontachim.viewmodel.AuthViewModel
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -26,9 +28,13 @@ class VcontachimApplication : Application() {
         cicerone = Cicerone.create()
         router = cicerone.router
         navigatorHolder = cicerone.getNavigatorHolder()
+        sharedPreferencesHelper = SharedPreferencesHelper()
     }
 
     companion object {
+        lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+
+        @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
 
         lateinit var vcontachimService: VcontachimService

@@ -1,21 +1,17 @@
 package com.example.vcontachim.adapter
 
-import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.Group
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemVideoBinding
-import com.example.vcontachim.fragment.VcontachimApplication
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.ItemVideo
-import com.example.vcontachim.models.ResponseVideo
-import com.example.vcontachim.models.Video
 import java.util.*
 
 class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {

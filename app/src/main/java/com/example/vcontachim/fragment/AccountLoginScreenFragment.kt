@@ -2,11 +2,11 @@ package com.example.vcontachim.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.vcontachim.R
 import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.FragmentAccountLoginScreenBinding
+import com.example.vcontachim.VcontachimApplication
 
 class AccountLoginScreenFragment : Fragment(R.layout.fragment_account_login_screen) {
 

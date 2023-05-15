@@ -3,12 +3,11 @@ package com.example.vcontachim.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
 import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.databinding.FragmentVideoBinding
-import com.example.vcontachim.models.Video
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.viewmodel.VideoViewModel
 import com.google.android.material.snackbar.Snackbar
 

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.vcontachim.R
 import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.ActivityMainBinding
-import com.example.vcontachim.fragment.VcontachimApplication
+import com.example.vcontachim.VcontachimApplication
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.navigation.NavigationBarView
 

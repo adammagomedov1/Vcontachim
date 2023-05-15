@@ -3,13 +3,10 @@ package com.example.vcontachim.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vcontachim.R
 import com.example.vcontachim.Screens
-import com.example.vcontachim.databinding.ActivityPhotoBinding
-import com.example.vcontachim.fragment.VcontachimApplication
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.ItemPhotos
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import java.io.Serializable

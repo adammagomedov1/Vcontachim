@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.FragmentPhotoBinding
 import com.example.vcontachim.models.ItemPhotos
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.viewmodel.PhotoViewModel
 import com.google.android.material.snackbar.Snackbar
 import java.io.Serializable
