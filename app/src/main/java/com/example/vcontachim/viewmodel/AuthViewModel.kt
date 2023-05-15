@@ -17,7 +17,7 @@ class AuthViewModel : ViewModel() {
             val afterAccessToken = finalUrlDecoded.substringAfter("access_token=")
             val beforeAccessToken = afterAccessToken.substringBefore("&")
 
-            VcontachimApplication.sharedPreferencesHelper.load(beforeAccessToken)
+            VcontachimApplication.sharedPreferencesHelper.savingToken(beforeAccessToken)
 
             VcontachimApplication.router.replaceScreen(Screens.main())
         }
