@@ -16,9 +16,8 @@ class ProfileViewModel : ViewModel() {
         viewModelScope.launch {
             try {
 
-                val tokenSetter = VcontachimApplication.sharedPreferencesHelper.tookToken
                 val users: Users =
-                    VcontachimApplication.vcontachimService.getUsers(token = "Bearer ${tokenSetter!!}")
+                    VcontachimApplication.vcontachimService.getUsers()
 
                 profileLiveData.value = users
             } catch (e: Exception) {

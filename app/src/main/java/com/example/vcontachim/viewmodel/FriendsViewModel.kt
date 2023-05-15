@@ -18,9 +18,8 @@ class FriendsViewModel : ViewModel() {
             try {
                 progressBarLiveData.value = true
 
-                val tokenSetter = VcontachimApplication.sharedPreferencesHelper.tookToken
                 val friends: Friends =
-                    VcontachimApplication.vcontachimService.getFriends(token = "Bearer ${tokenSetter!!}")
+                    VcontachimApplication.vcontachimService.getFriends()
 
                 progressBarLiveData.value = false
                 friendsLiveData.value = friends
