@@ -27,11 +27,11 @@ class VcontachimApplication : Application() {
         cicerone = Cicerone.create()
         router = cicerone.router
         navigatorHolder = cicerone.getNavigatorHolder()
-        token = SharedPreferences()
+        SharedPreferencesHelper = SharedPreferencesHelper()
     }
 
     companion object {
-        lateinit var token: SharedPreferences
+        lateinit var SharedPreferencesHelper: SharedPreferencesHelper
 
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context

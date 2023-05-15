@@ -18,10 +18,10 @@ class PhotosViewModels : ViewModel() {
             try {
                 progressBarLiveData.value = true
 
-                val photosToken = VcontachimApplication.token.tookToken
+                val tokenSetter = VcontachimApplication.SharedPreferencesHelper.tookToken
 
                 val photos: Photos = VcontachimApplication.vcontachimService.getPhotos(
-                    token = "Bearer ${photosToken!!}",
+                    token = "Bearer ${tokenSetter!!}",
                     albumId = photos
                 )
 

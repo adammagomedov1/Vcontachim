@@ -18,9 +18,9 @@ class CommunitiesViewModel : ViewModel() {
             try {
                 progressBarLiveData.value = true
 
-                val communitiesToken = VcontachimApplication.token.tookToken
+                val tokenSetter = VcontachimApplication.SharedPreferencesHelper.tookToken
                 val communities: Communities =
-                    VcontachimApplication.vcontachimService.getGroups(token = "Bearer ${communitiesToken!!}")
+                    VcontachimApplication.vcontachimService.getGroups(token = "Bearer ${tokenSetter!!}")
 
                 progressBarLiveData.value = false
                 communitiesLiveData.value = communities
