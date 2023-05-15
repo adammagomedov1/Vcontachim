@@ -38,7 +38,7 @@ class PhotoViewModel : ViewModel() {
         viewModelScope.launch {
             try {
 
-                val tokenSetter = VcontachimApplication.SharedPreferencesHelper.tookToken
+                val tokenSetter = VcontachimApplication.sharedPreferencesHelper.tookToken
                 val deleteLike: Likes =
                     VcontachimApplication.vcontachimService.deleteLike(
                         token = "Bearer $tokenSetter",

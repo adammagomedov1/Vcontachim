@@ -18,7 +18,7 @@ class VideoViewModel : ViewModel() {
             try {
                 progressBarLiveData.value = true
 
-                val tokenSetter = VcontachimApplication.SharedPreferencesHelper.tookToken
+                val tokenSetter = VcontachimApplication.sharedPreferencesHelper.tookToken
 
                 val video: Video = VcontachimApplication.vcontachimService.getVideo(
                     token = "Bearer ${tokenSetter!!}"
