@@ -3,7 +3,7 @@ package com.example.vcontachim
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import com.example.vcontachim.network.MyInterceptorTokena
+import com.example.vcontachim.network.InterceptorToken
 import com.example.vcontachim.network.VcontachimService
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
@@ -20,7 +20,7 @@ class VcontachimApplication : Application() {
         context = this.applicationContext
 
         val client: OkHttpClient = OkHttpClient.Builder()
-            .addInterceptor(MyInterceptorTokena())
+            .addInterceptor(InterceptorToken())
             .build()
 
         val retrofit: Retrofit = Retrofit.Builder()
