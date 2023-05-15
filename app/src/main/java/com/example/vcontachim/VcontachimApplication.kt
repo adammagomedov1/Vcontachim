@@ -8,6 +8,7 @@ import com.example.vcontachim.viewmodel.AuthViewModel
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
@@ -20,12 +21,7 @@ class VcontachimApplication : Application() {
         super.onCreate()
         context = this.applicationContext
 
-        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor {
-            val request: Request = it.request().newBuilder()
-                .addHeader("Authorization", "Bearer ${sharedPreferencesHelper.tookToken}")
-                .build()
-            return@addInterceptor it.proceed(request)
-        }
+        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(MyInterceptor())
             .build()
 
         val retrofit: Retrofit = Retrofit.Builder()
