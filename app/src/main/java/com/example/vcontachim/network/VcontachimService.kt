@@ -58,4 +58,10 @@ interface VcontachimService {
         @Query("type") type: String = "photo",
         @Query("item_id") itemId: String
     ): Likes
+
+    @POST("video.delete")
+    suspend fun deleteVideo(
+        @Query("v") v: Double = 5.131,
+        @Query("video_id") videoId: Long
+    ): VideoDelete
 }

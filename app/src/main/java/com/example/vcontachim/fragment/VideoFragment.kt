@@ -1,5 +1,6 @@
 package com.example.vcontachim.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,18 +9,23 @@ import com.example.vcontachim.R
 import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.databinding.FragmentVideoBinding
 import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.viewmodel.VideoViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class VideoFragment : Fragment(R.layout.fragment_video) {
     private var binding: FragmentVideoBinding? = null
 
+    private var videoAdapter : VideoAdapter = VideoAdapter()
+
     private val viewModel: VideoViewModel by lazy {
         ViewModelProvider(this)[VideoViewModel::class.java]
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val itemVideo = videoAdapter.videoList[0]
         binding = FragmentVideoBinding.bind(view)
 
         binding!!.toolbar.setNavigationOnClickListener(object : View.OnClickListener {
@@ -55,5 +61,12 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
             snackbar.show()
         }
         viewModel.loadVideo()
+
+        viewModel.deleteVideoLiveData.observe(viewLifecycleOwner){
+
+
+        }
+
+        viewModel.loadDeleteVideo(itemVideo.id)
     }
 }
