@@ -37,8 +37,9 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1000"
         android:orientation="vertical">
 
         <TextView
@@ -75,15 +76,17 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/bottom_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/more_vertical_16" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/more_vertical_16"
+            tools:ignore="MissingConstraints" />
 
     </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.vcontachim.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class Video(
     val response: ResponseVideo,
@@ -26,7 +27,7 @@ data class ItemVideo(
     val id: Long,
 
     val image: List<Image>
-)
+) : Serializable
 
 data class Image(
     @SerializedName("url")

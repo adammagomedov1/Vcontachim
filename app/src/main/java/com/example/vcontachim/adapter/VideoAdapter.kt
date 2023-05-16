@@ -1,5 +1,6 @@
 package com.example.vcontachim.adapter
 
+import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.view.LayoutInflater
@@ -9,12 +10,14 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
-import com.example.vcontachim.databinding.ItemVideoBinding
 import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.dalogs.AddBottomDialogDeleteVideo
+import com.example.vcontachim.databinding.ItemVideoBinding
 import com.example.vcontachim.models.ItemVideo
 import java.util.*
 
-class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+class VideoAdapter(val videoListener: VideoListener) :
+    RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
     var videoList: List<ItemVideo> = emptyList()
 
     class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,10 +35,17 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
         return VideoViewHolder(itemView)
     }
 
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val itemVideo: ItemVideo = videoList[position]
         val sizes = itemVideo.image[0]
+
+        holder.binding.bottomDialog.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                videoListener.onClick(itemVideo = itemVideo)
+            }
+        })
 
         val numberOfViews: String = VcontachimApplication.context.resources.getQuantityString(
             R.plurals.number_of_views,
@@ -63,4 +73,8 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
     }
 
     override fun getItemCount() = videoList.size
+
+    interface VideoListener {
+        fun onClick(itemVideo: ItemVideo)
+    }
 }
