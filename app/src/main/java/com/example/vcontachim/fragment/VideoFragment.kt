@@ -1,8 +1,14 @@
 package com.example.vcontachim.fragment
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
@@ -12,6 +18,7 @@ import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.dalogs.VideoMenuBottomSheetDialog
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.viewmodel.VideoViewModel
+import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 class VideoFragment : Fragment(R.layout.fragment_video) {
@@ -41,6 +48,20 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
                         addVideoListener = object : VideoMenuBottomSheetDialog.VideoListener {
                             override fun onVideoDelete(video: ItemVideo) {
                                 viewModel.deleteVideo(itemVideo = video)
+                            }
+
+                            override fun copyVideoLink(itemVideo: ItemVideo) {
+                                val clipboard =
+                                    view.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                val clip = ClipData.newPlainText("label", itemVideo.player)
+                                clipboard.setPrimaryClip(clip)
+
+                                val genderToast: Toast = Toast.makeText(
+                                    context,
+                                    "Сылка скопирована",
+                                    Toast.LENGTH_LONG
+                                )
+                                genderToast.show()
                             }
                         })
                 addBottomDialogDeleteVideo.show()
