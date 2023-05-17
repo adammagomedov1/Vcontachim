@@ -6,12 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.models.Video
-import com.example.vcontachim.models.VideoDelete
 import kotlinx.coroutines.launch
 
 class VideoViewModel : ViewModel() {
 
-    val deleteVideoLiveData = MutableLiveData<VideoDelete>()
+    val videoDeleteLiveData = MutableLiveData<ItemVideo>()
     val videoLiveData = MutableLiveData<Video>()
     val progressBarLiveData = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<String>()
@@ -32,14 +31,12 @@ class VideoViewModel : ViewModel() {
         }
     }
 
-    fun loadDeleteVideo(itemVideo: Long) {
+    fun loadDeleteVideo(itemVideo: ItemVideo) {
         viewModelScope.launch {
             try {
+                    VcontachimApplication.vcontachimService.deleteVideo(videoId = itemVideo.id)
 
-                val deleteVideo =
-                    VcontachimApplication.vcontachimService.deleteVideo(videoId = itemVideo)
-
-                deleteVideoLiveData.value = deleteVideo
+                videoDeleteLiveData.value = itemVideo
             } catch (e: Exception) {
                 errorLiveData.value = e.message
             }

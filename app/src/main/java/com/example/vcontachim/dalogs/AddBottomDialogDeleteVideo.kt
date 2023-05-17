@@ -12,7 +12,11 @@ import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.models.VideoDelete
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class AddBottomDialogDeleteVideo(val itemVideo: ItemVideo,context: Context, val addVideoListener: AddVideoListener) :
+class AddBottomDialogDeleteVideo(
+    val itemVideo: ItemVideo,
+    context: Context,
+    val addVideoListener: AddVideoListener
+) :
     BottomSheetDialog(context) {
 
     private var binding: BottomSheetDialogBinding? = null
@@ -23,14 +27,9 @@ class AddBottomDialogDeleteVideo(val itemVideo: ItemVideo,context: Context, val 
         setContentView(R.layout.bottom_sheet_dialog)
 
         val rootLayout: View? = findViewById(R.id.dialog_button_layout)
-
         binding = BottomSheetDialogBinding.bind(rootLayout!!)
 
-        binding!!.textViewName.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-
-            }
-        })
+        binding!!.nameVideo.text = itemVideo.title
 
         binding!!.copyLink.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -41,10 +40,9 @@ class AddBottomDialogDeleteVideo(val itemVideo: ItemVideo,context: Context, val 
         binding!!.removeFromMyVideos.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 addVideoListener.onVideoDelete(itemVideo)
+                dismiss()
             }
         })
-
-        dismiss()
     }
 
     interface AddVideoListener {

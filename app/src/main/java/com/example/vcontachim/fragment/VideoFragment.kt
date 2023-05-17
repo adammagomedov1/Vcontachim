@@ -3,7 +3,6 @@ package com.example.vcontachim.fragment
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
@@ -11,7 +10,6 @@ import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.databinding.FragmentVideoBinding
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.dalogs.AddBottomDialogDeleteVideo
-import com.example.vcontachim.models.ItemPhotos
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.viewmodel.VideoViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -36,24 +34,19 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
 
         val videoAdapter = VideoAdapter(videoListener = object : VideoAdapter.VideoListener {
             override fun onClick(itemVideo: ItemVideo) {
-                        val addBottomDialogDeleteVideo =
-                            AddBottomDialogDeleteVideo(itemVideo = itemVideo,
-                                context = view.context,
-                                addVideoListener = object : AddBottomDialogDeleteVideo.AddVideoListener {
-                                    override fun onVideoDelete(video: ItemVideo) {
-
-                                        viewModel.loadDeleteVideo(itemVideo = video.id)
-                                    }
-                                })
-                        addBottomDialogDeleteVideo.show()
+                val addBottomDialogDeleteVideo =
+                    AddBottomDialogDeleteVideo(itemVideo = itemVideo,
+                        context = view.context,
+                        addVideoListener = object : AddBottomDialogDeleteVideo.AddVideoListener {
+                            override fun onVideoDelete(video: ItemVideo) {
+                                viewModel.loadDeleteVideo(itemVideo = video)
+                            }
+                        })
+                addBottomDialogDeleteVideo.show()
             }
         })
 
         binding!!.recyclerView.adapter = videoAdapter
-
-        viewModel.deleteVideoLiveData.observe(viewLifecycleOwner) {
-
-        }
 
         viewModel.videoLiveData.observe(viewLifecycleOwner) {
             videoAdapter.videoList = it.response.items
@@ -78,19 +71,20 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
             )
             snackbar.show()
         }
+
+        viewModel.videoDeleteLiveData.observe(viewLifecycleOwner) {
+            val itemVideoDelete = videoAdapter.videoList.toMutableList()
+            itemVideoDelete.remove(it)
+            videoAdapter.videoList = itemVideoDelete
+            videoAdapter.notifyDataSetChanged()
+        }
+
         viewModel.loadVideo()
 
     }
-    companion object {
-        private const val SAVE_PHOTOS_KEY = "photos"
 
-        fun createFragment(photos: ItemVideo): Fragment {
-            val fragment = VideoFragment()
-            val bundle = Bundle()
-            bundle.putSerializable(SAVE_PHOTOS_KEY, photos)
-            fragment.arguments = bundle
-
-            return fragment
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

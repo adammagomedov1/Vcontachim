@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginTop="12dp"
@@ -39,7 +39,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1000"
+        android:layout_weight="10"
         android:orientation="vertical">
 
         <TextView
@@ -51,7 +51,7 @@
             android:maxLines="2"
             android:textColor="@color/black"
             android:textSize="16sp"
-            tools:text="Как быстро собраться на работу" />
+            tools:text="Как быстро собратьс" />
 
         <TextView
             android:id="@+id/number_of_views"

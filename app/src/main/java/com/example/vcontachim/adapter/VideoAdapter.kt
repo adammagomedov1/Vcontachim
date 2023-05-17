@@ -35,7 +35,6 @@ class VideoAdapter(val videoListener: VideoListener) :
         return VideoViewHolder(itemView)
     }
 
-    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val itemVideo: ItemVideo = videoList[position]
@@ -66,7 +65,7 @@ class VideoAdapter(val videoListener: VideoListener) :
 
         holder.binding.videoDuration.text = "$hours:$minutes:$seconds"
 
-        val formatter = SimpleDateFormat("d MMMM yyyy")
+        val formatter = SimpleDateFormat(/* pattern = */ "d MMMM yyyy")
         val dateString = formatter.format(Date(itemVideo.date * 1000))
         holder.binding.dateAdded.text = dateString
 
