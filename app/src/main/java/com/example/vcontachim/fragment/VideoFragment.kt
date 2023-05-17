@@ -1,8 +1,12 @@
 package com.example.vcontachim.fragment
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
@@ -38,9 +42,23 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
                     VideoMenuBottomSheetDialog(
                         itemVideo = itemVideo,
                         context = view.context,
-                        addVideoListener = object : VideoMenuBottomSheetDialog.VideoListener {
+                        videoListener = object : VideoMenuBottomSheetDialog.VideoListener {
                             override fun onVideoDelete(video: ItemVideo) {
                                 viewModel.deleteVideo(itemVideo = video)
+                            }
+
+                            override fun copyVideoLink(itemVideo: ItemVideo) {
+                                val clipboard =
+                                    view.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                val clip = ClipData.newPlainText("label", itemVideo.player)
+                                clipboard.setPrimaryClip(clip)
+
+                                val toast: Toast = Toast.makeText(
+                                    context,
+                                    R.string.link_copied,
+                                    Toast.LENGTH_LONG
+                                )
+                                toast.show()
                             }
                         })
                 addBottomDialogDeleteVideo.show()

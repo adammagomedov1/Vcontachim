@@ -24,6 +24,8 @@ data class ItemVideo(
     @SerializedName("views")
     val views: String,
 
+    val player: String,
+
     val id: Long,
 
     val image: List<Image>
