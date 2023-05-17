@@ -1,5 +1,6 @@
 package com.example.vcontachim.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,6 +9,8 @@ import com.example.vcontachim.R
 import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.databinding.FragmentVideoBinding
 import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.dalogs.VideoMenuBottomSheetDialog
+import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.viewmodel.VideoViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -18,6 +21,7 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
         ViewModelProvider(this)[VideoViewModel::class.java]
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentVideoBinding.bind(view)
@@ -28,7 +32,21 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
             }
         })
 
-        val videoAdapter = VideoAdapter()
+        val videoAdapter = VideoAdapter(videoListener = object : VideoAdapter.VideoListener {
+            override fun onClick(itemVideo: ItemVideo) {
+                val addBottomDialogDeleteVideo =
+                    VideoMenuBottomSheetDialog(
+                        itemVideo = itemVideo,
+                        context = view.context,
+                        addVideoListener = object : VideoMenuBottomSheetDialog.VideoListener {
+                            override fun onVideoDelete(video: ItemVideo) {
+                                viewModel.deleteVideo(itemVideo = video)
+                            }
+                        })
+                addBottomDialogDeleteVideo.show()
+            }
+        })
+
         binding!!.recyclerView.adapter = videoAdapter
 
         viewModel.videoLiveData.observe(viewLifecycleOwner) {
@@ -54,6 +72,20 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
             )
             snackbar.show()
         }
+
+        viewModel.videoDeleteLiveData.observe(viewLifecycleOwner) {
+            val itemVideoDelete = videoAdapter.videoList.toMutableList()
+            itemVideoDelete.remove(it)
+            videoAdapter.videoList = itemVideoDelete
+            videoAdapter.notifyDataSetChanged()
+        }
+
         viewModel.loadVideo()
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

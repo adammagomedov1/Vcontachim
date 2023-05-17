@@ -9,12 +9,13 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
-import com.example.vcontachim.databinding.ItemVideoBinding
 import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.databinding.ItemVideoBinding
 import com.example.vcontachim.models.ItemVideo
 import java.util.*
 
-class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+class VideoAdapter(private val videoListener: VideoListener) :
+    RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
     var videoList: List<ItemVideo> = emptyList()
 
     class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,6 +38,12 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
         val itemVideo: ItemVideo = videoList[position]
         val sizes = itemVideo.image[0]
 
+        holder.binding.buttonPopUpTheDialog.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                videoListener.onClick(itemVideo = itemVideo)
+            }
+        })
+
         val numberOfViews: String = VcontachimApplication.context.resources.getQuantityString(
             R.plurals.number_of_views,
             itemVideo.views.toInt()
@@ -56,11 +63,15 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
         holder.binding.videoDuration.text = "$hours:$minutes:$seconds"
 
-        val formatter = SimpleDateFormat("d MMMM yyyy")
+        val formatter = SimpleDateFormat(/* pattern = */ "d MMMM yyyy")
         val dateString = formatter.format(Date(itemVideo.date * 1000))
         holder.binding.dateAdded.text = dateString
 
     }
 
     override fun getItemCount() = videoList.size
+
+    interface VideoListener {
+        fun onClick(itemVideo: ItemVideo)
+    }
 }
