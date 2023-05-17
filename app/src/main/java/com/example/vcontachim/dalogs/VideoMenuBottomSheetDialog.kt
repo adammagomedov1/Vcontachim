@@ -11,7 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 class VideoMenuBottomSheetDialog(
     val itemVideo: ItemVideo,
     context: Context,
-    val addVideoListener: VideoListener
+    val videoListener: VideoListener
 ) : BottomSheetDialog(context) {
 
     private var binding: VideoMenuBottomSheetDialogBinding? = null
@@ -27,14 +27,14 @@ class VideoMenuBottomSheetDialog(
 
         binding!!.copyLink.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
-                addVideoListener.copyVideoLink(itemVideo)
+                videoListener.copyVideoLink(itemVideo)
                 dismiss()
             }
         })
 
         binding!!.removeFromMyVideos.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
-                addVideoListener.onVideoDelete(itemVideo)
+                videoListener.onVideoDelete(itemVideo)
                 dismiss()
             }
         })

@@ -7,8 +7,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
@@ -18,7 +16,6 @@ import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.dalogs.VideoMenuBottomSheetDialog
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.viewmodel.VideoViewModel
-import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 class VideoFragment : Fragment(R.layout.fragment_video) {
@@ -45,7 +42,7 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
                     VideoMenuBottomSheetDialog(
                         itemVideo = itemVideo,
                         context = view.context,
-                        addVideoListener = object : VideoMenuBottomSheetDialog.VideoListener {
+                        videoListener = object : VideoMenuBottomSheetDialog.VideoListener {
                             override fun onVideoDelete(video: ItemVideo) {
                                 viewModel.deleteVideo(itemVideo = video)
                             }
@@ -56,12 +53,12 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
                                 val clip = ClipData.newPlainText("label", itemVideo.player)
                                 clipboard.setPrimaryClip(clip)
 
-                                val genderToast: Toast = Toast.makeText(
+                                val toast: Toast = Toast.makeText(
                                     context,
-                                    "Сылка скопирована",
+                                    R.string.link_copied,
                                     Toast.LENGTH_LONG
                                 )
-                                genderToast.show()
+                                toast.show()
                             }
                         })
                 addBottomDialogDeleteVideo.show()
