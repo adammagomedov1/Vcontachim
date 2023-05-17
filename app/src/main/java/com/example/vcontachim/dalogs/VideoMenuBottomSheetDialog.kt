@@ -8,7 +8,7 @@ import com.example.vcontachim.databinding.BottomSheetDialogBinding
 import com.example.vcontachim.models.ItemVideo
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class BottomSheetDialog(
+class VideoMenuBottomSheetDialog(
     val itemVideo: ItemVideo,
     context: Context,
     val addVideoListener: VideoListener
@@ -18,7 +18,7 @@ class BottomSheetDialog(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.bottom_sheet_dialog)
+        setContentView(R.layout.video_menu_bottom_sheet_dialog)
 
         val rootLayout: View = findViewById(R.id.dialog_button_layout)!!
         binding = BottomSheetDialogBinding.bind(rootLayout)
