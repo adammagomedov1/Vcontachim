@@ -31,10 +31,10 @@ class VideoViewModel : ViewModel() {
         }
     }
 
-    fun loadDeleteVideo(itemVideo: ItemVideo) {
+    fun deleteVideo(itemVideo: ItemVideo) {
         viewModelScope.launch {
             try {
-                    VcontachimApplication.vcontachimService.deleteVideo(videoId = itemVideo.id)
+                VcontachimApplication.vcontachimService.deleteVideo(videoId = itemVideo.id)
 
                 videoDeleteLiveData.value = itemVideo
             } catch (e: Exception) {

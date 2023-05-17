@@ -9,7 +9,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.databinding.FragmentVideoBinding
 import com.example.vcontachim.VcontachimApplication
-import com.example.vcontachim.dalogs.AddBottomDialogDeleteVideo
+import com.example.vcontachim.dalogs.BottomSheetDialog
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.viewmodel.VideoViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -35,12 +35,15 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
         val videoAdapter = VideoAdapter(videoListener = object : VideoAdapter.VideoListener {
             override fun onClick(itemVideo: ItemVideo) {
                 val addBottomDialogDeleteVideo =
-                    AddBottomDialogDeleteVideo(itemVideo = itemVideo,
+                    BottomSheetDialog(
+                        itemVideo = itemVideo,
                         context = view.context,
-                        addVideoListener = object : AddBottomDialogDeleteVideo.AddVideoListener {
+                        addVideoListener = object : BottomSheetDialog.VideoListener {
                             override fun onVideoDelete(video: ItemVideo) {
-                                viewModel.loadDeleteVideo(itemVideo = video)
+                                viewModel.deleteVideo(itemVideo = video)
                             }
+
+
                         })
                 addBottomDialogDeleteVideo.show()
             }

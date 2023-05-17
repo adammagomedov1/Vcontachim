@@ -51,7 +51,7 @@
             android:maxLines="2"
             android:textColor="@color/black"
             android:textSize="16sp"
-            tools:text="Как быстро собратьс" />
+            tools:text="Как быстро собраться на работу" />
 
         <TextView
             android:id="@+id/number_of_views"
@@ -76,11 +76,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/bottom_dialog"
+        android:id="@+id/button_pop_up_the_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1">
+        android:layout_gravity="center">
 
         <ImageView
             android:layout_width="match_parent"
