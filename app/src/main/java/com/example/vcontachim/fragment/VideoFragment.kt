@@ -1,6 +1,5 @@
 package com.example.vcontachim.fragment
 
-import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -10,11 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
-import com.example.vcontachim.adapter.VideoAdapter
-import com.example.vcontachim.databinding.FragmentVideoBinding
 import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.dalogs.VideoMenuBottomSheetDialog
+import com.example.vcontachim.databinding.FragmentVideoBinding
 import com.example.vcontachim.models.ItemVideo
+import com.example.vcontachim.models.ResponseVideo
+import com.example.vcontachim.models.Video
 import com.example.vcontachim.viewmodel.VideoViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -25,7 +26,6 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
         ViewModelProvider(this)[VideoViewModel::class.java]
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentVideoBinding.bind(view)
@@ -68,8 +68,7 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
         binding!!.recyclerView.adapter = videoAdapter
 
         viewModel.videoLiveData.observe(viewLifecycleOwner) {
-            videoAdapter.videoList = it.response.items
-            videoAdapter.notifyDataSetChanged()
+            videoAdapter.submitList(it.response.items)
         }
 
         viewModel.progressBarLiveData.observe(
@@ -92,9 +91,9 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
         }
 
         viewModel.videoDeleteLiveData.observe(viewLifecycleOwner) {
-            val itemVideoDelete = videoAdapter.videoList.toMutableList()
+            val itemVideoDelete = videoAdapter.currentList.toMutableList()
             itemVideoDelete.remove(it)
-            videoAdapter.videoList = itemVideoDelete
+            videoAdapter.submitList(itemVideoDelete)
             videoAdapter.notifyDataSetChanged()
         }
 

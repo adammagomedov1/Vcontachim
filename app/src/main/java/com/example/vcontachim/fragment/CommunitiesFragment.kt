@@ -17,6 +17,8 @@ class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
 
     private var binding: FragmentCommunitiesBinding? = null
 
+    private val communitiesAdapter = CommunitiesAdapter()
+
     private val viewModel: CommunitiesViewModel by lazy {
         ViewModelProvider(this)[CommunitiesViewModel::class.java]
     }
@@ -26,7 +28,6 @@ class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCommunitiesBinding.bind(view)
 
-        val communitiesAdapter = CommunitiesAdapter()
         binding!!.recyclerView.adapter = communitiesAdapter
 
         binding!!.toolbar.setNavigationOnClickListener(object : View.OnClickListener {
@@ -36,8 +37,7 @@ class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
         })
 
         viewModel.communitiesLiveData.observe(viewLifecycleOwner) {
-            communitiesAdapter.communitiesList = it.response.items
-            communitiesAdapter.notifyDataSetChanged()
+            communitiesAdapter.submitList(it.response.items)
         }
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner, object : Observer<Boolean> {

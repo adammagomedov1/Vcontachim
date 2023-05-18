@@ -14,8 +14,9 @@ import com.example.vcontachim.viewmodel.FriendsViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class FriendsFragment : Fragment(R.layout.fragment_friends) {
-
     private var binding: FragmentFriendsBinding? = null
+
+    private val friendsAdapter = FriendsAdapter()
 
     private val viewModel: FriendsViewModel by lazy {
         ViewModelProvider(this)[FriendsViewModel::class.java]
@@ -26,7 +27,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFriendsBinding.bind(view)
 
-        val friendsAdapter = FriendsAdapter()
         binding!!.recyclerView.adapter = friendsAdapter
 
         binding!!.toolbar.setNavigationOnClickListener(object : View.OnClickListener {
@@ -36,8 +36,7 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         })
 
         viewModel.friendsLiveData.observe(viewLifecycleOwner) {
-            friendsAdapter.fieldsList = it.response.items
-            friendsAdapter.notifyDataSetChanged()
+            friendsAdapter.submitList(it.response.items)
         }
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner, object : Observer<Boolean> {
