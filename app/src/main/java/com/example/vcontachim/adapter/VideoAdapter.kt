@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
@@ -15,8 +17,7 @@ import com.example.vcontachim.models.ItemVideo
 import java.util.*
 
 class VideoAdapter(private val videoListener: VideoListener) :
-    RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
-    var videoList: List<ItemVideo> = emptyList()
+    ListAdapter<ItemVideo, VideoAdapter.VideoViewHolder>(VideoDiffCallback) {
 
     class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: ItemVideoBinding = ItemVideoBinding.bind(itemView)
@@ -35,7 +36,7 @@ class VideoAdapter(private val videoListener: VideoListener) :
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        val itemVideo: ItemVideo = videoList[position]
+        val itemVideo: ItemVideo = getItem(position)
         val sizes = itemVideo.image[0]
 
         holder.binding.buttonPopUpTheDialog.setOnClickListener(object : View.OnClickListener {
@@ -69,7 +70,16 @@ class VideoAdapter(private val videoListener: VideoListener) :
 
     }
 
-    override fun getItemCount() = videoList.size
+    object VideoDiffCallback : DiffUtil.ItemCallback<ItemVideo>() {
+        override fun areItemsTheSame(oldItem: ItemVideo, newItem: ItemVideo): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: ItemVideo, newItem: ItemVideo): Boolean {
+            return oldItem == newItem
+        }
+
+    }
 
     interface VideoListener {
         fun onClick(itemVideo: ItemVideo)

@@ -16,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 class PhotosFragment : Fragment(R.layout.fragment_photos) {
     private var binding: FragmentPhotosBinding? = null
 
+    private val photosAdapter = PhotosAdapter()
+
     private val viewModel: PhotosViewModels by lazy {
         ViewModelProvider(this)[PhotosViewModels::class.java]
     }
@@ -30,11 +32,10 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
             }
         })
 
-        val photosAdapter = PhotosAdapter()
         binding!!.recyclerViewPhotos.adapter = photosAdapter
 
         viewModel.photosLiveData.observe(viewLifecycleOwner) {
-            photosAdapter.photosList = it.response.items
+            photosAdapter.submitList(it.response.items)
         }
 
         val takeALongId = requireArguments().getLong(SAVE_PHOTO_KEY)

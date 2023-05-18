@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
@@ -12,8 +14,8 @@ import com.example.vcontachim.databinding.ItemPhotoAlbumsBinding
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.ItemPhotoAlbums
 
-class PhotoAlbumsAdapter : RecyclerView.Adapter<PhotoAlbumsAdapter.PhotoAlbumsViewHolder>() {
-    var photoAlbumsList: List<ItemPhotoAlbums> = emptyList()
+class PhotoAlbumsAdapter :
+    ListAdapter<ItemPhotoAlbums, PhotoAlbumsAdapter.PhotoAlbumsViewHolder>(PhotoAlbumsDiffCallback) {
 
     class PhotoAlbumsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: ItemPhotoAlbumsBinding = ItemPhotoAlbumsBinding.bind(itemView)
@@ -33,7 +35,7 @@ class PhotoAlbumsAdapter : RecyclerView.Adapter<PhotoAlbumsAdapter.PhotoAlbumsVi
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: PhotoAlbumsViewHolder, position: Int) {
-        val photoAlbums: ItemPhotoAlbums = photoAlbumsList[position]
+        val photoAlbums: ItemPhotoAlbums = getItem(position)
 
         Glide.with(holder.itemView)
             .load(photoAlbums.thumbSrc)
@@ -54,6 +56,16 @@ class PhotoAlbumsAdapter : RecyclerView.Adapter<PhotoAlbumsAdapter.PhotoAlbumsVi
 
     }
 
-    override fun getItemCount() = photoAlbumsList.size
+    object PhotoAlbumsDiffCallback : DiffUtil.ItemCallback<ItemPhotoAlbums>() {
+        override fun areItemsTheSame(oldItem: ItemPhotoAlbums, newItem: ItemPhotoAlbums): Boolean {
+            return oldItem.id == newItem.id
+        }
 
+        override fun areContentsTheSame(
+            oldItem: ItemPhotoAlbums,
+            newItem: ItemPhotoAlbums
+        ): Boolean {
+            return oldItem == newItem
+        }
+    }
 }

@@ -16,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 class PhotoAlbumsFragment : Fragment(R.layout.fragment_photo_albums) {
     private var binding: FragmentPhotoAlbumsBinding? = null
 
+    private val photoAlbumsAdapter = PhotoAlbumsAdapter()
+
     private val viewModel: PhotoAlbumsViewModel by lazy {
         ViewModelProvider(this)[PhotoAlbumsViewModel::class.java]
     }
@@ -30,12 +32,11 @@ class PhotoAlbumsFragment : Fragment(R.layout.fragment_photo_albums) {
                 VcontachimApplication.router.exit()
             }
         })
-        val photoAlbumsAdapter = PhotoAlbumsAdapter()
+
         binding!!.recyclerView.adapter = photoAlbumsAdapter
 
         viewModel.photoAlbumsLiveData.observe(viewLifecycleOwner) {
-            photoAlbumsAdapter.photoAlbumsList =
-                it.response.items
+            photoAlbumsAdapter.submitList(it.response.items)
         }
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner, object : Observer<Boolean> {
