@@ -49,7 +49,7 @@ class PhotosAdapter : ListAdapter<ItemPhotos, PhotosAdapter.PhotosViewHolder>(Ph
 
     object PhotosDiffCallback : DiffUtil.ItemCallback<ItemPhotos>() {
         override fun areItemsTheSame(oldItem: ItemPhotos, newItem: ItemPhotos): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: ItemPhotos, newItem: ItemPhotos): Boolean {

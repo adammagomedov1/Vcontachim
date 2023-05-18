@@ -57,7 +57,7 @@ class CommunitiesAdapter :
             oldItem: ItemCommunities,
             newItem: ItemCommunities
         ): Boolean {
-            return oldItem.membersCount == newItem.membersCount
+            return oldItem.screenName == newItem.screenName
         }
 
         @SuppressLint("DiffUtilEquals")

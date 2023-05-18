@@ -58,7 +58,7 @@ class PhotoAlbumsAdapter :
 
     object PhotoAlbumsDiffCallback : DiffUtil.ItemCallback<ItemPhotoAlbums>() {
         override fun areItemsTheSame(oldItem: ItemPhotoAlbums, newItem: ItemPhotoAlbums): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(

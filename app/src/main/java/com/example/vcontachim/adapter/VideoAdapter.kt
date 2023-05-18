@@ -72,7 +72,7 @@ class VideoAdapter(private val videoListener: VideoListener) :
 
     object VideoDiffCallback : DiffUtil.ItemCallback<ItemVideo>() {
         override fun areItemsTheSame(oldItem: ItemVideo, newItem: ItemVideo): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: ItemVideo, newItem: ItemVideo): Boolean {
