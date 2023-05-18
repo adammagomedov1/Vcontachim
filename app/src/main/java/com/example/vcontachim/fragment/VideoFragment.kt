@@ -94,7 +94,6 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
             val itemVideoDelete = videoAdapter.currentList.toMutableList()
             itemVideoDelete.remove(it)
             videoAdapter.submitList(itemVideoDelete)
-            videoAdapter.notifyDataSetChanged()
         }
 
         viewModel.loadVideo()
