@@ -14,7 +14,6 @@ import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.ItemPhotos
 
 class PhotosAdapter : ListAdapter<ItemPhotos, PhotosAdapter.PhotosViewHolder>(PhotosDiffCallback) {
-    var photosList: List<ItemPhotos> = emptyList()
 
     class PhotosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: ItemPhotosBinding = ItemPhotosBinding.bind(itemView)
@@ -56,6 +55,4 @@ class PhotosAdapter : ListAdapter<ItemPhotos, PhotosAdapter.PhotosViewHolder>(Ph
             return oldItem == newItem
         }
     }
-
-    override fun getItemCount() = photosList.size
 }
