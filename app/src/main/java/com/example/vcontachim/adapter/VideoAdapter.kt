@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
+import com.example.vcontachim.Screens
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.ItemVideoBinding
 import com.example.vcontachim.models.ItemVideo
+import com.github.terrakok.cicerone.Screen
 import java.util.*
 
 class VideoAdapter(private val videoListener: VideoListener) :
@@ -42,6 +44,12 @@ class VideoAdapter(private val videoListener: VideoListener) :
         holder.binding.buttonPopUpTheDialog.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 videoListener.onClick(itemVideo = itemVideo)
+            }
+        })
+
+        holder.binding.linearLayoutVideo.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                VcontachimApplication.router.navigateTo(Screens.videoPlayback(itemVideo = itemVideo))
             }
         })
 

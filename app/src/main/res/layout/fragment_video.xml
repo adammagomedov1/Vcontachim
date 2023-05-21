@@ -19,7 +19,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:text="@string/added"
-        android:textAllCaps="true"/>
+        android:textAllCaps="true" />
 
     <FrameLayout
         android:layout_width="match_parent"
