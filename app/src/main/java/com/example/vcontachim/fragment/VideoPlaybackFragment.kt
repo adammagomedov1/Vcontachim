@@ -1,16 +1,10 @@
 package com.example.vcontachim.fragment
 
-import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.Window
 import androidx.annotation.RequiresApi
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.example.vcontachim.R
 import com.example.vcontachim.VcontachimApplication
@@ -18,15 +12,8 @@ import com.example.vcontachim.databinding.FragmentVideoPlaybackBinding
 import com.example.vcontachim.models.ItemVideo
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.offline.DownloadHelper.createMediaSource
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.dash.DashMediaSource
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
-import com.google.android.exoplayer2.util.MimeTypes
-import com.google.android.exoplayer2.util.Util
 import java.util.*
 
 
