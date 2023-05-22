@@ -44,4 +44,7 @@ object Screens {
 
     fun photoActivity(itemPhotos: ItemPhotos) =
         ActivityScreen { PhotoActivity.createIntent(photos = itemPhotos, context = it) }
+
+    fun videoPlayback(itemVideo: ItemVideo) =
+        FragmentScreen { VideoPlaybackFragment.createFragment(itemVideo) }
 }

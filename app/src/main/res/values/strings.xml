@@ -19,6 +19,7 @@
     <string name="delete">Удалить из моих видео</string>
     <string name="copy_link">Скопировать ссылку</string>
     <string name="link_copied">Сcылка скопирована</string>
+    <string name="video_recording">Видеозапись</string>
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>
