@@ -2,23 +2,29 @@ package com.example.vcontachim.fragment
 
 import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.FragmentVideoPlaybackBinding
 import com.example.vcontachim.models.ItemVideo
+import com.example.vcontachim.viewmodel.VideoPlaybackViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
     private var binding: FragmentVideoPlaybackBinding? = null
+
+    private val videoModel: VideoPlaybackViewModel by lazy {
+        ViewModelProvider(this)[VideoPlaybackViewModel::class.java]
+    }
 
     private var player: ExoPlayer? = null
     private var playbackPosition = 0L
@@ -36,11 +42,11 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         })
 
         val videoSerializable = requireArguments().getSerializable(SAVE_VIDEO_KEY)
-        val itemVideo: ItemVideo = videoSerializable as ItemVideo
+        var itemVideo: ItemVideo = videoSerializable as ItemVideo
 
         binding!!.textViewName.text = itemVideo.title
 
-        binding!!.numberOfLikes.text = itemVideo.likes.likes.toString()
+        binding!!.numberOfLikes.text = itemVideo.likes.countLikes.toString()
 
         binding!!.numberOfComments.text = itemVideo.comments.toString()
 
@@ -56,6 +62,65 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         val formatter = SimpleDateFormat(/* pattern = */ "d MMMM yyyy")
         val dateString = formatter.format(Date(itemVideo.date * 1000))
         binding!!.textViewDate.text = dateString
+
+        if (itemVideo.likes.userLikes == 1) {
+            binding!!.imageViewLike.setImageResource(R.drawable.like_filled_red_28)
+            binding!!.imageViewLike.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.red
+                ), android.graphics.PorterDuff.Mode.MULTIPLY
+            )
+        }
+
+        binding!!.linearLayoutLike.setOnClickListener(object : View.OnClickListener {
+            @SuppressLint("SetTextI18n")
+            override fun onClick(v: View?) {
+                if (itemVideo.likes.userLikes == 0) {
+                    videoModel.loadVideoLike(itemVideo)
+                    binding!!.imageViewLike.setImageResource(R.drawable.like_filled_red_28)
+                    binding!!.numberOfLikes.text = "${itemVideo.likes.countLikes + 1L}"
+                    binding!!.imageViewLike.setColorFilter(
+                        ContextCompat.getColor(
+                            context!!,
+                            R.color.red
+                        ), android.graphics.PorterDuff.Mode.MULTIPLY
+                    )
+                } else {
+                    videoModel.loadDeleteLike(itemVideo)
+                    binding!!.imageViewLike.setImageResource(R.drawable.like_outline_24)
+                    binding!!.numberOfLikes.text = "${itemVideo.likes.countLikes - 1L}"
+                    binding!!.imageViewLike.setColorFilter(
+                        ContextCompat.getColor(
+                            context!!,
+                            R.color.grey
+                        ), android.graphics.PorterDuff.Mode.MULTIPLY
+                    )
+                }
+            }
+        })
+
+        videoModel.videoLikesViewData.observe(viewLifecycleOwner) {
+            itemVideo = itemVideo.copy(
+                likes = itemVideo.likes.copy(
+                    userLikes = if (itemVideo.likes.userLikes == 1) {
+                        0
+                    } else {
+                        1
+                    },
+                countLikes = it.response.likes
+                )
+            )
+        }
+
+        videoModel.errorLiveData.observe(viewLifecycleOwner) {
+            val snackbar = Snackbar.make(
+                requireView(),
+                it,
+                Snackbar.LENGTH_LONG
+            )
+            snackbar.show()
+        }
 
         preparePlayer(itemVideo)
     }

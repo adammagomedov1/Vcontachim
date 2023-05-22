@@ -1,6 +1,5 @@
 package com.example.vcontachim.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,10 +15,7 @@ class PhotoViewModel : ViewModel() {
     fun like(idPhotos: String) {
         viewModelScope.launch {
             try {
-                val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
-                    "vcontachim",
-                    Context.MODE_PRIVATE
-                )
+
                 val likes: Likes =
                     VcontachimApplication.vcontachimService.addLike(
                         itemId = idPhotos
