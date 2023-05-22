@@ -13,7 +13,7 @@ class VideoPlaybackViewModel : ViewModel() {
     val videoLikesViewData = MutableLiveData<VideoLike>()
     val errorLiveData = MutableLiveData<String>()
 
-    fun loadVideoLike(itemVideo: ItemVideo) {
+    fun likeVideo(itemVideo: ItemVideo) {
         viewModelScope.launch {
             try {
 
@@ -29,7 +29,7 @@ class VideoPlaybackViewModel : ViewModel() {
         }
     }
 
-    fun loadDeleteLike(itemVideo: ItemVideo) {
+    fun deleteLike(itemVideo: ItemVideo) {
         viewModelScope.launch {
             try {
 

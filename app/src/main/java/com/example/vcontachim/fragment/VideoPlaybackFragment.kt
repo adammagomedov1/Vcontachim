@@ -65,17 +65,22 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         binding!!.textViewDate.text = dateString
 
         if (itemVideo.likes.userLikes > 0) {
-                binding!!.imageViewLike.setImageResource(R.drawable.like_filled_red_28)
-                binding!!.imageViewLike.setColorFilter(ContextCompat.getColor(requireContext(), R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.imageViewLike.setImageResource(R.drawable.like_filled_red_28)
+            binding!!.imageViewLike.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.red
+                ), android.graphics.PorterDuff.Mode.MULTIPLY
+            )
         }
 
-        binding!!.linearLayoutLike.setOnClickListener(object : View.OnClickListener {
+        binding!!.likeButtonForVideo.setOnClickListener(object : View.OnClickListener {
             @SuppressLint("SetTextI18n")
             override fun onClick(v: View?) {
                 if (itemVideo.likes.userLikes < 1) {
-                    videoModel.loadVideoLike(itemVideo)
+                    videoModel.likeVideo(itemVideo)
                 } else {
-                    videoModel.loadDeleteLike(itemVideo)
+                    videoModel.deleteLike(itemVideo)
                 }
             }
         })
