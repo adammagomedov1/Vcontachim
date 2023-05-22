@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -63,42 +64,30 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         val dateString = formatter.format(Date(itemVideo.date * 1000))
         binding!!.textViewDate.text = dateString
 
-        if (itemVideo.likes.userLikes == 1) {
-            binding!!.imageViewLike.setImageResource(R.drawable.like_filled_red_28)
-            binding!!.imageViewLike.setColorFilter(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.red
-                ), android.graphics.PorterDuff.Mode.MULTIPLY
-            )
+        if (itemVideo.likes.userLikes > 0) {
+                binding!!.imageViewLike.setImageResource(R.drawable.like_filled_red_28)
+                binding!!.imageViewLike.setColorFilter(ContextCompat.getColor(requireContext(), R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
 
         binding!!.linearLayoutLike.setOnClickListener(object : View.OnClickListener {
             @SuppressLint("SetTextI18n")
             override fun onClick(v: View?) {
-                if (itemVideo.likes.userLikes == 0) {
+                if (itemVideo.likes.userLikes < 1) {
                     videoModel.loadVideoLike(itemVideo)
-                    binding!!.imageViewLike.setImageResource(R.drawable.like_filled_red_28)
-                    binding!!.numberOfLikes.text = "${itemVideo.likes.countLikes + 1L}"
-                    binding!!.imageViewLike.setColorFilter(
-                        ContextCompat.getColor(
-                            context!!,
-                            R.color.red
-                        ), android.graphics.PorterDuff.Mode.MULTIPLY
-                    )
                 } else {
                     videoModel.loadDeleteLike(itemVideo)
-                    binding!!.imageViewLike.setImageResource(R.drawable.like_outline_24)
-                    binding!!.numberOfLikes.text = "${itemVideo.likes.countLikes - 1L}"
-                    binding!!.imageViewLike.setColorFilter(
-                        ContextCompat.getColor(
-                            context!!,
-                            R.color.grey
-                        ), android.graphics.PorterDuff.Mode.MULTIPLY
-                    )
                 }
             }
         })
+
+        videoModel.errorLiveData.observe(viewLifecycleOwner) {
+            val toast = Toast.makeText(
+                requireContext(),
+                "У вас проблемы, хотите об этом поговорить",
+                Toast.LENGTH_LONG
+            )
+            toast.show()
+        }
 
         videoModel.videoLikesViewData.observe(viewLifecycleOwner) {
             itemVideo = itemVideo.copy(
@@ -108,18 +97,29 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
                     } else {
                         1
                     },
-                countLikes = it.response.likes
+                    countLikes = it.response.likes
                 )
             )
-        }
 
-        videoModel.errorLiveData.observe(viewLifecycleOwner) {
-            val snackbar = Snackbar.make(
-                requireView(),
-                it,
-                Snackbar.LENGTH_LONG
-            )
-            snackbar.show()
+            binding!!.numberOfLikes.text = "${itemVideo.likes.countLikes}"
+
+            if (itemVideo.likes.userLikes < 1) {
+                binding!!.imageViewLike.setImageResource(R.drawable.like_outline_24)
+                binding!!.imageViewLike.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.grey
+                    ), android.graphics.PorterDuff.Mode.MULTIPLY
+                )
+            } else {
+                binding!!.imageViewLike.setImageResource(R.drawable.like_filled_red_28)
+                binding!!.imageViewLike.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.red
+                    ), android.graphics.PorterDuff.Mode.MULTIPLY
+                )
+            }
         }
 
         preparePlayer(itemVideo)

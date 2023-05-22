@@ -33,14 +33,13 @@ class VideoPlaybackViewModel : ViewModel() {
         viewModelScope.launch {
             try {
 
-                val deleteLink: VideoLike =
+                val deleteLike: VideoLike =
                     VcontachimApplication.vcontachimService.deleteLikeVideo(
                         itemId = itemVideo.id,
                         ownerId = itemVideo.ownerId
-
                     )
 
-                videoLikesViewData.value = deleteLink
+                videoLikesViewData.value = deleteLike
             } catch (e: Exception) {
                 errorLiveData.value = e.message
 
