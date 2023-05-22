@@ -71,7 +71,6 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
             DashMediaSource.Factory(defaultHttpDataSource).createMediaSource(mediaItem)
         player?.setMediaSource(mediaSource)
         player?.seekTo(playbackPosition)
-        player?.playWhenReady
         player?.prepare()
     }
 
