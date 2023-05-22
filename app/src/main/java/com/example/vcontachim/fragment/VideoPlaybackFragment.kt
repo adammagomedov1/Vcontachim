@@ -1,5 +1,6 @@
 package com.example.vcontachim.fragment
 
+import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
@@ -16,7 +17,6 @@ import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import java.util.*
 
-
 class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
     private var binding: FragmentVideoPlaybackBinding? = null
 
@@ -24,12 +24,12 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
     private var playbackPosition = 0L
     private var playWhenReady = true
 
-    @RequiresApi(Build.VERSION_CODES.N)
+    @SuppressLint("NewApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentVideoPlaybackBinding.bind(view)
 
-        binding!!.bottomBack.setNavigationOnClickListener(object : View.OnClickListener {
+        binding!!.toolbarBack.setNavigationOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.exit()
             }
@@ -66,16 +66,16 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         binding!!.videoView.player = player
         val defaultHttpDataSource = DefaultHttpDataSource.Factory()
         val mediaItem =
-            MediaItem.fromUri("https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd")
+            MediaItem.fromUri(itemVideo.player)
         val mediaSource =
             DashMediaSource.Factory(defaultHttpDataSource).createMediaSource(mediaItem)
         player?.setMediaSource(mediaSource)
         player?.seekTo(playbackPosition)
-        player?.playWhenReady = playWhenReady
+        player?.playWhenReady
         player?.prepare()
     }
 
-    private fun relasePlayer() {
+    private fun releasePlayer() {
         player?.let {
             playbackPosition = it.currentPosition
             playWhenReady = it.playWhenReady
@@ -84,19 +84,9 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-        relasePlayer()
-    }
-
     override fun onPause() {
         super.onPause()
-        relasePlayer()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        relasePlayer()
+        releasePlayer()
     }
 
     companion object {
