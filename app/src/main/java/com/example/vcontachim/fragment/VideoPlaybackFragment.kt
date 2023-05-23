@@ -88,7 +88,7 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         videoModel.errorLiveData.observe(viewLifecycleOwner) {
             val toast = Toast.makeText(
                 requireContext(),
-                "У вас проблемы, хотите об этом поговорить",
+                it,
                 Toast.LENGTH_LONG
             )
             toast.show()
