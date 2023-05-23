@@ -64,4 +64,20 @@ interface VcontachimService {
         @Query("v") v: Double = 5.131,
         @Query("video_id") videoId: Long
     )
+
+    @GET("likes.add")
+    suspend fun addLikeVideo(
+        @Query("v") v: Double = 5.131,
+        @Query("type") type: String = "video",
+        @Query("item_id") itemId: Long,
+        @Query("owner_id") ownerId: Long
+    ): VideoLike
+
+    @GET("likes.delete")
+    suspend fun deleteLikeVideo(
+        @Query("v") v: Double = 5.131,
+        @Query("type") type: String = "video",
+        @Query("item_id") itemId: Long,
+        @Query("owner_id") ownerId: Long
+    ): VideoLike
 }

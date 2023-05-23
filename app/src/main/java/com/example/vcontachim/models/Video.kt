@@ -21,6 +21,7 @@ data class ItemVideo(
     @SerializedName("date")
     val date: Long,
 
+    @SerializedName("likes")
     val likes: NumberLikes,
 
     val comments: Long,
@@ -31,6 +32,9 @@ data class ItemVideo(
     val player: String,
 
     val id: Long,
+
+    @SerializedName("owner_id")
+    val ownerId: Long,
 
     val reposts: Reposts,
 
@@ -44,7 +48,11 @@ data class Image(
 
 data class NumberLikes(
     @SerializedName("count")
-    val likes: Long,
+    val countLikes: Long,
+
+    @SerializedName("user_likes")
+    val userLikes: Int
+
 ) : Serializable
 
 data class Reposts(
