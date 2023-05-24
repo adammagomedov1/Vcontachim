@@ -36,16 +36,16 @@ class CommunitiesAdapter :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CommunitiesViewHolder, position: Int) {
-        val communitie: ItemCommunities = getItem(position)
+        val communities: ItemCommunities = getItem(position)
 
         Glide.with(holder.itemView)
-            .load(communitie.photo50)
+            .load(communities.photo50)
             .into(holder.binding.imageView)
 
-        holder.binding.communityName.setText(communitie.screenName)
-        holder.binding.numberOfParticipants.setText("${communitie.membersCount} участников")
+        holder.binding.communityName.text = communities.screenName
+        holder.binding.numberOfParticipants.text = "${communities.membersCount} участников"
 
-        if (communitie.verified == 1L) {
+        if (communities.verified == 1L) {
             holder.binding.imageViewVerified.visibility = View.VISIBLE
         } else {
             holder.binding.imageViewVerified.visibility = View.GONE

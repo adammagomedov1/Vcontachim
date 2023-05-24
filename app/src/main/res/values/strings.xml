@@ -20,6 +20,7 @@
     <string name="copy_link">Скопировать ссылку</string>
     <string name="link_copied">Сcылка скопирована</string>
     <string name="video_recording">Видеозапись</string>
+    <string name="comments">Комментарии</string>
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>
