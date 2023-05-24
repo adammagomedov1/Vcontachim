@@ -39,7 +39,7 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
         binding!!.recyclerViewFromPhotoCommentsScreen.adapter = photoCommentsAdapter
 
         viewModel.photoCommentsLiveData.observe(viewLifecycleOwner) {
-            photoCommentsAdapter.submitList(it.response.items)
+            photoCommentsAdapter.submitList(it)
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {

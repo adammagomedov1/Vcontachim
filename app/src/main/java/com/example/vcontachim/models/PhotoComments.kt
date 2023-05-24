@@ -14,12 +14,16 @@ data class ResponsePhotoComments(
 )
 
 data class ItemPhotoComments(
-    val id: Long,
+    @SerializedName("from_id")
+    val fromId: Long,
     @SerializedName("text")
     val textComments: String,
+    @SerializedName("date")
+    val dateComments: Long
 )
 
 data class Profile(
+    val id: Long,
     @SerializedName("first_name")
     val firstName: String,
     @SerializedName("last_name")
