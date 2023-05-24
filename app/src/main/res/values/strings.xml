@@ -39,4 +39,13 @@
         <item quantity="other">просмотров</item>
 
     </plurals>
+
+    <plurals name="number_of_participants">
+        <item quantity="one">участников</item>
+        <item quantity="two">участник</item>
+        <item quantity="few">участника</item>
+        <item quantity="many">участников</item>
+        <item quantity="other">участников</item>
+
+    </plurals>
 </resources>

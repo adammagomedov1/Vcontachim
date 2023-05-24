@@ -34,7 +34,8 @@ class PhotoCommentsViewModel : ViewModel() {
                         firstName = profile.firstName,
                         lastName = profile.lastName,
                         photo = profile.photo,
-                        id = profile.id
+                        id = profile.id,
+                        personOnline = profile.personOnline == 1
                     )
                     photoCommentsUi
                 }

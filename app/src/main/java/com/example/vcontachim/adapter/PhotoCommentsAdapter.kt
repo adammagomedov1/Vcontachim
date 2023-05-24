@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemPhotoCommentsBinding
-import com.example.vcontachim.models.ItemPhotoComments
 import com.example.vcontachim.models.PhotoCommentsUi
-import com.example.vcontachim.models.Profile
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,6 +48,12 @@ class PhotoCommentsAdapter :
         Glide.with(holder.itemView)
             .load(photoComments.photo)
             .into(holder.binding.shapeableImageViewAvatar)
+
+        if (photoComments.personOnline) {
+            holder.binding.personOnline.setImageResource(R.drawable.online_composite_16)
+        } else {
+            holder.binding.personOnline.setImageResource(R.drawable.emptiness)
+        }
     }
 
     object PhotoCommentsDiffCallback : DiffUtil.ItemCallback<PhotoCommentsUi>() {

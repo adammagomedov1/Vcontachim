@@ -86,6 +86,6 @@ interface VcontachimService {
         @Query("v") v: Double = 5.131,
         @Query("photo_id") photoId: String,
         @Query("extended") extended: String = "profiles",
-        @Query("fields") fields: String = "photo_200"
+        @Query("fields") fields: String = "photo_200,online"
     ): PhotoComments
 }

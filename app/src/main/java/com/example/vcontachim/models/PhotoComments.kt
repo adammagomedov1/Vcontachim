@@ -29,5 +29,8 @@ data class Profile(
     @SerializedName("last_name")
     val lastName: String,
     @SerializedName("photo_200")
-    val photo: String
+    val photo: String,
+    @SerializedName("online")
+    val personOnline: Int
+
 ) : Serializable

@@ -13,5 +13,7 @@ data class PhotoCommentsUi(
 
     val photo: String,
 
-    val id: Long
+    val id: Long,
+
+    val personOnline: Boolean
 )
