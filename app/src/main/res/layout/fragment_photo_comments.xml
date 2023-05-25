@@ -19,7 +19,6 @@
         android:id="@+id/recycler_view_from_photo_comments_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?selectableItemBackground"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_photo_comments" />
 
