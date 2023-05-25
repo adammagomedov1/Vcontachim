@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.Resource
 import com.example.vcontachim.R
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.ItemCommunitiesBinding
 import com.example.vcontachim.models.Communities
 import com.example.vcontachim.models.ItemCommunities
@@ -36,16 +37,24 @@ class CommunitiesAdapter :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CommunitiesViewHolder, position: Int) {
-        val communitie: ItemCommunities = getItem(position)
+        val itemCommunities: ItemCommunities = getItem(position)
 
         Glide.with(holder.itemView)
-            .load(communitie.photo50)
+            .load(itemCommunities.photo50)
             .into(holder.binding.imageView)
 
-        holder.binding.communityName.setText(communitie.screenName)
-        holder.binding.numberOfParticipants.setText("${communitie.membersCount} участников")
+        holder.binding.communityName.text = itemCommunities.screenName
 
-        if (communitie.verified == 1L) {
+        val numberOfParticipants: String =
+            VcontachimApplication.context.resources.getQuantityString(
+                R.plurals.number_of_participants,
+                itemCommunities.membersCount.toInt()
+            )
+
+        holder.binding.numberOfParticipants.text =
+            "${itemCommunities.membersCount} $numberOfParticipants"
+
+        if (itemCommunities.verified == 1L) {
             holder.binding.imageViewVerified.visibility = View.VISIBLE
         } else {
             holder.binding.imageViewVerified.visibility = View.GONE

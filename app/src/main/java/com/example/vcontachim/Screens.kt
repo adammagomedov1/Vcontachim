@@ -47,4 +47,7 @@ object Screens {
 
     fun videoPlayback(itemVideo: ItemVideo) =
         FragmentScreen { VideoPlaybackFragment.createFragment(itemVideo) }
+
+    fun photoComments(itemPhotos: ItemPhotos) =
+        FragmentScreen { PhotoCommentsFragment.createFragment(itemPhotos) }
 }

@@ -80,4 +80,12 @@ interface VcontachimService {
         @Query("item_id") itemId: Long,
         @Query("owner_id") ownerId: Long
     ): VideoLike
+
+    @GET("photos.getComments")
+    suspend fun getCommentsPhotos(
+        @Query("v") v: Double = 5.131,
+        @Query("photo_id") photoId: String,
+        @Query("extended") extended: String = "profiles",
+        @Query("fields") fields: String = "photo_200,online"
+    ): PhotoComments
 }

@@ -20,6 +20,7 @@
     <string name="copy_link">Скопировать ссылку</string>
     <string name="link_copied">Сcылка скопирована</string>
     <string name="video_recording">Видеозапись</string>
+    <string name="comments">Комментарии</string>
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>
@@ -36,6 +37,15 @@
         <item quantity="few">проспотра</item>
         <item quantity="many">просмотров</item>
         <item quantity="other">просмотров</item>
+
+    </plurals>
+
+    <plurals name="number_of_participants">
+        <item quantity="one">участников</item>
+        <item quantity="two">участник</item>
+        <item quantity="few">участника</item>
+        <item quantity="many">участников</item>
+        <item quantity="other">участников</item>
 
     </plurals>
 </resources>
