@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vcontachim.VcontachimApplication
-import com.example.vcontachim.models.ItemPhotos
-import com.example.vcontachim.models.PhotoComments
-import com.example.vcontachim.models.PhotoCommentsUi
-import com.example.vcontachim.models.Profile
+import com.example.vcontachim.models.*
 import kotlinx.coroutines.launch
 
 class PhotoCommentsViewModel : ViewModel() {
@@ -35,12 +32,61 @@ class PhotoCommentsViewModel : ViewModel() {
                         lastName = profile.lastName,
                         photo = profile.photo,
                         id = profile.id,
-                        personOnline = profile.personOnline == 1
+                        personOnline = profile.personOnline == 1,
+                        idComment = it.id,
+                        userLikes = it.likes.userLikes
                     )
                     photoCommentsUi
                 }
 
                 photoCommentsLiveData.value = photoCommentsUi
+            } catch (e: Exception) {
+                errorLiveData.value = e.message
+            }
+        }
+    }
+
+    fun loadCommentLike(photoCommentsUi: PhotoCommentsUi) {
+        viewModelScope.launch {
+            try {
+
+                VcontachimApplication.vcontachimService.addLikeComment(
+                    itemId = photoCommentsUi.idComment,
+                    ownerId = photoCommentsUi.fromId
+                )
+                val photoCommentsList = photoCommentsLiveData.value!!.toMutableList()
+                // обновляем элемент коментария на котором был клик
+                var newPhotoCommentsUi: PhotoCommentsUi = photoCommentsUi.copy(
+                    userLikes = if (photoCommentsUi.userLikes == 1) 0 else 1
+                )
+
+                photoCommentsList.set(index = 0, newPhotoCommentsUi)
+
+                photoCommentsLiveData.value = photoCommentsList
+            } catch (e: Exception) {
+                errorLiveData.value = e.message
+            }
+        }
+    }
+
+    fun deleteLikeComment(photoCommentsUi: PhotoCommentsUi) {
+        viewModelScope.launch {
+            try {
+
+                VcontachimApplication.vcontachimService.deleteLikeComment(
+                    itemId = photoCommentsUi.idComment,
+                    ownerId = photoCommentsUi.fromId
+                )
+
+                val photoCommentsList = photoCommentsLiveData.value!!.toMutableList()
+                // обновляем элемент коментария на котором был клик
+                var newPhotoComments: PhotoCommentsUi = photoCommentsUi.copy(
+                    userLikes = if (photoCommentsUi.userLikes == 1) 0 else 1
+                )
+
+                photoCommentsList.set(index = 0, newPhotoComments)
+
+                photoCommentsLiveData.value = photoCommentsList
             } catch (e: Exception) {
                 errorLiveData.value = e.message
             }

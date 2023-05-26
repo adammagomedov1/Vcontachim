@@ -1,15 +1,23 @@
 package com.example.vcontachim.fragment
 
+import android.annotation.SuppressLint
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.adapter.PhotoCommentsAdapter
+import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.databinding.FragmentPhotoCommentsBinding
+import com.example.vcontachim.databinding.ItemPhotoCommentsBinding
 import com.example.vcontachim.models.ItemPhotos
+import com.example.vcontachim.models.PhotoCommentsUi
 import com.example.vcontachim.viewmodel.PhotoCommentsViewModel
 import java.io.Serializable
 
@@ -20,8 +28,20 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
         ViewModelProvider(this)[PhotoCommentsViewModel::class.java]
     }
 
-    private var photoCommentsAdapter = PhotoCommentsAdapter()
+    private var photoCommentsAdapter =
+        PhotoCommentsAdapter(likeListener = object : PhotoCommentsAdapter.LikeListener {
+            override fun onClick(
+                photoCommentsUi: PhotoCommentsUi
+            ) {
+                if (photoCommentsUi.userLikes == 0) {
+                    viewModel.loadCommentLike(photoCommentsUi)
+                } else {
+                    viewModel.deleteLikeComment(photoCommentsUi)
+                }
+            }
+        })
 
+    @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPhotoCommentsBinding.bind(view)
@@ -40,6 +60,7 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
 
         viewModel.photoCommentsLiveData.observe(viewLifecycleOwner) {
             photoCommentsAdapter.submitList(it)
+
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
