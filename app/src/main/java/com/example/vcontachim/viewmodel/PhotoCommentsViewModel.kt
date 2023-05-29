@@ -51,8 +51,7 @@ class PhotoCommentsViewModel : ViewModel() {
             try {
 
                 VcontachimApplication.vcontachimService.addLikeComment(
-                    itemId = photoCommentsUi.idComment,
-                    ownerId = photoCommentsUi.fromId
+                    itemId = photoCommentsUi.idComment
                 )
                 val photoCommentsList = photoCommentsLiveData.value!!.toMutableList()
                 // обновляем элемент коментария на котором был клик
@@ -60,7 +59,8 @@ class PhotoCommentsViewModel : ViewModel() {
                     userLikes = if (photoCommentsUi.userLikes == 1) 0 else 1
                 )
 
-                photoCommentsList.set(index = 0, newPhotoCommentsUi)
+                val saveIndexFromList = photoCommentsList.indexOf(photoCommentsUi)
+                photoCommentsList.set(index = saveIndexFromList, newPhotoCommentsUi)
 
                 photoCommentsLiveData.value = photoCommentsList
             } catch (e: Exception) {
@@ -74,17 +74,18 @@ class PhotoCommentsViewModel : ViewModel() {
             try {
 
                 VcontachimApplication.vcontachimService.deleteLikeComment(
-                    itemId = photoCommentsUi.idComment,
-                    ownerId = photoCommentsUi.fromId
+                    itemId = photoCommentsUi.idComment
                 )
 
                 val photoCommentsList = photoCommentsLiveData.value!!.toMutableList()
                 // обновляем элемент коментария на котором был клик
-                var newPhotoComments: PhotoCommentsUi = photoCommentsUi.copy(
+                val newPhotoComments: PhotoCommentsUi = photoCommentsUi.copy(
                     userLikes = if (photoCommentsUi.userLikes == 1) 0 else 1
                 )
 
-                photoCommentsList.set(index = 0, newPhotoComments)
+                val saveIndexFromList = photoCommentsList.indexOf(photoCommentsUi)
+                photoCommentsList.set(saveIndexFromList, newPhotoComments)
+                photoCommentsList.set(index = saveIndexFromList, newPhotoComments)
 
                 photoCommentsLiveData.value = photoCommentsList
             } catch (e: Exception) {

@@ -95,7 +95,6 @@ interface VcontachimService {
         @Query("v") v: Double = 5.131,
         @Query("type") type: String = "photo_comment",
         @Query("item_id") itemId: Int,
-        @Query("owner_id") ownerId: Long
     )
 
     @GET("likes.delete")
@@ -103,6 +102,5 @@ interface VcontachimService {
         @Query("v") v: Double = 5.131,
         @Query("type") type: String = "photo_comment",
         @Query("item_id") itemId: Int,
-        @Query("owner_id") ownerId: Long
     )
 }
