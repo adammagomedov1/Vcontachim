@@ -40,7 +40,7 @@ class PhotoCommentsAdapter(private val likeListener: LikeListener) :
 
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: PhotoCommentsViewHolder, position: Int) {
-        var photoComments: PhotoCommentsUi = getItem(position)
+        val photoComments: PhotoCommentsUi = getItem(position)
 
         holder.binding.commentText.text = photoComments.textComments
 

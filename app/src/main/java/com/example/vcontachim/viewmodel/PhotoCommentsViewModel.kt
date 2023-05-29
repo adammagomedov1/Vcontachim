@@ -46,7 +46,7 @@ class PhotoCommentsViewModel : ViewModel() {
         }
     }
 
-    fun loadCommentLike(photoCommentsUi: PhotoCommentsUi) {
+    fun commentLike(photoCommentsUi: PhotoCommentsUi) {
         viewModelScope.launch {
             try {
 

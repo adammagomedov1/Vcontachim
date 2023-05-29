@@ -22,8 +22,7 @@ data class ItemPhotoComments(
     @SerializedName("date")
     val dateComments: Long,
     val likes: CommentLikes,
-
-    )
+)
 
 data class CommentLikes(
     @SerializedName("user_likes")
@@ -40,5 +39,4 @@ data class Profile(
     val photo: String,
     @SerializedName("online")
     val personOnline: Int
-
 ) : Serializable
