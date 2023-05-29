@@ -27,7 +27,7 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
                 photoCommentsUi: PhotoCommentsUi
             ) {
                 if (photoCommentsUi.userLikes == 0) {
-                    viewModel.commentLike(photoCommentsUi)
+                    viewModel.likeComment(photoCommentsUi)
                 } else {
                     viewModel.deleteLikeComment(photoCommentsUi)
                 }
