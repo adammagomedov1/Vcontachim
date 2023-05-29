@@ -84,7 +84,6 @@ class PhotoCommentsViewModel : ViewModel() {
                 )
 
                 val saveIndexFromList = photoCommentsList.indexOf(photoCommentsUi)
-                photoCommentsList.set(saveIndexFromList, newPhotoComments)
                 photoCommentsList.set(index = saveIndexFromList, newPhotoComments)
 
                 photoCommentsLiveData.value = photoCommentsList
