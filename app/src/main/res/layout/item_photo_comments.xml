@@ -73,9 +73,12 @@
                 tools:text="15 апр в 18:43" />
 
             <ImageView
+                android:id="@+id/comment_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="25dp"
+                android:background="?selectableItemBackground"
                 android:src="@drawable/like_outline_24"
                 app:tint="#99A2AD" />
 

@@ -14,12 +14,19 @@ data class ResponsePhotoComments(
 )
 
 data class ItemPhotoComments(
+    val id: Int,
     @SerializedName("from_id")
     val fromId: Long,
     @SerializedName("text")
     val textComments: String,
     @SerializedName("date")
-    val dateComments: Long
+    val dateComments: Long,
+    val likes: CommentLikes,
+)
+
+data class CommentLikes(
+    @SerializedName("user_likes")
+    val userLikes: Int,
 )
 
 data class Profile(
@@ -32,5 +39,4 @@ data class Profile(
     val photo: String,
     @SerializedName("online")
     val personOnline: Int
-
 ) : Serializable

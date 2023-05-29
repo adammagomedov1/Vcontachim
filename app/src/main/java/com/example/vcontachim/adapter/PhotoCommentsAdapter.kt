@@ -1,9 +1,13 @@
 package com.example.vcontachim.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +18,7 @@ import com.example.vcontachim.models.PhotoCommentsUi
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PhotoCommentsAdapter :
+class PhotoCommentsAdapter(private val likeListener: LikeListener) :
     ListAdapter<PhotoCommentsUi, PhotoCommentsAdapter.PhotoCommentsViewHolder>(
         PhotoCommentsDiffCallback
     ) {
@@ -34,7 +38,7 @@ class PhotoCommentsAdapter :
         return PhotoCommentsViewHolder(itemView)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: PhotoCommentsViewHolder, position: Int) {
         val photoComments: PhotoCommentsUi = getItem(position)
 
@@ -50,10 +54,35 @@ class PhotoCommentsAdapter :
             .load(photoComments.photo)
             .into(holder.binding.shapeableImageViewAvatar)
 
+        holder.binding.commentLike.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                likeListener.onClick(photoComments)
+
+            }
+        })
+
         if (photoComments.personOnline) {
             holder.binding.personOnline.setImageResource(R.drawable.online_composite_16)
         } else {
             holder.binding.personOnline.setImageResource(R.drawable.emptiness)
+        }
+
+        if (photoComments.userLikes == 1) {
+            holder.binding.commentLike.setImageResource(R.drawable.like_filled_red_28)
+            holder.binding.commentLike.setColorFilter(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.red
+                ), PorterDuff.Mode.MULTIPLY
+            )
+        } else {
+            holder.binding.commentLike.setImageResource(R.drawable.like_outline_24)
+            holder.binding.commentLike.setColorFilter(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.grey
+                ), PorterDuff.Mode.MULTIPLY
+            )
         }
     }
 
@@ -71,5 +100,9 @@ class PhotoCommentsAdapter :
         ): Boolean {
             return oldItem == newItem
         }
+    }
+
+    interface LikeListener {
+        fun onClick(photoCommentsUi: PhotoCommentsUi)
     }
 }

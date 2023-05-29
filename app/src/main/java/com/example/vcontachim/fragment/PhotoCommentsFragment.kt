@@ -10,6 +10,7 @@ import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.adapter.PhotoCommentsAdapter
 import com.example.vcontachim.databinding.FragmentPhotoCommentsBinding
 import com.example.vcontachim.models.ItemPhotos
+import com.example.vcontachim.models.PhotoCommentsUi
 import com.example.vcontachim.viewmodel.PhotoCommentsViewModel
 import java.io.Serializable
 
@@ -20,7 +21,18 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
         ViewModelProvider(this)[PhotoCommentsViewModel::class.java]
     }
 
-    private var photoCommentsAdapter = PhotoCommentsAdapter()
+    private var photoCommentsAdapter =
+        PhotoCommentsAdapter(likeListener = object : PhotoCommentsAdapter.LikeListener {
+            override fun onClick(
+                photoCommentsUi: PhotoCommentsUi
+            ) {
+                if (photoCommentsUi.userLikes == 0) {
+                    viewModel.likeComment(photoCommentsUi)
+                } else {
+                    viewModel.deleteLikeComment(photoCommentsUi)
+                }
+            }
+        })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +52,7 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
 
         viewModel.photoCommentsLiveData.observe(viewLifecycleOwner) {
             photoCommentsAdapter.submitList(it)
+
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
