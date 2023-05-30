@@ -86,12 +86,14 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
 
                             binding!!.editText.hideKeyboard()
 
-                            val toast = Toast.makeText(
-                                requireContext(),
-                                R.string.сomment_added,
-                                Toast.LENGTH_LONG
-                            )
-                            toast.show()
+                            viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
+                                val toast = Toast.makeText(
+                                    requireContext(),
+                                    R.string.сomment_added,
+                                    Toast.LENGTH_LONG
+                                )
+                                toast.show()
+                            }
                         }
                     })
                 }

@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 
 class PhotoCommentsViewModel : ViewModel() {
 
+    val addCommentLiveData = MutableLiveData<String>()
     val photoCommentsLiveData = MutableLiveData<List<PhotoCommentsUi>>()
     val errorLiveData = MutableLiveData<String>()
 
@@ -102,6 +103,7 @@ class PhotoCommentsViewModel : ViewModel() {
                     message = message
                 )
 
+                addCommentLiveData.value = ""
             } catch (e: Exception) {
                 errorLiveData.value = e.message
             }

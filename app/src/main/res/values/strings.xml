@@ -21,9 +21,8 @@
     <string name="link_copied">Сcылка скопирована</string>
     <string name="video_recording">Видеозапись</string>
     <string name="comments">Комментарии</string>
-    <string name="a_comment">Комментарий</string>
+    <string name="comment">Комментарий</string>
     <string name="сomment_added">Комментарий добавлен</string>
-
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>

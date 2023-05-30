@@ -27,13 +27,19 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_photo_comments" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="@color/black" />
+
         <EditText
             android:id="@+id/edit_text"
             android:layout_width="match_parent"
             android:layout_height="63dp"
             android:layout_gravity="bottom"
             android:background="@color/white"
-            android:hint="@string/a_comment"
+            android:hint="@string/comment"
             android:paddingStart="16dp"
             android:textColor="@color/black"
             android:textColorHint="#818C99"
@@ -48,7 +54,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="18dp"
             android:background="?selectableItemBackground"
-            android:src="@drawable/send_28__3_" />
+            android:src="@drawable/send_28__3_"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
     </FrameLayout>
 </LinearLayout>
