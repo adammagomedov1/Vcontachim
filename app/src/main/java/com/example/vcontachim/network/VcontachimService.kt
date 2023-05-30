@@ -103,4 +103,11 @@ interface VcontachimService {
         @Query("type") type: String = "photo_comment",
         @Query("item_id") itemId: Int,
     )
+
+    @POST("photos.createComment")
+    suspend fun createCommentPhotos(
+        @Query("v") v: Double = 5.131,
+        @Query("photo_id") photoId: String,
+        @Query("message") message: String
+    )
 }

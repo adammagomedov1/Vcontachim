@@ -92,4 +92,19 @@ class PhotoCommentsViewModel : ViewModel() {
             }
         }
     }
+
+    fun createCommentPhotos(photos: ItemPhotos, message: String) {
+        viewModelScope.launch {
+            try {
+
+                VcontachimApplication.vcontachimService.createCommentPhotos(
+                    photoId = photos.id,
+                    message = message
+                )
+
+            } catch (e: Exception) {
+                errorLiveData.value = e.message
+            }
+        }
+    }
 }

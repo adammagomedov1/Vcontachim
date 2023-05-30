@@ -22,7 +22,7 @@ data class ItemPhotoComments(
     @SerializedName("date")
     val dateComments: Long,
     val likes: CommentLikes,
-)
+):Serializable
 
 data class CommentLikes(
     @SerializedName("user_likes")
