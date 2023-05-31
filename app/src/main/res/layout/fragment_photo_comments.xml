@@ -15,11 +15,48 @@
         app:subtitleTextColor="#818C99"
         app:title="@string/comments" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_from_photo_comments_screen"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_photo_comments" />
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_from_photo_comments_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="63dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_photo_comments" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="63.5dp"
+            android:background="#D9D9D9" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:hint="@string/comment"
+            android:paddingStart="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="#818C99"
+            android:textSize="16sp"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="18dp"
+            android:background="?selectableItemBackground"
+            android:src="@drawable/send_28__3_"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+    </FrameLayout>
 </LinearLayout>
