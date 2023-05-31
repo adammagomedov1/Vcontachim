@@ -23,8 +23,7 @@ class PhotoCommentsViewModel : ViewModel() {
                     )
 
                 val photoCommentsUi: List<PhotoCommentsUi> = photoComments.response.items.map {
-                    val profile: Profile =
-                        photoComments.response.profiles.first { profile -> profile.id == it.fromId }
+                    val profile: Profile = photoComments.response.profiles.first { profile -> profile.id == it.fromId }
                     val photoCommentsUi = PhotoCommentsUi(
                         fromId = it.fromId,
                         textComments = it.textComments,

@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
+import com.example.vcontachim.Screens
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.FragmentVideoPlaybackBinding
 import com.example.vcontachim.models.ItemVideo
@@ -45,11 +46,17 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         val videoSerializable = requireArguments().getSerializable(SAVE_VIDEO_KEY)
         var itemVideo: ItemVideo = videoSerializable as ItemVideo
 
+        binding!!.numberOfComments.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                VcontachimApplication.router.navigateTo(Screens.videoComment(itemVideo))
+            }
+        })
+
         binding!!.textViewName.text = itemVideo.title
 
         binding!!.numberOfLikes.text = itemVideo.likes.countLikes.toString()
 
-        binding!!.numberOfComments.text = itemVideo.comments.toString()
+        binding!!.textViewNumberOfComments.text = itemVideo.comments.toString()
 
         binding!!.numberOfReposts.text = itemVideo.reposts.reposted.toString()
 

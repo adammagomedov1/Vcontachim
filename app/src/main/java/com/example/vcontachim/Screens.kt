@@ -50,4 +50,7 @@ object Screens {
 
     fun photoComments(itemPhotos: ItemPhotos) =
         FragmentScreen { PhotoCommentsFragment.createFragment(itemPhotos) }
+
+    fun videoComment(itemVideo: ItemVideo) =
+        FragmentScreen { VideoCommentFragment.createFragment(itemVideo) }
 }

@@ -7,25 +7,22 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_from_photo_comments_screen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/back_icon"
         app:subtitle="20"
-        app:subtitleTextColor="#818C99"
-        app:title="@string/comments" />
+        app:title="Комментарии" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_from_photo_comments_screen"
+            android:id="@+id/recycler_view_video_comment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="63dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_photo_comments" />
+            tools:listitem="@layout/item_video_comment" />
 
         <View
             android:layout_width="match_parent"
@@ -45,7 +42,7 @@
             android:textColor="@color/black"
             android:textColorHint="#818C99"
             android:textSize="16sp"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="Autofill,RtlSymmetry,TextFields" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image_view"
@@ -57,6 +54,7 @@
             android:background="?selectableItemBackground"
             android:src="@drawable/send_28__3_"
             app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
 
     </FrameLayout>
 </LinearLayout>
