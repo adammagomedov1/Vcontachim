@@ -44,7 +44,7 @@ data class ItemVideo(
 data class Image(
     @SerializedName("url")
     val url: String
-)
+) : Serializable
 
 data class NumberLikes(
     @SerializedName("count")

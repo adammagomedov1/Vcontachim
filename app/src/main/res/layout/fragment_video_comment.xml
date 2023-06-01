@@ -7,12 +7,11 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_from_photo_comments_screen"
+        android:id="@+id/toolbar_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/back_icon"
         app:subtitle="20"
-        app:subtitleTextColor="#818C99"
         app:title="@string/comments" />
 
     <FrameLayout
@@ -20,12 +19,12 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_from_photo_comments_screen"
+            android:id="@+id/recycler_view_video_comment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="63dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_photo_comments" />
+            tools:listitem="@layout/item_video_comment" />
 
         <View
             android:layout_width="match_parent"
@@ -45,13 +44,14 @@
             android:textColor="@color/black"
             android:textColorHint="#818C99"
             android:textSize="16sp"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="Autofill,RtlSymmetry,TextFields" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:layout_marginTop="18dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="18dp"
             android:background="?selectableItemBackground"

@@ -30,7 +30,6 @@
         <item quantity="few">фотографии</item>
         <item quantity="many">фотографий</item>
         <item quantity="other">фотографий</item>
-
     </plurals>
 
     <plurals name="number_of_views">
@@ -39,7 +38,6 @@
         <item quantity="few">проспотра</item>
         <item quantity="many">просмотров</item>
         <item quantity="other">просмотров</item>
-
     </plurals>
 
     <plurals name="number_of_participants">
@@ -48,6 +46,5 @@
         <item quantity="few">участника</item>
         <item quantity="many">участников</item>
         <item quantity="other">участников</item>
-
     </plurals>
 </resources>
