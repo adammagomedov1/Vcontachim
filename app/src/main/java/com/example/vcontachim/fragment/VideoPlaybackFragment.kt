@@ -48,7 +48,7 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
 
         binding!!.numberOfComments.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                VcontachimApplication.router.navigateTo(Screens.videoComment(itemVideo))
+                VcontachimApplication.router.navigateTo(Screens.videoActivity(itemVideo))
             }
         })
 

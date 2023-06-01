@@ -4,6 +4,7 @@ import android.content.Intent
 import com.example.vcontachim.activity.LaunchActivity
 import com.example.vcontachim.activity.MainActivity
 import com.example.vcontachim.activity.PhotoActivity
+import com.example.vcontachim.activity.VideoActivity
 import com.example.vcontachim.fragment.*
 import com.example.vcontachim.models.*
 import com.github.terrakok.cicerone.androidx.ActivityScreen
@@ -53,4 +54,7 @@ object Screens {
 
     fun videoComment(itemVideo: ItemVideo) =
         FragmentScreen { VideoCommentFragment.createFragment(itemVideo) }
+
+    fun videoActivity(itemVideo: ItemVideo) =
+        ActivityScreen { VideoActivity.createIntent(context = it, video = itemVideo) }
 }

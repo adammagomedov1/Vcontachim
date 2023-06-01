@@ -32,6 +32,8 @@
             android:name=".activity.PhotoActivity"
             android:exported="false" />
 
+        <activity android:name=".activity.VideoActivity" />
+
     </application>
 
 </manifest>
