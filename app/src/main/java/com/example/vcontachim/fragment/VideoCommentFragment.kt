@@ -6,6 +6,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
+import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.adapter.VideoCommentAdapter
 import com.example.vcontachim.databinding.FragmentVideoCommentBinding
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.viewmodel.VideoCommentViewModel
@@ -17,6 +19,8 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
         ViewModelProvider(this)[VideoCommentViewModel::class.java]
     }
 
+    private var videoCommentAdapter = VideoCommentAdapter()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentVideoCommentBinding.bind(view)
@@ -24,8 +28,14 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
         val videoSerializable = requireArguments().getSerializable(SAVE_VIDEO_KEY)
         val itemVideo: ItemVideo = videoSerializable as ItemVideo
 
-        viewModel.videoCommentUiLiveData.observe(viewLifecycleOwner) {
+        binding!!.toolbarBack.subtitle = "${itemVideo.comments}"
 
+        binding!!.toolbarBack.setNavigationOnClickListener { VcontachimApplication.router.exit() }
+
+        binding!!.recyclerViewVideoComment.adapter = videoCommentAdapter
+
+        viewModel.videoCommentUiLiveData.observe(viewLifecycleOwner) {
+            videoCommentAdapter.submitList(it)
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {

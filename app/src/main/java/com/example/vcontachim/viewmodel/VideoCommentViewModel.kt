@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.models.ProfileVideoComment
-import com.example.vcontachim.models.VideoComment
 import com.example.vcontachim.models.VideoCommentUi
 import kotlinx.coroutines.launch
 
