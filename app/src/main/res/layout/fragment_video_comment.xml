@@ -58,6 +58,5 @@
             android:src="@drawable/send_28__3_"
             app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
-
     </FrameLayout>
 </LinearLayout>
