@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/back_icon"
         app:subtitle="20"
-        app:title="Комментарии" />
+        app:title="@string/comments" />
 
     <FrameLayout
         android:layout_width="match_parent"

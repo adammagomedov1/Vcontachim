@@ -38,7 +38,6 @@ class VideoCommentViewModel : ViewModel() {
                     videoCommentUi
                 }
 
-
                 videoCommentUiLiveData.value = videoCommentUi
             } catch (e: Exception) {
                 errorLiveData.value = e.message

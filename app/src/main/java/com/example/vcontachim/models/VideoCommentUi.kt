@@ -9,5 +9,3 @@ class VideoCommentUi(
     val firstName: String,
     val lastName: String,
 )
-
-
