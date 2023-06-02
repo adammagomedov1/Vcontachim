@@ -72,8 +72,10 @@
                 android:id="@+id/image_view_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
                 android:src="@drawable/like_outline_24"
-                android:tint="#99A2AD" />
+                android:tint="#99A2AD"
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
         </LinearLayout>
     </LinearLayout>

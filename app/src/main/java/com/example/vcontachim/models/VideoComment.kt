@@ -23,7 +23,7 @@ data class ItemVideoComment(
 
 data class LikesVideoComment(
     @SerializedName("user_likes")
-    val userLikes: Long
+    val userLikes: Int
 )
 
 data class ProfileVideoComment(

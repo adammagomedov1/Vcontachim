@@ -42,9 +42,7 @@ class VcontachimApplication : Application() {
 
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
-
         lateinit var vcontachimService: VcontachimService
-
         private lateinit var cicerone: Cicerone<Router>
         lateinit var router: Router
         lateinit var navigatorHolder: NavigatorHolder

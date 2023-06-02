@@ -103,4 +103,25 @@ interface VcontachimService {
         @Query("need_likes") needLikes: Int = 1,
         @Query("extended") extended: Int = 1
     ): VideoComment
+
+    @POST("video.createComment")
+    suspend fun createCommentVideo(
+        @Query("video_id") videoId: Long,
+        @Query("owner_id") ownerId: Long,
+        @Query("message") message: String
+    )
+
+    @POST("likes.add")
+    suspend fun addLikesVideo(
+        @Query("type") type: String = "video_comment",
+        @Query("item_id") itemId: Long,
+        @Query("owner_id") ownerId: Long
+    )
+
+    @POST("likes.delete")
+    suspend fun deleteLikesVideo(
+        @Query("type") type: String = "video_comment",
+        @Query("item_id") itemId: Long,
+        @Query("owner_id") ownerId: Long
+    )
 }
