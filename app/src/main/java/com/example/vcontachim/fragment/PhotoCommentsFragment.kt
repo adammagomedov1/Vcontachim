@@ -13,7 +13,7 @@ import com.example.vcontachim.adapter.PhotoCommentsAdapter
 import com.example.vcontachim.databinding.FragmentPhotoCommentsBinding
 import com.example.vcontachim.models.ItemPhotos
 import com.example.vcontachim.models.PhotoCommentsUi
-import com.example.vcontachim.utility.HideKeyboard
+import com.example.vcontachim.utility.KeyboardUtility
 import com.example.vcontachim.viewmodel.PhotoCommentsViewModel
 import java.io.Serializable
 
@@ -81,7 +81,7 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
                             viewModel.createCommentPhotos(photos, s.toString())
                             s!!.clear()
 
-                            HideKeyboard.hideKeyboard(view = view)
+                            KeyboardUtility.hideKeyboard(view = view)
 
                             viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
                                 val toast = Toast.makeText(

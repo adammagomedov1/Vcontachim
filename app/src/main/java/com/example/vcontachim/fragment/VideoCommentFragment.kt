@@ -1,12 +1,9 @@
 package com.example.vcontachim.fragment
 
-import android.content.Context
-import android.inputmethodservice.InputMethodService
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +13,7 @@ import com.example.vcontachim.adapter.VideoCommentAdapter
 import com.example.vcontachim.databinding.FragmentVideoCommentBinding
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.models.VideoCommentUi
-import com.example.vcontachim.utility.HideKeyboard
+import com.example.vcontachim.utility.KeyboardUtility
 import com.example.vcontachim.viewmodel.VideoCommentViewModel
 
 class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
@@ -64,7 +61,7 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
                             )
                             s.clear()
 
-                            HideKeyboard.hideKeyboard(view = view)
+                            KeyboardUtility.hideKeyboard(view = view)
 
                             viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
                                 val toast = Toast.makeText(
