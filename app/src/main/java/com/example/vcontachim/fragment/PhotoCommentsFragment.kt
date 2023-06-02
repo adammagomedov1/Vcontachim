@@ -82,7 +82,7 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
                             viewModel.createCommentPhotos(photos, s.toString())
                             s!!.clear()
 
-                            binding!!.editText.hideKeyboard()
+                            VcontachimApplication.hideKeyboard.hideKeyboard(view)
 
                             viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
                                 val toast = Toast.makeText(
@@ -130,10 +130,5 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
 
             return fragment
         }
-    }
-
-    fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 }

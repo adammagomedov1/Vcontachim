@@ -63,7 +63,7 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
                             )
                             s.clear()
 
-                            binding!!.editText.hideKeyboard()
+                            VcontachimApplication.hideKeyboard.hideKeyboard(view)
 
                             viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
                                 val toast = Toast.makeText(
@@ -112,10 +112,5 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
 
             return fragment
         }
-    }
-
-    fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 }
