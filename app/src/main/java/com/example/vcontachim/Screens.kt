@@ -57,4 +57,6 @@ object Screens {
 
     fun videoActivity(itemVideo: ItemVideo) =
         ActivityScreen { VideoActivity.createIntent(context = it, video = itemVideo) }
+
+    fun profileDetails() = FragmentScreen { ProfileDetailsFragment() }
 }

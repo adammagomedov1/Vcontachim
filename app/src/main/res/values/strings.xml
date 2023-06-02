@@ -23,6 +23,7 @@
     <string name="comments">Комментарии</string>
     <string name="comment">Комментарий</string>
     <string name="сomment_added">Комментарий добавлен</string>
+    <string name="add_friend">Добавить в друзья</string>
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>

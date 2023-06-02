@@ -124,4 +124,10 @@ interface VcontachimService {
         @Query("item_id") itemId: Long,
         @Query("owner_id") ownerId: Long
     )
+
+    @GET("users.get")
+    suspend fun getInfoProfile(
+        @Query("user_ids") userIds: Long,
+        @Query("fields") fields: String = "photo_200,online,career,city,followers_count,friend_status,verified,status"
+    ): ProfileDetail
 }

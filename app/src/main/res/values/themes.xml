@@ -24,6 +24,11 @@
         <item name="cornerSize">12dp</item>
     </style>
 
+    <style name="RoundedImageViews">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
     <style name="RoundedImageViewVideo">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">6dp</item>
