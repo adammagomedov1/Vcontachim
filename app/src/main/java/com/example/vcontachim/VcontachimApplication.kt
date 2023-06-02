@@ -36,11 +36,9 @@ class VcontachimApplication : Application() {
         router = cicerone.router
         navigatorHolder = cicerone.getNavigatorHolder()
         sharedPreferencesHelper = SharedPreferencesHelper()
-        hideKeyboard = HideKeyboard()
     }
 
     companion object {
-        lateinit var hideKeyboard: HideKeyboard
         lateinit var sharedPreferencesHelper: SharedPreferencesHelper
 
         @SuppressLint("StaticFieldLeak")

@@ -1,11 +1,9 @@
 package com.example.vcontachim.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +13,7 @@ import com.example.vcontachim.adapter.PhotoCommentsAdapter
 import com.example.vcontachim.databinding.FragmentPhotoCommentsBinding
 import com.example.vcontachim.models.ItemPhotos
 import com.example.vcontachim.models.PhotoCommentsUi
+import com.example.vcontachim.utility.HideKeyboard
 import com.example.vcontachim.viewmodel.PhotoCommentsViewModel
 import java.io.Serializable
 
@@ -82,7 +81,7 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
                             viewModel.createCommentPhotos(photos, s.toString())
                             s!!.clear()
 
-                            VcontachimApplication.hideKeyboard.hideKeyboard(view)
+                            HideKeyboard.hideKeyboard(view = view)
 
                             viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
                                 val toast = Toast.makeText(

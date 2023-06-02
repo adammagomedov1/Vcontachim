@@ -16,6 +16,7 @@ import com.example.vcontachim.adapter.VideoCommentAdapter
 import com.example.vcontachim.databinding.FragmentVideoCommentBinding
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.models.VideoCommentUi
+import com.example.vcontachim.utility.HideKeyboard
 import com.example.vcontachim.viewmodel.VideoCommentViewModel
 
 class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
@@ -63,7 +64,7 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
                             )
                             s.clear()
 
-                            VcontachimApplication.hideKeyboard.hideKeyboard(view)
+                            HideKeyboard.hideKeyboard(view = view)
 
                             viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
                                 val toast = Toast.makeText(
