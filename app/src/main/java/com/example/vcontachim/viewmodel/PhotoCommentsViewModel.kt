@@ -56,7 +56,7 @@ class PhotoCommentsViewModel : ViewModel() {
                 )
                 val photoCommentsList = photoCommentsLiveData.value!!.toMutableList()
                 // обновляем элемент коментария на котором был клик
-                var newPhotoCommentsUi: PhotoCommentsUi = photoCommentsUi.copy(
+                val newPhotoCommentsUi: PhotoCommentsUi = photoCommentsUi.copy(
                     userLikes = if (photoCommentsUi.userLikes == 1) 0 else 1
                 )
 
