@@ -24,6 +24,10 @@
     <string name="comment">Комментарий</string>
     <string name="сomment_added">Комментарий добавлен</string>
     <string name="add_friend">Добавить в друзья</string>
+    <string name="subscribe">Подписаться</string>
+    <string name="you_subscribed">Вы подписаны</string>
+    <string name="in_friends">В друзьях</string>
+
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>
@@ -34,18 +38,34 @@
     </plurals>
 
     <plurals name="number_of_views">
-        <item quantity="one">просмотров</item>
-        <item quantity="two">проспотр</item>
-        <item quantity="few">проспотра</item>
+        <item quantity="one">просмотр</item>
+        <item quantity="two">проспотра</item>
+        <item quantity="few">просмотров</item>
         <item quantity="many">просмотров</item>
         <item quantity="other">просмотров</item>
     </plurals>
 
     <plurals name="number_of_participants">
-        <item quantity="one">участников</item>
-        <item quantity="two">участник</item>
-        <item quantity="few">участника</item>
+        <item quantity="one">участник</item>
+        <item quantity="two">участника</item>
+        <item quantity="few">участников</item>
         <item quantity="many">участников</item>
         <item quantity="other">участников</item>
+    </plurals>
+
+    <plurals name="number_of_subscribers">
+        <item quantity="one">подписчик</item>
+        <item quantity="two">подписчика</item>
+        <item quantity="few">подписчиков</item>
+        <item quantity="many">подписчиков</item>
+        <item quantity="other">подписчиков</item>
+    </plurals>
+
+    <plurals name="number_of_friends">
+        <item quantity="one">друг</item>
+        <item quantity="two">друга</item>
+        <item quantity="few">друзей</item>
+        <item quantity="many">друзей</item>
+        <item quantity="other">друзей</item>
     </plurals>
 </resources>

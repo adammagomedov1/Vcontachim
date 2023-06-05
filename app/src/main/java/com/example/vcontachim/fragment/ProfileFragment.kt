@@ -30,12 +30,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
 
-        binding!!.linearLayoutProfile.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                VcontachimApplication.router.navigateTo(Screens.profileDetails())
-            }
-        })
-
         binding!!.linearLayoutVideo.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.navigateTo(Screens.video())
@@ -70,6 +64,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             viewLifecycleOwner
         ) {
             val response: Response = it.response[0]
+
+            binding!!.linearLayoutProfile.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    VcontachimApplication.router.navigateTo(Screens.profileDetails(response))
+                }
+            })
 
             Glide.with(this@ProfileFragment)
                 .load(response.photo200)
@@ -114,5 +114,4 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val exitDialog: AlertDialog = builder.create()
         exitDialog.show()
     }
-
 }

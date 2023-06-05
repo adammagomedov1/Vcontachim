@@ -7,190 +7,193 @@
     android:background="#F5F5F5"
     android:orientation="vertical">
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="255dp">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="match_parent"
-            android:layout_height="221dp"
-            android:background="#E0E7C1" />
+        android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/icon_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="?selectableItemBackground">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/back_icon_back" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/back_icon_white" />
-
-        </FrameLayout>
-
-        <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_marginTop="133dp"
-            android:background="@color/white"
-            app:shapeAppearanceOverlay="@style/RoundedImageViews" />
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="89dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
-                app:strokeColor="@color/white"
-                app:strokeWidth="4dp"
-                tools:src="@tools:sample/avatars" />
+                android:layout_width="match_parent"
+                android:layout_height="221dp"
+                android:background="#E0E7C1" />
 
-            <ImageView
+            <FrameLayout
+                android:id="@+id/icon_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="6dp"
-                android:src="@drawable/ellipse_185" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="?selectableItemBackground">
 
-        </FrameLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/back_icon_back" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="209dp">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/back_icon_white" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="23sp"
-                tools:text="Ольга Бузова" />
+            </FrameLayout>
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:layout_marginTop="133dp"
+                android:background="@color/white"
+                app:shapeAppearanceOverlay="@style/RoundedImageViews" />
+
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="12dp"
-                tools:src="@drawable/verified_20" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="89dp">
 
-        </LinearLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/image_view_avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:shapeAppearanceOverlay="@style/RoundedImageView"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="4dp"
+                    tools:src="@tools:sample/avatars" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="246dp"
-            android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/image_view_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="6dp"
+                    android:src="@drawable/ellipse_185" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@color/black"
-                tools:text="Мой тг канал - с нюдсами заходи к нам и смотри, мой номер телефона в сообще..." />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginTop="209dp">
+
+                <TextView
+                    android:id="@+id/text_view_first_name_last_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="23sp"
+                    tools:text="Ольга Бузова" />
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/image_view_verified"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="6dp"
-                    android:src="@drawable/place_outline_20" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:textColor="#6D7885"
-                    android:textSize="13sp"
-                    tools:text="Санкт-Петербург" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="6dp"
-                    android:src="@drawable/work_outline_20" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#6D7885"
-                    android:textSize="13sp"
-                    tools:text="ОАО ТНТ-Телесеть" />
+                    android:layout_marginStart="12dp"
+                    tools:src="@drawable/verified_20" />
 
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="246dp"
+                android:orientation="vertical">
 
-                <com.google.android.material.imageview.ShapeableImageView
+                <TextView
+                    android:id="@+id/text_view_brief_information"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    tools:text="Мой тг канал - с нюдсами заходи к нам и смотри, мой номер телефона в сообще..." />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/place_outline_20" />
+
+                    <TextView
+                        android:id="@+id/text_view_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:text="Не указоно"
+                        android:textColor="#6D7885"
+                        android:textSize="13sp" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/work_outline_20" />
+
+                    <TextView
+                        android:id="@+id/text_view_career"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Не указоно"
+                        android:textColor="#6D7885"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/subscribe_or_add_friend"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#2D81E0"
-                    android:text="@string/add_friend"
+                    android:text="@string/subscribe"
                     android:textAllCaps="false"
                     app:cornerRadius="8dp"
-                    app:icon="@drawable/user_add_outline_20"
+                    app:icon="@drawable/add_square_outline_16"
                     app:iconGravity="textStart" />
 
-            </FrameLayout>
-        </LinearLayout>
+            </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="30dp">
-
-            <com.google.android.material.imageview.ShapeableImageView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@color/white"
-                app:shapeAppearanceOverlay="@style/RoundedImageViews" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                tools:text="85 друзей" />
+                android:layout_marginTop="400dp">
 
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/white"
+                    app:shapeAppearanceOverlay="@style/RoundedImageViews" />
+
+                <TextView
+                    android:id="@+id/number_followers_or_friends"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="14000000 подписчиков" />
+
+            </FrameLayout>
         </FrameLayout>
-    </FrameLayout>
+    </ScrollView>
 </LinearLayout>
