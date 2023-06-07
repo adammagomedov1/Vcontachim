@@ -10,14 +10,14 @@ class ProfileDetail(
 data class ResponseProfileDetail(
     val id: Long,
     val city: City?,
-    val status: String,
+    val status: String?,
     @SerializedName("followers_count")
     val followersCount: Long,
     val career: List<Career?>,
     @SerializedName("can_send_friend_request")
     val canSendFriendRequest: Int,
     @SerializedName("photo_200")
-    val photo200: String,
+    val photo200: String?,
     val online: Int,
     val verified: Int,
     @SerializedName("friend_status")
@@ -30,10 +30,10 @@ data class ResponseProfileDetail(
 
 data class City(
     val id: Long,
-    val title: String,
+    val title: String?,
 ) : Serializable
 
 data class Career(
-    val company: String,
-    val position: String
+    val company: String?,
+    val position: String?
 ) : Serializable

@@ -58,18 +58,18 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
 
                 if (responseProfileDetail.verified == 1) {
                     binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
+                    val numberOfViews: String =
+                        VcontachimApplication.context.resources.getQuantityString(
+                            R.plurals.number_of_subscribers,
+                            responseProfileDetail.followersCount.toInt()
+                        )
+
+                    binding!!.numberFollowersOrFriends.text =
+                        "${responseProfileDetail.followersCount} $numberOfViews"
                 }
 
                 binding!!.textViewCareer.text = responseProfileDetail.career[0]!!.position
 
-                val numberOfViews: String =
-                    VcontachimApplication.context.resources.getQuantityString(
-                        R.plurals.number_of_subscribers,
-                        responseProfileDetail.followersCount.toInt()
-                    )
-
-                binding!!.numberFollowersOrFriends.text =
-                    "${responseProfileDetail.followersCount} $numberOfViews"
             } else {
 
                 Glide.with(this)
@@ -82,7 +82,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                     binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
                 }
 
-                binding!!.subscribeOrAddFriend.text = "Добавить в друзья"
+                binding!!.subscribeOrAddFriend.setText(R.string.add_friend)
                 binding!!.subscribeOrAddFriend.setIconResource(R.drawable.user_add_outline_20)
 
                 binding!!.textViewFirstNameLastName.text =
@@ -94,18 +94,19 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
 
                 if (responseProfileDetail.verified == 1) {
                     binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
+
+                    val numberOfViews: String =
+                        VcontachimApplication.context.resources.getQuantityString(
+                            R.plurals.number_of_subscribers,
+                            responseProfileDetail.followersCount.toInt()
+                        )
+
+                    binding!!.numberFollowersOrFriends.text =
+                        "${responseProfileDetail.followersCount} $numberOfViews"
                 }
 
                 binding!!.textViewCareer.text = responseProfileDetail.career[0]!!.position
 
-                val numberOfViews: String =
-                    VcontachimApplication.context.resources.getQuantityString(
-                        R.plurals.number_of_subscribers,
-                        responseProfileDetail.followersCount.toInt()
-                    )
-
-                binding!!.numberFollowersOrFriends.text =
-                    "${responseProfileDetail.followersCount} $numberOfViews"
             }
         }
 
