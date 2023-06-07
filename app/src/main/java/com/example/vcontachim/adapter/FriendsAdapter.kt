@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
+import com.example.vcontachim.Screens
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.ItemFriendsBinding
 import com.example.vcontachim.models.Friends
 import com.example.vcontachim.models.Item
@@ -37,6 +39,12 @@ class FriendsAdapter : ListAdapter<Item, FriendsAdapter.FriendsViewHolder>(Frien
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: FriendsViewHolder, position: Int) {
         val friend: Item = getItem(position)
+
+        holder.binding.friends.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                VcontachimApplication.router.navigateTo(Screens.infoFriends(friend))
+            }
+        })
 
         Glide.with(holder.itemView)
             .load(friend.photo200)

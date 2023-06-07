@@ -1,8 +1,6 @@
 package com.example.vcontachim.fragment
 
 import android.annotation.SuppressLint
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -12,11 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.FragmentProfileDetailsBinding
-import com.example.vcontachim.models.Response
-import com.example.vcontachim.models.ResponseProfileDetail
+import com.example.vcontachim.models.*
 import com.example.vcontachim.viewmodel.ProfileDetailsViewModel
-import com.google.android.material.color.ColorRoles
-import com.google.android.material.color.MaterialColors
 
 class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
     private var binding: FragmentProfileDetailsBinding? = null
@@ -36,37 +31,82 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
             }
         })
 
-        val profileDetailSerializable = requireArguments().getSerializable(SAVE_USERS_KEY)
-        val profileDetail = profileDetailSerializable as Response
+        val profileDetailSerializable = requireArguments().getLong(SAVE_ID_KEY)
+        viewModel.loadProfileDetails(profileDetailSerializable)
 
         viewModel.profileDetailLiveData.observe(viewLifecycleOwner) {
             val responseProfileDetail: ResponseProfileDetail = it.response[0]
 
-            if (responseProfileDetail.id == profileDetail.id) {
-                binding!!.subscribeOrAddFriend.visibility = View.GONE
-            }
+            if (responseProfileDetail.canSendFriendRequest == 1) {
 
-            Glide.with(this)
-                .load(responseProfileDetail.photo200)
-                .into(binding!!.imageViewAvatar)
+                Glide.with(this)
+                    .load(responseProfileDetail.photo200)
+                    .into(binding!!.imageViewAvatar)
 
-            if (responseProfileDetail.online == 1) {
-                binding!!.imageViewOnline.setImageResource(R.drawable.ellipse_185)
+                if (responseProfileDetail.online == 0) {
+                    binding!!.imageViewOnline.setImageResource(R.drawable.ellipse_185)
+                } else {
+                    binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
+                }
+
+                binding!!.textViewFirstNameLastName.text =
+                    "${responseProfileDetail.firstName} ${responseProfileDetail.lastName}"
+
+                binding!!.textViewBriefInformation.text = responseProfileDetail.status
+
+                binding!!.textViewLocation.text = responseProfileDetail.city?.title
+
+                if (responseProfileDetail.verified == 1) {
+                    binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
+                }
+
+                binding!!.textViewCareer.text = responseProfileDetail.career[0]!!.position
+
+                val numberOfViews: String =
+                    VcontachimApplication.context.resources.getQuantityString(
+                        R.plurals.number_of_subscribers,
+                        responseProfileDetail.followersCount.toInt()
+                    )
+
+                binding!!.numberFollowersOrFriends.text =
+                    "${responseProfileDetail.followersCount} $numberOfViews"
             } else {
-                binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
+
+                Glide.with(this)
+                    .load(responseProfileDetail.photo200)
+                    .into(binding!!.imageViewAvatar)
+
+                if (responseProfileDetail.online == 1) {
+                    binding!!.imageViewOnline.setImageResource(R.drawable.ellipse_185)
+                } else {
+                    binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
+                }
+
+                binding!!.subscribeOrAddFriend.text = "Добавить в друзья"
+                binding!!.subscribeOrAddFriend.setIconResource(R.drawable.user_add_outline_20)
+
+                binding!!.textViewFirstNameLastName.text =
+                    "${responseProfileDetail.firstName} ${responseProfileDetail.lastName}"
+
+                binding!!.textViewBriefInformation.text = responseProfileDetail.status
+
+                binding!!.textViewLocation.text = responseProfileDetail.city?.title
+
+                if (responseProfileDetail.verified == 1) {
+                    binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
+                }
+
+                binding!!.textViewCareer.text = responseProfileDetail.career[0]!!.position
+
+                val numberOfViews: String =
+                    VcontachimApplication.context.resources.getQuantityString(
+                        R.plurals.number_of_subscribers,
+                        responseProfileDetail.followersCount.toInt()
+                    )
+
+                binding!!.numberFollowersOrFriends.text =
+                    "${responseProfileDetail.followersCount} $numberOfViews"
             }
-
-            binding!!.textViewFirstNameLastName.text =
-                "${responseProfileDetail.firstName} ${responseProfileDetail.lastName}"
-
-            binding!!.textViewBriefInformation.text = responseProfileDetail.status
-
-            binding!!.textViewLocation.text = responseProfileDetail.city.title
-
-            if (responseProfileDetail.verified == 1) {
-                binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
-            }
-
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
@@ -77,19 +117,16 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
             )
             toast.show()
         }
-
-        viewModel.loadProfileDetails(profileDetail)
     }
 
     companion object {
-        private const val SAVE_USERS_KEY = "users"
+        private const val SAVE_ID_KEY = "id"
 
-        fun createFragment(response: Response): Fragment {
+        fun createFragment(id: Long): Fragment {
             val fragment = ProfileDetailsFragment()
             val bundle = Bundle()
-            bundle.putSerializable(SAVE_USERS_KEY, response)
+            bundle.putLong(SAVE_ID_KEY, id)
             fragment.arguments = bundle
-
             return fragment
         }
     }
