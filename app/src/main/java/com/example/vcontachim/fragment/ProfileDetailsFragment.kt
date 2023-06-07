@@ -68,7 +68,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                         "${responseProfileDetail.followersCount} $numberOfViews"
                 }
 
-                binding!!.textViewCareer.text = responseProfileDetail.career[0]!!.position
+//                binding!!.textViewCareer.text = responseProfileDetail.career[0].position
 
             } else {
 
@@ -105,7 +105,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                         "${responseProfileDetail.followersCount} $numberOfViews"
                 }
 
-                binding!!.textViewCareer.text = responseProfileDetail.career[0]!!.position
+//                binding!!.textViewCareer.text = responseProfileDetail.career[0]?.position
 
             }
         }
