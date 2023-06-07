@@ -13,7 +13,7 @@ data class ResponseProfileDetail(
     val status: String?,
     @SerializedName("followers_count")
     val followersCount: Long,
-    val career: List<Career?>,
+    val career: List<Career>?,
     @SerializedName("can_send_friend_request")
     val canSendFriendRequest: Int,
     @SerializedName("photo_200")

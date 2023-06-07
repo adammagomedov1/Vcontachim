@@ -37,76 +37,48 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
         viewModel.profileDetailLiveData.observe(viewLifecycleOwner) {
             val responseProfileDetail: ResponseProfileDetail = it.response[0]
 
-            if (responseProfileDetail.canSendFriendRequest == 1) {
+            Glide.with(this)
+                .load(responseProfileDetail.photo200)
+                .into(binding!!.imageViewAvatar)
 
-                Glide.with(this)
-                    .load(responseProfileDetail.photo200)
-                    .into(binding!!.imageViewAvatar)
-
-                if (responseProfileDetail.online == 0) {
-                    binding!!.imageViewOnline.setImageResource(R.drawable.ellipse_185)
-                } else {
-                    binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
-                }
-
-                binding!!.textViewFirstNameLastName.text =
-                    "${responseProfileDetail.firstName} ${responseProfileDetail.lastName}"
-
-                binding!!.textViewBriefInformation.text = responseProfileDetail.status
-
-                binding!!.textViewLocation.text = responseProfileDetail.city?.title
-
-                if (responseProfileDetail.verified == 1) {
-                    binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
-                    val numberOfViews: String =
-                        VcontachimApplication.context.resources.getQuantityString(
-                            R.plurals.number_of_subscribers,
-                            responseProfileDetail.followersCount.toInt()
-                        )
-
-                    binding!!.numberFollowersOrFriends.text =
-                        "${responseProfileDetail.followersCount} $numberOfViews"
-                }
-
-//                binding!!.textViewCareer.text = responseProfileDetail.career[0].position
-
+            if (responseProfileDetail.online == 0) {
+                binding!!.imageViewOnline.setImageResource(R.drawable.ellipse_185)
             } else {
+                binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
+            }
 
-                Glide.with(this)
-                    .load(responseProfileDetail.photo200)
-                    .into(binding!!.imageViewAvatar)
-
-                if (responseProfileDetail.online == 1) {
-                    binding!!.imageViewOnline.setImageResource(R.drawable.ellipse_185)
-                } else {
-                    binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
-                }
-
+            if (responseProfileDetail.canSendFriendRequest == 1) {
+                binding!!.subscribeOrAddFriend.setText(R.string.subscribe)
+                binding!!.subscribeOrAddFriend.setIconResource(R.drawable.add_square_outline_16)
+            } else {
                 binding!!.subscribeOrAddFriend.setText(R.string.add_friend)
                 binding!!.subscribeOrAddFriend.setIconResource(R.drawable.user_add_outline_20)
 
-                binding!!.textViewFirstNameLastName.text =
-                    "${responseProfileDetail.firstName} ${responseProfileDetail.lastName}"
+            }
+            binding!!.textViewFirstNameLastName.text =
+                "${responseProfileDetail.firstName} ${responseProfileDetail.lastName}"
 
-                binding!!.textViewBriefInformation.text = responseProfileDetail.status
+            binding!!.textViewBriefInformation.text = responseProfileDetail.status
 
-                binding!!.textViewLocation.text = responseProfileDetail.city?.title
+            binding!!.textViewLocation.text = responseProfileDetail.city?.title
 
-                if (responseProfileDetail.verified == 1) {
-                    binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
+            if (responseProfileDetail.verified == 1) {
+                binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
 
-                    val numberOfViews: String =
-                        VcontachimApplication.context.resources.getQuantityString(
-                            R.plurals.number_of_subscribers,
-                            responseProfileDetail.followersCount.toInt()
-                        )
+                val numberOfViews: String =
+                    VcontachimApplication.context.resources.getQuantityString(
+                        R.plurals.number_of_subscribers,
+                        responseProfileDetail.followersCount.toInt()
+                    )
 
-                    binding!!.numberFollowersOrFriends.text =
-                        "${responseProfileDetail.followersCount} $numberOfViews"
-                }
+                binding!!.numberFollowersOrFriends.text =
+                    "${responseProfileDetail.followersCount} $numberOfViews"
+            }
 
-//                binding!!.textViewCareer.text = responseProfileDetail.career[0]?.position
-
+            if (responseProfileDetail.career != null) {
+                binding!!.textViewCareer.text = responseProfileDetail.career[0].position
+            } else {
+                binding!!.textViewCareer.setText(R.string.not_filled)
             }
         }
 
