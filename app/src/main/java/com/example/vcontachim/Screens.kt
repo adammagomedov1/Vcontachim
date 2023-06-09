@@ -71,5 +71,5 @@ object Screens {
         FragmentScreen { ProfileDetailsFragment.createFragment(videoCommentUi.idProfile) }
 
     fun infoProfileVideo(itemVideo: ItemVideo) =
-        FragmentScreen { ProfileDetailsFragment.createFragment(itemVideo.id) }
+        FragmentScreen { ProfileDetailsFragment.createFragment(itemVideo.ownerId) }
 }
