@@ -1,5 +1,6 @@
 package com.example.vcontachim.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebResourceRequest
@@ -26,10 +27,12 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private var binding: FragmentAuthBinding? = null
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAuthBinding.bind(view)
         binding!!.idWebView.loadUrl(authUrl)
+        binding!!.idWebView.settings.javaScriptEnabled = true
         binding!!.idWebView.webViewClient = object : WebViewClient() {
 
             override fun shouldOverrideUrlLoading(
