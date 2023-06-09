@@ -60,7 +60,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
 
             binding!!.textViewBriefInformation.text = responseProfileDetail.status
 
-            binding!!.textViewLocation.text = responseProfileDetail.city?.title
+            binding!!.textViewLocation.text = responseProfileDetail.city!!.title
 
             if (responseProfileDetail.verified == 1) {
                 binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)

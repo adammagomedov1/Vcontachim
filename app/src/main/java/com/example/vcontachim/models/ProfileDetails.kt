@@ -29,7 +29,7 @@ data class ResponseProfileDetail(
 ) : Serializable
 
 data class City(
-    val id: Long,
+    val id: Long?,
     val title: String?,
 ) : Serializable
 
