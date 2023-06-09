@@ -47,6 +47,14 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                 binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
             }
 
+            val numberOfViews: String =
+                VcontachimApplication.context.resources.getQuantityString(
+                    R.plurals.number_of_subscribers,
+                    responseProfileDetail.followersCount.toInt()
+                )
+
+            binding!!.numberFollowersOrFriends.text = "${responseProfileDetail.followersCount} $numberOfViews"
+
             if (responseProfileDetail.canSendFriendRequest == 1) {
                 binding!!.subscribeOrAddFriend.setText(R.string.subscribe)
                 binding!!.subscribeOrAddFriend.setIconResource(R.drawable.add_square_outline_16)
@@ -65,14 +73,6 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
             if (responseProfileDetail.verified == 1) {
                 binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
 
-                val numberOfViews: String =
-                    VcontachimApplication.context.resources.getQuantityString(
-                        R.plurals.number_of_subscribers,
-                        responseProfileDetail.followersCount.toInt()
-                    )
-
-                binding!!.numberFollowersOrFriends.text =
-                    "${responseProfileDetail.followersCount} $numberOfViews"
             }
 
             if (responseProfileDetail.career != null) {
