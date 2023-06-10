@@ -41,7 +41,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                 .load(responseProfileDetail.photo200)
                 .into(binding!!.imageViewAvatar)
 
-            if (responseProfileDetail.online == 0) {
+            if (responseProfileDetail.online == 1) {
                 binding!!.imageViewOnline.setImageResource(R.drawable.ellipse_185)
             } else {
                 binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
