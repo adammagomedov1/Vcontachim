@@ -49,20 +49,20 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                 binding!!.imageViewOnline.setImageResource(R.drawable.emptiness)
             }
 
-            val numberOfViews: String =
-                VcontachimApplication.context.resources.getQuantityString(
-                    R.plurals.number_of_subscribers,
-                    responseProfileDetail.followersCount!!.toInt()
-                )
-
-            binding!!.numberFollowersOrFriends.text =
-                "${responseProfileDetail.followersCount} $numberOfViews"
-
             if (responseProfileDetail.canSendFriendRequest == 1) {
                 binding!!.subscribeOrAddFriend.setText(R.string.subscribe)
                 binding!!.subscribeOrAddFriend.setIconResource(R.drawable.add_square_outline_16)
+
+                val numberOfViews: String =
+                    VcontachimApplication.context.resources.getQuantityString(
+                        R.plurals.number_of_subscribers,
+                        responseProfileDetail.counters.followers.toInt()
+                    )
+
+                binding!!.numberFollowersOrFriends.text =
+                    "${responseProfileDetail.counters.followers} $numberOfViews"
             } else {
-                if (responseProfileDetail.friendStatus == 3) {
+                if (responseProfileDetail.isFriend == 1) {
                     binding!!.subscribeOrAddFriend.setText(R.string.in_friends)
                     binding!!.subscribeOrAddFriend.setIconResource(R.drawable.verified_20)
                     binding!!.subscribeOrAddFriend.setIconTintResource(R.color.light_blue)
@@ -91,6 +91,15 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                         viewModel.addFriend(profileDetailSerializable)
                     }
                 }
+
+                val numberOfViews: String =
+                    VcontachimApplication.context.resources.getQuantityString(
+                        R.plurals.number_of_friends,
+                        responseProfileDetail.counters.friends.toInt()
+                    )
+
+                binding!!.numberFollowersOrFriends.text =
+                    "${responseProfileDetail.counters.friends} $numberOfViews"
             }
             binding!!.textViewFirstNameLastName.text =
                 "${responseProfileDetail.firstName} ${responseProfileDetail.lastName}"

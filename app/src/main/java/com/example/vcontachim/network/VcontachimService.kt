@@ -128,7 +128,7 @@ interface VcontachimService {
     @GET("users.get")
     suspend fun getInfoProfile(
         @Query("user_ids") userIds: Long,
-        @Query("fields") fields: String = "photo_200,online,career,city,followers_count,friend_status,verified,status"
+        @Query("fields") fields: String = "photo_200,online,career,city,followers_count,verified,status,is_friend,counters"
     ): ProfileDetail
 
     @POST("friends.delete")

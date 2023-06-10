@@ -35,7 +35,7 @@ class ProfileDetailsViewModel : ViewModel() {
                 )
 
                 profileDetailLiveData.value = profileDetailLiveData.value?.also {
-                    it.response[0].friendStatus = if (it.response[0].friendStatus == 3) 1 else 3
+                    it.response[0].isFriend = if (it.response[0].isFriend == 1) 0 else 1
                 }
             } catch (e: Exception) {
                 errorLiveData.value = e.message
@@ -50,7 +50,7 @@ class ProfileDetailsViewModel : ViewModel() {
                 VcontachimApplication.vcontachimService.addFriends(userId = id)
 
                 profileDetailLiveData.value = profileDetailLiveData.value?.also {
-                    it.response[0].friendStatus = if (it.response[0].friendStatus == 3) 1 else 3
+                    it.response[0].isFriend = if (it.response[0].isFriend == 1) 0 else 1
                 }
             } catch (e: Exception) {
                 errorLiveData.value = e.message
