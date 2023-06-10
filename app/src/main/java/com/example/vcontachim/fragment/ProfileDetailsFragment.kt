@@ -1,9 +1,11 @@
 package com.example.vcontachim.fragment
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -20,7 +22,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
         ViewModelProvider(this)[ProfileDetailsViewModel::class.java]
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileDetailsBinding.bind(view)
@@ -50,7 +52,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
             val numberOfViews: String =
                 VcontachimApplication.context.resources.getQuantityString(
                     R.plurals.number_of_subscribers,
-                    responseProfileDetail.followersCount.toInt()
+                    responseProfileDetail.followersCount!!.toInt()
                 )
 
             binding!!.numberFollowersOrFriends.text =
@@ -60,14 +62,42 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                 binding!!.subscribeOrAddFriend.setText(R.string.subscribe)
                 binding!!.subscribeOrAddFriend.setIconResource(R.drawable.add_square_outline_16)
             } else {
-                binding!!.subscribeOrAddFriend.setText(R.string.add_friend)
-                binding!!.subscribeOrAddFriend.setIconResource(R.drawable.user_add_outline_20)
-
+                if (responseProfileDetail.friendStatus == 3) {
+                    binding!!.subscribeOrAddFriend.setText(R.string.in_friends)
+                    binding!!.subscribeOrAddFriend.setIconResource(R.drawable.verified_20)
+                    binding!!.subscribeOrAddFriend.setIconTintResource(R.color.light_blue)
+                    binding!!.subscribeOrAddFriend.background.setTint(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.light_grey
+                        )
+                    )
+                    binding!!.subscribeOrAddFriend.setTextColor(Color.parseColor("#2688EB"))
+                    binding!!.subscribeOrAddFriend.setOnClickListener {
+                        viewModel.deleteFriend(profileDetailSerializable)
+                    }
+                } else {
+                    binding!!.subscribeOrAddFriend.setText(R.string.add_friend)
+                    binding!!.subscribeOrAddFriend.setIconResource(R.drawable.user_add_outline_20)
+                    binding!!.subscribeOrAddFriend.setIconTintResource(R.color.white)
+                    binding!!.subscribeOrAddFriend.setTextColor(Color.parseColor("#FFFFFF"))
+                    binding!!.subscribeOrAddFriend.background.setTint(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.light_blue
+                        )
+                    )
+                    binding!!.subscribeOrAddFriend.setOnClickListener {
+                        viewModel.addFriend(profileDetailSerializable)
+                    }
+                }
             }
             binding!!.textViewFirstNameLastName.text =
                 "${responseProfileDetail.firstName} ${responseProfileDetail.lastName}"
 
-            binding!!.textViewBriefInformation.text = responseProfileDetail.status
+            if (responseProfileDetail.status != "") {
+                binding!!.textViewBriefInformation.text = responseProfileDetail.status
+            }
 
             binding!!.textViewLocation.text = responseProfileDetail.city?.title
 

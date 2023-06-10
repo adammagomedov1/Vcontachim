@@ -130,4 +130,14 @@ interface VcontachimService {
         @Query("user_ids") userIds: Long,
         @Query("fields") fields: String = "photo_200,online,career,city,followers_count,friend_status,verified,status"
     ): ProfileDetail
+
+    @POST("friends.delete")
+    suspend fun deleteFriends(
+        @Query("user_id") userId: Long
+    )
+
+    @POST("friends.add")
+    suspend fun addFriends(
+        @Query("user_id") userId: Long
+    )
 }
