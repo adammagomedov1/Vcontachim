@@ -47,8 +47,8 @@ class PhotoCommentsAdapter(private val likeListener: LikeListener) :
         holder.binding.photoComment.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.navigateTo(
-                    Screens.infoProfileCommentPhoto(
-                        photoComments
+                    Screens.profileDetails(
+                        photoComments.id
                     )
                 )
             }

@@ -53,7 +53,8 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                     responseProfileDetail.followersCount.toInt()
                 )
 
-            binding!!.numberFollowersOrFriends.text = "${responseProfileDetail.followersCount} $numberOfViews"
+            binding!!.numberFollowersOrFriends.text =
+                "${responseProfileDetail.followersCount} $numberOfViews"
 
             if (responseProfileDetail.canSendFriendRequest == 1) {
                 binding!!.subscribeOrAddFriend.setText(R.string.subscribe)
@@ -68,14 +69,13 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
 
             binding!!.textViewBriefInformation.text = responseProfileDetail.status
 
-            binding!!.textViewLocation.text = responseProfileDetail.city!!.title
+            binding!!.textViewLocation.text = responseProfileDetail.city?.title
 
             if (responseProfileDetail.verified == 1) {
                 binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
-
             }
 
-            if (responseProfileDetail.career != null) {
+            if (responseProfileDetail.career != null && responseProfileDetail.career[0].company != "") {
                 binding!!.textViewCareer.text = responseProfileDetail.career[0].position
             } else {
                 binding!!.textViewCareer.setText(R.string.not_filled)

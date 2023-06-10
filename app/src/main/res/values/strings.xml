@@ -29,7 +29,6 @@
     <string name="in_friends">В друзьях</string>
     <string name="not_filled">Не заполнено</string>
 
-
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>
         <item quantity="two">фотографии</item>

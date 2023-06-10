@@ -58,18 +58,6 @@ object Screens {
     fun videoActivity(itemVideo: ItemVideo) =
         ActivityScreen { VideoActivity.createIntent(context = it, video = itemVideo) }
 
-    fun profileDetails(response: Response) =
-        FragmentScreen { ProfileDetailsFragment.createFragment(response.id) }
-
-    fun infoFriends(item: Item) =
-        FragmentScreen { ProfileDetailsFragment.createFragment(item.id) }
-
-    fun infoProfileCommentPhoto(photoCommentsUi: PhotoCommentsUi) =
-        FragmentScreen { ProfileDetailsFragment.createFragment(photoCommentsUi.id) }
-
-    fun infoProfileCommentVideo(videoCommentUi: VideoCommentUi) =
-        FragmentScreen { ProfileDetailsFragment.createFragment(videoCommentUi.idProfile) }
-
-    fun infoProfileVideo(itemVideo: ItemVideo) =
-        FragmentScreen { ProfileDetailsFragment.createFragment(itemVideo.ownerId) }
+    fun profileDetails(id: Long) =
+        FragmentScreen { ProfileDetailsFragment.createFragment(id) }
 }

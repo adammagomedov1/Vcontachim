@@ -46,8 +46,8 @@ class VideoCommentAdapter(val videoListener: VideoListener) :
         holder.binding.videoComment.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.navigateTo(
-                    Screens.infoProfileCommentVideo(
-                        videoCommentUi
+                    Screens.profileDetails(
+                        videoCommentUi.idProfile
                     )
                 )
             }

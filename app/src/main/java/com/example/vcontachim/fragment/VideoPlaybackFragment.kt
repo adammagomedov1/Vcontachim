@@ -47,7 +47,7 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         var itemVideo: ItemVideo = videoSerializable as ItemVideo
 
         binding!!.video.setOnClickListener {
-            VcontachimApplication.router.navigateTo(Screens.infoProfileVideo(itemVideo))
+            VcontachimApplication.router.navigateTo(Screens.profileDetails(itemVideo.ownerId))
         }
 
         binding!!.numberOfComments.setOnClickListener(object : View.OnClickListener {

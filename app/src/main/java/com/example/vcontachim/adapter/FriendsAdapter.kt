@@ -42,7 +42,7 @@ class FriendsAdapter : ListAdapter<Item, FriendsAdapter.FriendsViewHolder>(Frien
 
         holder.binding.friends.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                VcontachimApplication.router.navigateTo(Screens.infoFriends(friend))
+                VcontachimApplication.router.navigateTo(Screens.profileDetails(friend.id))
             }
         })
 
