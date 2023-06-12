@@ -3,6 +3,7 @@ package com.example.vcontachim
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.vcontachim.network.InterceptorToken
 import com.example.vcontachim.network.VcontachimService
 import com.github.terrakok.cicerone.Cicerone
@@ -21,6 +22,7 @@ class VcontachimApplication : Application() {
 
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(InterceptorToken())
+            .addInterceptor(ChuckerInterceptor(context))
             .build()
 
         val retrofit: Retrofit = Retrofit.Builder()
