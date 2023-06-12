@@ -2,7 +2,6 @@ package com.example.vcontachim.network
 
 import com.example.vcontachim.models.*
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -132,12 +131,12 @@ interface VcontachimService {
     ): ProfileDetail
 
     @POST("friends.delete")
-    suspend fun deleteFriends(
+    suspend fun deleteFriend(
         @Query("user_id") userId: Long
     )
 
     @POST("friends.add")
-    suspend fun addFriends(
+    suspend fun addFriend(
         @Query("user_id") userId: Long
     )
 }

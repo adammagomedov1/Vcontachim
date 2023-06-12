@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.models.ProfileDetail
+import com.example.vcontachim.models.ResponseProfileDetail
 import kotlinx.coroutines.launch
 
 class ProfileDetailsViewModel : ViewModel() {
 
-    val profileDetailLiveData = MutableLiveData<ProfileDetail>()
+    val profileDetailLiveData = MutableLiveData<ResponseProfileDetail>()
     val errorLiveData = MutableLiveData<String>()
 
     fun loadProfileDetails(id: Long) {
@@ -19,7 +20,7 @@ class ProfileDetailsViewModel : ViewModel() {
                 val profileDetail =
                     VcontachimApplication.vcontachimService.getInfoProfile(id)
 
-                profileDetailLiveData.value = profileDetail
+                profileDetailLiveData.value = profileDetail.response[0]
             } catch (e: Exception) {
                 errorLiveData.value = e.message
             }
@@ -30,13 +31,14 @@ class ProfileDetailsViewModel : ViewModel() {
         viewModelScope.launch {
             try {
 
-                VcontachimApplication.vcontachimService.deleteFriends(
-                    userId = id
-                )
+                VcontachimApplication.vcontachimService.deleteFriend(userId = id)
 
-                profileDetailLiveData.value = profileDetailLiveData.value?.also {
-                    it.response[0].isFriend = if (it.response[0].isFriend == 1) 0 else 1
-                }
+                val responseProfileDetail = profileDetailLiveData.value!!
+
+                val modifiedResponseProfileDetail =
+                    responseProfileDetail.copy(isFriend = if (responseProfileDetail.isFriend == 1) 0 else 1)
+
+                profileDetailLiveData.value = modifiedResponseProfileDetail
             } catch (e: Exception) {
                 errorLiveData.value = e.message
             }
@@ -47,11 +49,14 @@ class ProfileDetailsViewModel : ViewModel() {
         viewModelScope.launch {
             try {
 
-                VcontachimApplication.vcontachimService.addFriends(userId = id)
+                VcontachimApplication.vcontachimService.addFriend(userId = id)
 
-                profileDetailLiveData.value = profileDetailLiveData.value?.also {
-                    it.response[0].isFriend = if (it.response[0].isFriend == 1) 0 else 1
-                }
+                val responseProfileDetail = profileDetailLiveData.value!!
+
+                val modifiedResponseProfileDetail =
+                    responseProfileDetail.copy(isFriend = if (responseProfileDetail.isFriend == 1) 0 else 1)
+
+                profileDetailLiveData.value = modifiedResponseProfileDetail
             } catch (e: Exception) {
                 errorLiveData.value = e.message
             }

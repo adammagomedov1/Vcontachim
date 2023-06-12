@@ -37,7 +37,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
         viewModel.loadProfileDetails(profileDetailSerializable)
 
         viewModel.profileDetailLiveData.observe(viewLifecycleOwner) {
-            val responseProfileDetail: ResponseProfileDetail = it.response[0]
+            val responseProfileDetail: ResponseProfileDetail = it
 
             Glide.with(this)
                 .load(responseProfileDetail.photo200)
@@ -114,7 +114,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                 binding!!.imageViewVerified.setImageResource(R.drawable.verified_20)
             }
 
-            if (responseProfileDetail.career != null && responseProfileDetail.career[0].company != "") {
+            if (responseProfileDetail.career != null && responseProfileDetail.career.isNotEmpty()) {
                 binding!!.textViewCareer.text = responseProfileDetail.career[0].position
             } else {
                 binding!!.textViewCareer.setText(R.string.not_filled)

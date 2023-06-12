@@ -19,7 +19,7 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="RoundedImageViewRounding_12dp">
+    <style name="RoundedImageView_12dp">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>

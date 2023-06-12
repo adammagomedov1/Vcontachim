@@ -10,12 +10,10 @@ class ProfileDetail(
 data class ResponseProfileDetail(
     val id: Long,
     val city: City?,
-    val status: String,
-    @SerializedName("followers_count")
-    val followersCount: Long?,
+    val status: String?,
     val career: List<Career>?,
     @SerializedName("can_send_friend_request")
-    val canSendFriendRequest: Int,
+    val canSendFriendRequest: Int?,
     @SerializedName("photo_200")
     val photo200: String?,
     val counters: Counters,
