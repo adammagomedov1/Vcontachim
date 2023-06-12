@@ -14,8 +14,6 @@ import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.dalogs.VideoMenuBottomSheetDialog
 import com.example.vcontachim.databinding.FragmentVideoBinding
 import com.example.vcontachim.models.ItemVideo
-import com.example.vcontachim.models.ResponseVideo
-import com.example.vcontachim.models.Video
 import com.example.vcontachim.viewmodel.VideoViewModel
 import com.google.android.material.snackbar.Snackbar
 

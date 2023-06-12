@@ -14,7 +14,7 @@
         android:layout_width="156dp"
         android:layout_height="156dp"
         android:scaleType="centerCrop"
-        app:shapeAppearanceOverlay="@style/RoundedImageViewPhotoAlbums"
+        app:shapeAppearanceOverlay="@style/RoundedImageView_12dp"
         tools:src="@tools:sample/avatars" />
 
     <TextView

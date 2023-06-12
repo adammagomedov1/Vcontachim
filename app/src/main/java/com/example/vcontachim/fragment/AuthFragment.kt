@@ -1,5 +1,6 @@
 package com.example.vcontachim.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebResourceRequest
@@ -16,7 +17,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     private val authUrl = "https://oauth.vk.com/authorize?" +
             "client_id=51611026" +
             "&redirect_uri=https://oauth.vk.com/blank.html" +
-            "&scope=offline,photos,video,wall" +
+            "&scope=offline,photos,video,wall,friends" +
             "&display=mobile" +
             "&response_type=token"
 
@@ -26,10 +27,12 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private var binding: FragmentAuthBinding? = null
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAuthBinding.bind(view)
         binding!!.idWebView.loadUrl(authUrl)
+        binding!!.idWebView.settings.javaScriptEnabled = true
         binding!!.idWebView.webViewClient = object : WebViewClient() {
 
             override fun shouldOverrideUrlLoading(

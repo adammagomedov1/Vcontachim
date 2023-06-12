@@ -1,6 +1,7 @@
 package com.example.vcontachim.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class Friends(
     val response: ResponseFriends
@@ -11,6 +12,7 @@ data class ResponseFriends(
 )
 
 data class Item(
+    val id: Long,
     @SerializedName("photo_200")
     val photo200: String,
 
@@ -19,4 +21,4 @@ data class Item(
 
     @SerializedName("last_name")
     val lastName: String
-)
+) : Serializable

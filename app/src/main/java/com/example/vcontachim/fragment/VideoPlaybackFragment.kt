@@ -46,6 +46,10 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         val videoSerializable = requireArguments().getSerializable(SAVE_VIDEO_KEY)
         var itemVideo: ItemVideo = videoSerializable as ItemVideo
 
+        binding!!.video.setOnClickListener {
+            VcontachimApplication.router.navigateTo(Screens.profileDetails(itemVideo.ownerId))
+        }
+
         binding!!.numberOfComments.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.navigateTo(Screens.videoActivity(itemVideo))

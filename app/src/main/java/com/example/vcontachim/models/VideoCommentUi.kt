@@ -1,5 +1,7 @@
 package com.example.vcontachim.models
 
+import java.io.Serializable
+
 data class VideoCommentUi(
     val idComment: Long,
     val fromId: Long,
@@ -9,4 +11,4 @@ data class VideoCommentUi(
     val idProfile: Long,
     val firstName: String,
     val lastName: String,
-)
+) : Serializable

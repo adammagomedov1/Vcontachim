@@ -2,7 +2,6 @@ package com.example.vcontachim.network
 
 import com.example.vcontachim.models.*
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -123,5 +122,21 @@ interface VcontachimService {
         @Query("type") type: String = "video_comment",
         @Query("item_id") itemId: Long,
         @Query("owner_id") ownerId: Long
+    )
+
+    @GET("users.get")
+    suspend fun getInfoProfile(
+        @Query("user_ids") userIds: Long,
+        @Query("fields") fields: String = "photo_200,online,career,city,followers_count,verified,status,is_friend,counters"
+    ): ProfileDetail
+
+    @POST("friends.delete")
+    suspend fun deleteFriend(
+        @Query("user_id") userId: Long
+    )
+
+    @POST("friends.add")
+    suspend fun addFriend(
+        @Query("user_id") userId: Long
     )
 }

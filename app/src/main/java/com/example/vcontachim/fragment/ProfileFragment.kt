@@ -65,6 +65,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         ) {
             val response: Response = it.response[0]
 
+            binding!!.linearLayoutProfile.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    VcontachimApplication.router.navigateTo(Screens.profileDetails(response.id))
+                }
+            })
+
             Glide.with(this@ProfileFragment)
                 .load(response.photo200)
                 .into(binding!!.iconViewProfile)
@@ -108,5 +114,4 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val exitDialog: AlertDialog = builder.create()
         exitDialog.show()
     }
-
 }

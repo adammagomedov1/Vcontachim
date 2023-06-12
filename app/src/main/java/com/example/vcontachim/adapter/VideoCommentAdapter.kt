@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vcontachim.R
+import com.example.vcontachim.Screens
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.ItemVideoCommentBinding
 import com.example.vcontachim.models.VideoCommentUi
 import java.text.SimpleDateFormat
@@ -40,6 +42,16 @@ class VideoCommentAdapter(val videoListener: VideoListener) :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: VideoCommentViewHolder, position: Int) {
         val videoCommentUi: VideoCommentUi = getItem(position)
+
+        holder.binding.videoComment.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                VcontachimApplication.router.navigateTo(
+                    Screens.profileDetails(
+                        videoCommentUi.idProfile
+                    )
+                )
+            }
+        })
 
         holder.binding.imageViewLike.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {

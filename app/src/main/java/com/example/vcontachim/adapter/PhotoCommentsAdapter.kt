@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
+import com.example.vcontachim.Screens
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.ItemPhotoCommentsBinding
 import com.example.vcontachim.models.PhotoCommentsUi
 import java.text.SimpleDateFormat
@@ -41,6 +43,16 @@ class PhotoCommentsAdapter(private val likeListener: LikeListener) :
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: PhotoCommentsViewHolder, position: Int) {
         val photoComments: PhotoCommentsUi = getItem(position)
+
+        holder.binding.photoComment.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                VcontachimApplication.router.navigateTo(
+                    Screens.profileDetails(
+                        photoComments.id
+                    )
+                )
+            }
+        })
 
         holder.binding.commentText.text = photoComments.textComments
 
