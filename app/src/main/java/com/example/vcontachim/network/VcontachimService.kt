@@ -139,4 +139,10 @@ interface VcontachimService {
     suspend fun addFriend(
         @Query("user_id") userId: Long
     )
+
+    @GET("newsfeed.get")
+    suspend fun getNewsfeed(
+        @Query("filters") post: String = "post",
+        @Query("count") count: Int = 100
+    ): News
 }

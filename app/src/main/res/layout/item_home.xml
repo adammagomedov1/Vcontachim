@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="329dp"
+    android:layout_marginTop="8dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_view_avatar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            tools:src="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_view_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:text="Супер гонки" />
+
+            <TextView
+                android:id="@id/text_view_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666666"
+                android:textSize="12sp"
+                tools:text="28 марта в 17:00" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_view_photo"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
+        tools:background="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_number_of_likes"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textColor="#818C99"
+            app:icon="@drawable/like_outline_24"
+            app:iconGravity="textStart"
+            app:iconTint="#99A2AD"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            tools:text="207" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_number_of_comments"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="#818C99"
+            app:icon="@drawable/comment_outline_24"
+            app:iconGravity="textStart"
+            app:iconTint="#99A2AD"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            tools:text="207" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_number_of_reposts"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="#818C99"
+            app:icon="@drawable/share_outline_24"
+            app:iconGravity="textStart"
+            app:iconTint="#99A2AD"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            tools:text="207" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginStart="39dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/view_outline_16" />
+
+            <TextView
+                android:id="@+id/text_view_number_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="7,200" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
