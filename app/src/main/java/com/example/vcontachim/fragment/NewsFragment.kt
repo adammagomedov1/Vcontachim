@@ -17,12 +17,11 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         ViewModelProvider(this)[NewsViewModel::class.java]
     }
 
-    private val newsAdapter = NewsAdapter()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNewsBinding.bind(view)
 
+        val newsAdapter = NewsAdapter()
         binding!!.recyclerView.adapter = newsAdapter
 
         viewModel.newsLiveData.observe(viewLifecycleOwner) {

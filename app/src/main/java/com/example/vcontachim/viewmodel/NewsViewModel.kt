@@ -20,15 +20,22 @@ class NewsViewModel : ViewModel() {
                 val news = VcontachimApplication.vcontachimService.getNewsfeed()
 
                 val newsUi = news.response.items.map {
-                    val group: Group =
-                        news.response.groups.first { group -> group.id == it.sourceId }
+                    val group: Group = news.response.groups.first { group -> group.id == Math.abs(it.sourceId) }
+                    val url =
+                        if (it.type == "video")
+                            it.attachments[0].video.firstFrame[0].url
+                        else
+                            it.attachments[0].photo.sizes[0].url
+                    val ownerId =
+                        if (it.type == "video")
+                            it.attachments[0].video.ownerId
+                        else
+                            it.attachments[0].photo.ownerId
 
                     val newsUi = NewsUi(
                         countComment = it.comments.count,
                         date = it.date,
-                        url = it.attachments[0].photo.sizes[0].url,
                         sourceId = it.sourceId,
-                        ownerId = it.attachments[0].photo.ownerId,
                         countLike = it.likes.count,
                         countReposts = it.reposts.count,
                         text = it.text,
@@ -36,7 +43,9 @@ class NewsViewModel : ViewModel() {
                         userLikes = it.likes.userLikes,
                         name = group.name,
                         photo200 = group.photo200,
-                        groupId = group.id
+                        groupId = group.id,
+                        url = url,
+                        ownerId = ownerId
                     )
                     newsUi
                 }
