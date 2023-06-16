@@ -1,5 +1,7 @@
 package com.example.vcontachim.adapter
 
+import android.annotation.SuppressLint
+import android.icu.text.SimpleDateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemHomeBinding
-import com.example.vcontachim.models.News
 import com.example.vcontachim.models.NewsUi
+import java.util.*
 
 class NewsAdapter : ListAdapter<NewsUi, NewsAdapter.HomeViewHolder>(MainScreenDiffCallback) {
 
@@ -29,6 +31,7 @@ class NewsAdapter : ListAdapter<NewsUi, NewsAdapter.HomeViewHolder>(MainScreenDi
         return HomeViewHolder(itemView)
     }
 
+    @SuppressLint("NewApi", "SimpleDateFormat")
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val newsUi: NewsUi = getItem(position)
 
@@ -50,7 +53,9 @@ class NewsAdapter : ListAdapter<NewsUi, NewsAdapter.HomeViewHolder>(MainScreenDi
 
         holder.binding.buttonNumberOfReposts.text = "${newsUi.countReposts}"
 
-        holder.binding.textViewDate.text = "${newsUi.date}"
+        val formatter = SimpleDateFormat(/* pattern = */ "d MMMM yyyy")
+        val dateString = formatter.format(Date(newsUi.date * 1000))
+        holder.binding.textViewDate.text = dateString
 
     }
 

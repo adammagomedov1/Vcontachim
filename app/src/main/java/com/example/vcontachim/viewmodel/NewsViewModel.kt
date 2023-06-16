@@ -21,16 +21,12 @@ class NewsViewModel : ViewModel() {
 
                 val newsUi = news.response.items.map {
                     val group: Group = news.response.groups.first { group -> group.id == Math.abs(it.sourceId) }
+//                    val profileNews = news.response.profiles.first{profile -> profile.id == Math.abs(it.sourceId) }
                     val url =
                         if (it.type == "video")
                             it.attachments[0].video.firstFrame[0].url
                         else
-                            it.attachments[0].photo.sizes[0].url
-                    val ownerId =
-                        if (it.type == "video")
-                            it.attachments[0].video.ownerId
-                        else
-                            it.attachments[0].photo.ownerId
+                            it.attachments[0].photo.sizes[5].url
 
                     val newsUi = NewsUi(
                         countComment = it.comments.count,
@@ -45,7 +41,6 @@ class NewsViewModel : ViewModel() {
                         photo200 = group.photo200,
                         groupId = group.id,
                         url = url,
-                        ownerId = ownerId
                     )
                     newsUi
                 }

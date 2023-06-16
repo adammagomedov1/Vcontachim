@@ -10,7 +10,8 @@ class News(
 data class ResponseNews(
     val items: List<ItemNews>,
     val groups: List<Group>,
-) : Serializable
+    val profiles: List<ProfileNews>,
+    ) : Serializable
 
 data class ItemNews(
     val type: String,
@@ -25,7 +26,7 @@ data class ItemNews(
     val text: String,
     val views: Views,
 ) : Serializable
-//
+
 data class Comments(
     val count: Long,
 ) : Serializable
@@ -76,3 +77,14 @@ data class Group(
     @SerializedName("photo_200")
     val photo200: String,
 ) : Serializable
+
+data class ProfileNews(
+    val id: Long,
+    val screenName: String,
+    @SerializedName("photo_100")
+    val photo100: String,
+    @SerializedName("first_name")
+    val firstName: String,
+    @SerializedName("last_name")
+    val lastName: String,
+):Serializable

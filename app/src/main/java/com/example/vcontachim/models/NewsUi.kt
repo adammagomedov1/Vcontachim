@@ -7,7 +7,6 @@ data class NewsUi(
     val date: Long,
     val url: String,
     val sourceId: Long,
-    val ownerId: Long,
     val countLike: Long,
     val countReposts: Long,
     val text: String,
