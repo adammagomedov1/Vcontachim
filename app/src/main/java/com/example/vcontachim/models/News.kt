@@ -11,10 +11,9 @@ data class ResponseNews(
     val items: List<ItemNews>,
     val groups: List<Group>,
     val profiles: List<ProfileNews>,
-    ) : Serializable
+) : Serializable
 
 data class ItemNews(
-    val type: String,
     val date: Long,
     val comments: Comments,
     val attachments: List<Attachment>,
@@ -32,8 +31,8 @@ data class Comments(
 ) : Serializable
 
 data class Attachment(
+    val type: String,
     val photo: Photo,
-    val video: VideoNews
 )
 
 data class Photo(
@@ -41,17 +40,6 @@ data class Photo(
     val ownerId: Long,
     val sizes: List<Size>,
 ) : Serializable
-
-data class VideoNews(
-    @SerializedName("owner_id")
-    val ownerId: Long,
-    @SerializedName("first_frame")
-    val firstFrame: List<FirstFrame>,
-): Serializable
-
-data class FirstFrame(
-    val url: String,
-): Serializable
 
 data class Size(
     val url: String,
@@ -87,4 +75,4 @@ data class ProfileNews(
     val firstName: String,
     @SerializedName("last_name")
     val lastName: String,
-):Serializable
+) : Serializable
