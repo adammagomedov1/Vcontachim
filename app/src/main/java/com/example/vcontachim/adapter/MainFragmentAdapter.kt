@@ -5,7 +5,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.vcontachim.fragment.NewsFragment
 import com.example.vcontachim.fragment.RecommendedFragment
 
-class MainScreenAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class MainFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int {
         return 2

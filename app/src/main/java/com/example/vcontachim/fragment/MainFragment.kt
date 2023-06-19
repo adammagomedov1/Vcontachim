@@ -3,22 +3,20 @@ package com.example.vcontachim.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
-import com.example.vcontachim.adapter.MainScreenAdapter
+import com.example.vcontachim.adapter.MainFragmentAdapter
 import com.example.vcontachim.databinding.FragmentMainScreenBinding
-import com.example.vcontachim.viewmodel.NewsViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
+class MainFragment : Fragment(R.layout.fragment_main) {
     var binding: FragmentMainScreenBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainScreenBinding.bind(view)
 
-        val newsAdapter = MainScreenAdapter(this)
+        val newsAdapter = MainFragmentAdapter(this)
         binding!!.mainScreenViewPager2.adapter = newsAdapter
 
         val mainScreenTabLayoutMediator = TabLayoutMediator(

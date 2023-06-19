@@ -11,9 +11,9 @@ import com.example.vcontachim.databinding.FragmentNewsBinding
 import com.example.vcontachim.viewmodel.NewsViewModel
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
-    var binding: FragmentNewsBinding? = null
+    private var binding: FragmentNewsBinding? = null
 
-    val viewModel: NewsViewModel by lazy {
+    private val viewModel: NewsViewModel by lazy {
         ViewModelProvider(this)[NewsViewModel::class.java]
     }
 
@@ -45,6 +45,6 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             toast.show()
         }
 
-        viewModel.loadMainScreen()
+        viewModel.loadNewsScreen()
     }
 }

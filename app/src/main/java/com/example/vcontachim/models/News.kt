@@ -5,7 +5,7 @@ import java.io.Serializable
 
 class News(
     val response: ResponseNews,
-) : Serializable
+)
 
 data class ResponseNews(
     val items: List<ItemNews>,

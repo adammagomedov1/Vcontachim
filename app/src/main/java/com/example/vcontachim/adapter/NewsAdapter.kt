@@ -61,7 +61,7 @@ class NewsAdapter : ListAdapter<NewsUi, NewsAdapter.HomeViewHolder>(MainScreenDi
 
     object MainScreenDiffCallback : DiffUtil.ItemCallback<NewsUi>() {
         override fun areItemsTheSame(oldItem: NewsUi, newItem: NewsUi): Boolean {
-            return oldItem == newItem
+            return oldItem.sourceId == newItem.sourceId
         }
 
         override fun areContentsTheSame(oldItem: NewsUi, newItem: NewsUi): Boolean {

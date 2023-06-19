@@ -1,7 +1,5 @@
 package com.example.vcontachim.models
 
-import java.io.Serializable
-
 data class NewsUi(
     val countComment: Long,
     val date: Long,
@@ -15,4 +13,4 @@ data class NewsUi(
     val photo200: String,
     val userLikes: Long,
     val groupId: Long,
-) : Serializable
+)
