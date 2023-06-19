@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="329dp"
+    android:layout_height="529dp"
     android:layout_marginTop="8dp"
     android:background="@color/white"
     android:orientation="vertical"
@@ -56,7 +56,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image_view_photo"
             android:layout_width="match_parent"
-            android:layout_height="216dp"
+            android:layout_height="416dp"
             android:scaleType="fitXY"
             tools:background="@color/black" />
 
@@ -74,7 +74,6 @@
                 android:backgroundTint="#0D001C3D"
                 android:textColor="#818C99"
                 app:icon="@drawable/like_outline_24"
-                app:iconGravity="textStart"
                 app:iconTint="#99A2AD"
                 app:shapeAppearanceOverlay="@style/RoundedImageView"
                 tools:text="207" />
@@ -88,7 +87,6 @@
                 android:backgroundTint="#0D001C3D"
                 android:textColor="#818C99"
                 app:icon="@drawable/comment_outline_24"
-                app:iconGravity="textStart"
                 app:iconTint="#99A2AD"
                 app:shapeAppearanceOverlay="@style/RoundedImageView"
                 tools:text="27" />
@@ -102,7 +100,6 @@
                 android:backgroundTint="#0D001C3D"
                 android:textColor="#818C99"
                 app:icon="@drawable/share_outline_24"
-                app:iconGravity="textStart"
                 app:iconTint="#99A2AD"
                 app:shapeAppearanceOverlay="@style/RoundedImageView"
                 tools:text="208" />
@@ -111,7 +108,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:gravity="end">
 

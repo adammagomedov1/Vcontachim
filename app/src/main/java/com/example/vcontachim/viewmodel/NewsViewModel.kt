@@ -44,7 +44,7 @@ class NewsViewModel : ViewModel() {
                         name = group?.name ?: "${profile?.firstName} ${profile?.firstName}",
                         photo200 = group?.photo200 ?: profile!!.photo100,
                         groupId = group?.id ?: profile!!.id,
-                        url = it.attachments.getOrNull(0)?.photo?.sizes?.getOrNull(5)?.url,
+                        url = it.attachments.getOrNull(0)?.photo?.sizes?.last()?.url,
                     )
                     newsUi
                 }
