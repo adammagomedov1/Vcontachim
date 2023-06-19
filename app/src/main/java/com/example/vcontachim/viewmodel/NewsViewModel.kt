@@ -12,6 +12,7 @@ import kotlin.math.abs
 
 class NewsViewModel : ViewModel() {
 
+    val progressBarLiveData = MutableLiveData<Boolean>()
     val newsLiveData = MutableLiveData<List<NewsUi>>()
     val errorLiveData = MutableLiveData<String>()
 
@@ -44,12 +45,15 @@ class NewsViewModel : ViewModel() {
                         name = group?.name ?: "${profile?.firstName} ${profile?.firstName}",
                         photo200 = group?.photo200 ?: profile!!.photo100,
                         groupId = group?.id ?: profile!!.id,
-                        url = it.attachments.getOrNull(0)?.photo?.sizes?.last()?.url,
+                        url = it.attachments.getOrNull(0)?.photo?.sizes?.lastOrNull()?.url,
                     )
                     newsUi
                 }
+
+                progressBarLiveData.value = false
                 newsLiveData.value = newsUi
             } catch (e: Exception) {
+                progressBarLiveData.value = false
                 errorLiveData.value = e.message
             }
         }
