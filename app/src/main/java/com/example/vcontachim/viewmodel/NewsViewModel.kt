@@ -16,7 +16,7 @@ class NewsViewModel : ViewModel() {
     val newsLiveData = MutableLiveData<List<NewsUi>>()
     val errorLiveData = MutableLiveData<String>()
 
-    fun loadNewsScreen() {
+    fun loadNews() {
         viewModelScope.launch {
             try {
 

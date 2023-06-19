@@ -5,16 +5,16 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.vcontachim.R
 import com.example.vcontachim.adapter.MainFragmentAdapter
-import com.example.vcontachim.databinding.FragmentMainScreenBinding
+import com.example.vcontachim.databinding.FragmentMainBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    var binding: FragmentMainScreenBinding? = null
+    var binding: FragmentMainBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentMainScreenBinding.bind(view)
+        binding = FragmentMainBinding.bind(view)
 
         val newsAdapter = MainFragmentAdapter(this)
         binding!!.mainScreenViewPager2.adapter = newsAdapter

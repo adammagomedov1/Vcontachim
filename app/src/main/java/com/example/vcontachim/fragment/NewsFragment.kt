@@ -45,6 +45,6 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             toast.show()
         }
 
-        viewModel.loadNewsScreen()
+        viewModel.loadNews()
     }
 }
