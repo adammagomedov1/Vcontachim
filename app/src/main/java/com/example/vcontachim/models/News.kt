@@ -14,6 +14,7 @@ data class ResponseNews(
 )
 
 data class ItemNews(
+    val id: Long,
     val date: Long,
     val comments: Comments,
     val attachments: List<Attachment>,

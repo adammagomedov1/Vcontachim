@@ -13,7 +13,7 @@ import kotlin.math.abs
 class NewsViewModel : ViewModel() {
 
     val progressBarLiveData = MutableLiveData<Boolean>()
-    val newsLiveData = MutableLiveData<List<NewsUi>>()
+    val newsUiLiveData = MutableLiveData<List<NewsUi>>()
     val errorLiveData = MutableLiveData<String>()
 
     fun loadNews() {
@@ -46,14 +46,67 @@ class NewsViewModel : ViewModel() {
                         photo200 = group?.photo200 ?: profile!!.photo100,
                         groupId = group?.id ?: profile!!.id,
                         url = it.attachments.getOrNull(0)?.photo?.sizes?.lastOrNull()?.url,
+                        id = it.id
                     )
                     newsUi
                 }
 
                 progressBarLiveData.value = false
-                newsLiveData.value = newsUi
+                newsUiLiveData.value = newsUi
             } catch (e: Exception) {
                 progressBarLiveData.value = false
+                errorLiveData.value = e.message
+            }
+        }
+    }
+
+    fun addLike(newsUi: NewsUi) {
+        viewModelScope.launch {
+            try {
+
+                VcontachimApplication.vcontachimService.addLikePost(
+                    itemId = newsUi.id,
+                    ownerId = newsUi.sourceId
+                )
+
+                val newsUiList = newsUiLiveData.value!!.toMutableList()
+                // обновляем элемент коментария на котором был клик
+                val updatedNewsObject: NewsUi = newsUi.copy(
+                    userLikes = if (newsUi.userLikes == 1L) 0 else 1,
+                    countLike = newsUi.countLike + 1
+                )
+
+                val saveIndexFromList = newsUiList.indexOf(newsUi)
+                newsUiList.set(index = saveIndexFromList, updatedNewsObject)
+
+                newsUiLiveData.value = newsUiList
+            } catch (e: Exception) {
+                errorLiveData.value = e.message
+            }
+        }
+    }
+
+    fun deleteLike(newsUi: NewsUi) {
+        viewModelScope.launch {
+            try {
+
+                VcontachimApplication.vcontachimService.deleteLikePost(
+                    itemId = newsUi.id,
+                    ownerId = newsUi.sourceId
+                )
+
+                val newsUiList = newsUiLiveData.value!!.toMutableList()
+                // обновляем элемент коментария на котором был клик
+                val updatedNewsObject: NewsUi = newsUi.copy(
+                    userLikes = if (newsUi.userLikes == 1L) 0 else 1,
+                    countLike = newsUi.countLike - 1
+                )
+
+                val saveIndexFromList = newsUiList.indexOf(newsUi)
+                newsUiList.set(index = saveIndexFromList, updatedNewsObject)
+
+                newsUiLiveData.value = newsUiList
+            } catch (e: Exception) {
                 errorLiveData.value = e.message
             }
         }

@@ -144,4 +144,18 @@ interface VcontachimService {
     suspend fun getNewsfeed(
         @Query("filters") post: String = "post",
     ): News
+
+    @GET("likes.add")
+    suspend fun addLikePost(
+        @Query("type") type: String = "post",
+        @Query("item_id") itemId: Long,
+        @Query("owner_id") ownerId: Long
+    )
+
+    @GET("likes.delete")
+    suspend fun deleteLikePost(
+        @Query("type") type: String = "post",
+        @Query("item_id") itemId: Long,
+        @Query("owner_id") ownerId: Long
+    )
 }

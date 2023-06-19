@@ -1,6 +1,7 @@
 package com.example.vcontachim.models
 
 data class NewsUi(
+    val id: Long,
     val countComment: Long,
     val date: Long,
     val url: String?,
