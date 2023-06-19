@@ -65,8 +65,8 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
         holder.binding.textViewDate.text = dateString
 
         if (newsUi.userLikes == 1L) {
-            holder.binding.buttonNumberOfLikes.setIconResource(R.drawable.like_filled_red_28)
-            holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.pink)
+            holder.binding.imageView.setImageResource(R.drawable.group_16)
+            holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.white)
             holder.binding.buttonNumberOfLikes.setTextColor(R.color.pink)
         } else {
             holder.binding.buttonNumberOfLikes.setIconResource(R.drawable.like_outline_24)
