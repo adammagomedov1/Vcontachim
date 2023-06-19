@@ -20,7 +20,7 @@ object Screens {
 
     fun main() = ActivityScreen { Intent(it, MainActivity::class.java) }
 
-    fun mainScreen() = FragmentScreen { MainScreenFragment() }
+    fun mainScreen() = FragmentScreen { MainFragment() }
 
     fun profileScreen() = FragmentScreen { ProfileFragment() }
 

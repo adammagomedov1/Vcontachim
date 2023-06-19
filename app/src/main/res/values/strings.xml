@@ -28,6 +28,10 @@
     <string name="you_subscribed">Вы подписаны</string>
     <string name="in_friends">В друзьях</string>
     <string name="not_filled">Не заполнено</string>
+    <string name="home">Главная</string>
+    <string name="profile">Профиль</string>
+    <string name="news">Новости</string>
+    <string name="recommended">Рекомендованные</string>
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>

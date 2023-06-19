@@ -3,10 +3,10 @@
     <item
         android:id="@+id/menu_home_bottom_nav"
         android:icon="@drawable/ic_icon_main"
-        android:title="Главная" />
+        android:title="@string/home" />
 
     <item
         android:id="@+id/menu_profile_bottom_nav"
         android:icon="@drawable/ic_icon_profile"
-        android:title="Профиль" />
+        android:title="@string/profile" />
 </menu>
