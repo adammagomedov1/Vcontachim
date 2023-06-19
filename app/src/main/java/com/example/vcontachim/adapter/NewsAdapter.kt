@@ -1,10 +1,13 @@
 package com.example.vcontachim.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.icu.text.SimpleDateFormat
+import android.provider.CalendarContract.Instances
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +15,9 @@ import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemHomeBinding
 import com.example.vcontachim.models.NewsUi
+import java.time.Instant
 import java.util.*
+import kotlin.coroutines.coroutineContext
 
 class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
     ListAdapter<NewsUi, NewsAdapter.HomeViewHolder>(MainScreenDiffCallback) {
@@ -32,7 +37,10 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
         return HomeViewHolder(itemView)
     }
 
-    @SuppressLint("NewApi", "SimpleDateFormat", "ResourceAsColor")
+    @SuppressLint(
+        "NewApi", "SimpleDateFormat", "ResourceAsColor",
+        "UseCompatLoadingForColorStateLists"
+    )
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val newsUi: NewsUi = getItem(position)
 
@@ -68,10 +76,14 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
             holder.binding.imageView.setImageResource(R.drawable.group_16)
             holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.white)
             holder.binding.buttonNumberOfLikes.setTextColor(R.color.pink)
+            holder.binding.buttonNumberOfLikes.backgroundTintList =
+                (holder.itemView.context.resources.getColorStateList(R.color.pink15))
         } else {
             holder.binding.buttonNumberOfLikes.setIconResource(R.drawable.like_outline_24)
             holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.grey)
             holder.binding.buttonNumberOfLikes.setTextColor(R.color.grey)
+            holder.binding.buttonNumberOfLikes.backgroundTintList =
+                (holder.itemView.context.resources.getColorStateList(R.color.grey5))
         }
     }
 
