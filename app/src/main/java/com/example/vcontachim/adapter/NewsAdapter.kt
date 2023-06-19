@@ -32,7 +32,7 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
         return HomeViewHolder(itemView)
     }
 
-    @SuppressLint("NewApi", "SimpleDateFormat")
+    @SuppressLint("NewApi", "SimpleDateFormat", "ResourceAsColor")
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val newsUi: NewsUi = getItem(position)
 
@@ -67,9 +67,11 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
         if (newsUi.userLikes == 1L) {
             holder.binding.buttonNumberOfLikes.setIconResource(R.drawable.like_filled_red_28)
             holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.pink)
+            holder.binding.buttonNumberOfLikes.setTextColor(R.color.pink)
         } else {
             holder.binding.buttonNumberOfLikes.setIconResource(R.drawable.like_outline_24)
             holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.grey)
+            holder.binding.buttonNumberOfLikes.setTextColor(R.color.grey)
         }
     }
 
