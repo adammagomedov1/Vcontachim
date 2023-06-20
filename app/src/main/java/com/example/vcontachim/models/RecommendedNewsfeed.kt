@@ -88,4 +88,3 @@ data class GroupRecommendedNews(
     @SerializedName("photo_200")
     val photo200: String,
 )
-

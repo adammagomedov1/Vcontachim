@@ -7,7 +7,7 @@ import com.example.vcontachim.fragment.NewsFragment
 
 class MainFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    lateinit var myEnum: MyEnum
+    private lateinit var myEnum: MyEnum
 
     override fun getItemCount(): Int {
         return 2
