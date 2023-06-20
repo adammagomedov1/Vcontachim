@@ -25,12 +25,10 @@ class NewsFragment(val myEnum: MyEnum) : Fragment(R.layout.fragment_news) {
 
         val newsAdapter = NewsAdapter(likeListener = object : NewsAdapter.LikeListener {
             override fun onClick(newsUi: NewsUi) {
-                if (myEnum == MyEnum.LEFT) {
-                    if (newsUi.userLikes == 0L) {
-                        viewModel.addLike(newsUi)
-                    } else {
-                        viewModel.deleteLike(newsUi)
-                    }
+                if (newsUi.userLikes == 0L) {
+                    viewModel.addLike(newsUi)
+                } else {
+                    viewModel.deleteLike(newsUi)
                 }
             }
         })
