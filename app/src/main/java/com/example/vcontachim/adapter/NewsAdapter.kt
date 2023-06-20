@@ -75,13 +75,21 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
         if (newsUi.userLikes == 1L) {
             holder.binding.imageView.setImageResource(R.drawable.group_16)
             holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.white)
-            holder.binding.buttonNumberOfLikes.setTextColor(R.color.pink)
+            holder.binding.buttonNumberOfLikes.setTextColor(
+                holder.itemView.context.resources.getColor(
+                    R.color.pink
+                )
+            )
             holder.binding.buttonNumberOfLikes.backgroundTintList =
                 (holder.itemView.context.resources.getColorStateList(R.color.pink15))
         } else {
             holder.binding.buttonNumberOfLikes.setIconResource(R.drawable.like_outline_24)
             holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.grey)
-            holder.binding.buttonNumberOfLikes.setTextColor(R.color.grey)
+            holder.binding.buttonNumberOfLikes.setTextColor(
+                holder.itemView.context.resources.getColor(
+                    R.color.grey
+                )
+            )
             holder.binding.buttonNumberOfLikes.backgroundTintList =
                 (holder.itemView.context.resources.getColorStateList(R.color.grey5))
         }
