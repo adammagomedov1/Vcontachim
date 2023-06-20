@@ -12,7 +12,7 @@ import com.example.vcontachim.databinding.FragmentNewsBinding
 import com.example.vcontachim.models.NewsUi
 import com.example.vcontachim.viewmodel.NewsViewModel
 
-class NewsFragment(val myEnum: MyEnum) : Fragment(R.layout.fragment_news) {
+class NewsFragment(private val myEnum: MyEnum) : Fragment(R.layout.fragment_news) {
     private var binding: FragmentNewsBinding? = null
 
     private val viewModel: NewsViewModel by lazy {
