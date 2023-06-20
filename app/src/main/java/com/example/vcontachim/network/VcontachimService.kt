@@ -162,5 +162,5 @@ interface VcontachimService {
     @GET("newsfeed.getRecommended")
     suspend fun getRecommendedNewsfeed(
         @Query("fields") fields: String = "photo_200"
-    ): RecommendedNewsfeed
+    ): News
 }
