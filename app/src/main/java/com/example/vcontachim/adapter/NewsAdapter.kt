@@ -81,7 +81,7 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
                 )
             )
             holder.binding.buttonNumberOfLikes.backgroundTintList =
-                (holder.itemView.context.resources.getColorStateList(R.color.pink15))
+                holder.itemView.context.resources.getColorStateList(R.color.pink15)
         } else {
             holder.binding.buttonNumberOfLikes.setIconResource(R.drawable.like_outline_24)
             holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.grey)
@@ -91,7 +91,7 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
                 )
             )
             holder.binding.buttonNumberOfLikes.backgroundTintList =
-                (holder.itemView.context.resources.getColorStateList(R.color.grey5))
+                holder.itemView.context.resources.getColorStateList(R.color.grey5)
         }
     }
 
