@@ -2,10 +2,12 @@ package com.example.vcontachim.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.vcontachim.enum1.MyEnum
 import com.example.vcontachim.fragment.NewsFragment
-import com.example.vcontachim.fragment.RecommendedFragment
 
 class MainFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+
+    lateinit var myEnum: MyEnum
 
     override fun getItemCount(): Int {
         return 2
@@ -13,8 +15,14 @@ class MainFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> NewsFragment()
-            else -> RecommendedFragment()
+            0 -> {
+                myEnum = MyEnum.LEFT
+                NewsFragment(myEnum)
+            }
+            else -> {
+                myEnum = MyEnum.RIGHT
+                NewsFragment(myEnum)
+            }
         }
     }
 }

@@ -4,14 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vcontachim.VcontachimApplication
-import com.example.vcontachim.models.Group
-import com.example.vcontachim.models.NewsUi
-import com.example.vcontachim.models.ProfileNews
+import com.example.vcontachim.models.*
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 class NewsViewModel : ViewModel() {
-
     val progressBarLiveData = MutableLiveData<Boolean>()
     val newsUiLiveData = MutableLiveData<List<NewsUi>>()
     val errorLiveData = MutableLiveData<String>()
@@ -19,6 +16,7 @@ class NewsViewModel : ViewModel() {
     fun loadNews() {
         viewModelScope.launch {
             try {
+                progressBarLiveData.value = true
 
                 val news = VcontachimApplication.vcontachimService.getNewsfeed()
 
@@ -53,6 +51,56 @@ class NewsViewModel : ViewModel() {
 
                 progressBarLiveData.value = false
                 newsUiLiveData.value = newsUi
+            } catch (e: Exception) {
+                progressBarLiveData.value = false
+                errorLiveData.value = e.message
+            }
+        }
+    }
+
+    fun loadRecommendedNewsfeed() {
+        viewModelScope.launch {
+            try {
+                progressBarLiveData.value = true
+
+                val recommendedNews =
+                    VcontachimApplication.vcontachimService.getRecommendedNewsfeed()
+
+                val recommendedNewsList = recommendedNews.response.items.filter {
+                    it.attachments.getOrNull(0)?.type == "photo"
+                }
+
+                val newsUi = recommendedNewsList.map {
+                    val groupRN: GroupRecommendedNews? =
+                        recommendedNews.response.groups.firstOrNull { groupRecommendedNews ->
+                            groupRecommendedNews.id == abs(it.sourceId)
+                        }
+
+                    val profileRN: ProfileRecommendedNews? =
+                        recommendedNews.response.profiles.firstOrNull { profileRecommendedNews ->
+                            profileRecommendedNews.id == abs(it.sourceId)
+                        }
+
+                    val newsUi = NewsUi(
+                        countComment = it.comments.count,
+                        date = it.date,
+                        sourceId = it.sourceId,
+                        countLike = it.likes.count,
+                        countReposts = it.reposts.count,
+                        text = it.text,
+                        countViews = it.views.count,
+                        userLikes = it.likes.userLikes,
+                        name = groupRN?.name ?: "${profileRN?.firstName} ${profileRN?.firstName}",
+                        photo200 = groupRN?.photo200 ?: profileRN!!.photo200,
+                        groupId = groupRN?.id ?: profileRN!!.id,
+                        url = it.attachments.getOrNull(0)?.photo?.sizes?.lastOrNull()?.url,
+                        id = it.id
+                    )
+                    newsUi
+                }
+
+                newsUiLiveData.value = newsUi
+                progressBarLiveData.value = false
             } catch (e: Exception) {
                 progressBarLiveData.value = false
                 errorLiveData.value = e.message
