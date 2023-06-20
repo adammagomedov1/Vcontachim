@@ -65,19 +65,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_number_of_likes"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:backgroundTint="#0D001C3D"
-                android:minWidth="0dp"
-                android:textColor="#818C99"
-                app:icon="@drawable/like_outline_24"
-                app:iconTint="#99A2AD"
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
-                tools:text="207" />
+                android:layout_marginStart="12dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_number_of_likes"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#0D001C3D"
+                    android:minWidth="0dp"
+                    android:textColor="#818C99"
+                    app:icon="@drawable/like_outline_24"
+                    app:iconTint="#99A2AD"
+                    app:shapeAppearanceOverlay="@style/RoundedImageView"
+                    tools:text="207" />
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    tools:src="@drawable/group_16" />
+
+            </FrameLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_number_of_comments"

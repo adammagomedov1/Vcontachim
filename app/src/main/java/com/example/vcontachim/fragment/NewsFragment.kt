@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
 import com.example.vcontachim.adapter.NewsAdapter
 import com.example.vcontachim.databinding.FragmentNewsBinding
+import com.example.vcontachim.models.NewsUi
 import com.example.vcontachim.viewmodel.NewsViewModel
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
@@ -21,7 +22,15 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNewsBinding.bind(view)
 
-        val newsAdapter = NewsAdapter()
+        val newsAdapter = NewsAdapter(likeListener = object : NewsAdapter.LikeListener {
+            override fun onClick(newsUi: NewsUi) {
+                if (newsUi.userLikes == 0L) {
+                    viewModel.addLike(newsUi)
+                } else {
+                    viewModel.deleteLike(newsUi)
+                }
+            }
+        })
         binding!!.recyclerView.adapter = newsAdapter
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner) {
@@ -32,7 +41,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             }
         }
 
-        viewModel.newsLiveData.observe(viewLifecycleOwner) {
+        viewModel.newsUiLiveData.observe(viewLifecycleOwner) {
             newsAdapter.submitList(it)
         }
 
