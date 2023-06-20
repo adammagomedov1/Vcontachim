@@ -7,8 +7,6 @@ import com.example.vcontachim.fragment.NewsFragment
 
 class MainFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    private lateinit var myEnum: MyEnum
-
     override fun getItemCount(): Int {
         return 2
     }
@@ -16,12 +14,10 @@ class MainFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {
-                myEnum = MyEnum.LEFT
-                NewsFragment(myEnum)
+                NewsFragment(MyEnum.LEFT)
             }
             else -> {
-                myEnum = MyEnum.RIGHT
-                NewsFragment(myEnum)
+                NewsFragment(MyEnum.RIGHT)
             }
         }
     }
