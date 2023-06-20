@@ -4,23 +4,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vcontachim.VcontachimApplication
-import com.example.vcontachim.models.Group
-import com.example.vcontachim.models.NewsUi
-import com.example.vcontachim.models.ProfileNews
+import com.example.vcontachim.models.*
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 class NewsViewModel : ViewModel() {
-
     val progressBarLiveData = MutableLiveData<Boolean>()
     val newsUiLiveData = MutableLiveData<List<NewsUi>>()
     val errorLiveData = MutableLiveData<String>()
 
-    fun loadNews() {
+    fun loadNews(enumNews: EnumNews) {
         viewModelScope.launch {
             try {
-
-                val news = VcontachimApplication.vcontachimService.getNewsfeed()
+                progressBarLiveData.value = true
+                val news = if (enumNews != EnumNews.RECOMMENDED) {
+                    VcontachimApplication.vcontachimService.getNewsfeed()
+                } else {
+                    VcontachimApplication.vcontachimService.getRecommendedNewsfeed()
+                }
 
                 val newsList = news.response.items.filter {
                     it.attachments.getOrNull(0)?.type == "photo"

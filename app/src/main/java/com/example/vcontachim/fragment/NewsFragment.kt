@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.vcontachim.models.EnumNews
 import com.example.vcontachim.R
 import com.example.vcontachim.adapter.NewsAdapter
 import com.example.vcontachim.databinding.FragmentNewsBinding
@@ -54,6 +55,21 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             toast.show()
         }
 
-        viewModel.loadNews()
+        val enumSerializable = requireArguments().getSerializable(SAVE_ENUM_KEY)
+        val loadEnumNews: EnumNews = enumSerializable as EnumNews
+        viewModel.loadNews(loadEnumNews)
+    }
+
+    companion object {
+        private const val SAVE_ENUM_KEY = "enum"
+
+        fun createFragment(enumNews: EnumNews): Fragment {
+            val fragment = NewsFragment()
+            val bundle = Bundle()
+            bundle.putSerializable(SAVE_ENUM_KEY, enumNews)
+            fragment.arguments = bundle
+
+            return fragment
+        }
     }
 }
