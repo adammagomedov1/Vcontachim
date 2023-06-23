@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemHomeBinding
 import com.example.vcontachim.models.NewsUi
+import com.zhpan.indicator.enums.IndicatorSlideMode
+import com.zhpan.indicator.enums.IndicatorStyle
 import java.util.*
 
 class NewsAdapter(private val likeListener: LikeListener) :
@@ -24,6 +26,9 @@ class NewsAdapter(private val likeListener: LikeListener) :
 
         init {
             binding.viewPager2.adapter = photoSwitcherAdapter
+            binding.indicator.setSliderColor(R.color.white, R.color.blue)
+            binding.indicator.setSlideMode(IndicatorSlideMode.WORM)
+            binding.indicator.setIndicatorStyle(IndicatorStyle.CIRCLE)
         }
     }
 
@@ -46,6 +51,8 @@ class NewsAdapter(private val likeListener: LikeListener) :
         val newsUi: NewsUi = getItem(position)
 
         holder.photoSwitcherAdapter.submitList(newsUi.attachments)
+
+        holder.binding.indicator.setupWithViewPager(holder.binding.viewPager2)
 
         holder.binding.buttonNumberOfLikes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
