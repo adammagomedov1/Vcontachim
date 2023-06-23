@@ -16,7 +16,11 @@
         android:id="@+id/main_screen_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp" />
+        android:layout_marginTop="1dp"
+        android:scrollbarSize="6.5dp"
+        app:tabIndicatorColor="@color/light_blue"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextAppearance="@style/MineCustomTabText" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_screen_view_pager2"

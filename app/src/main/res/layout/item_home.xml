@@ -53,12 +53,15 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image_view_photo"
+        <com.example.vcontachim.utility.NestedScrollableHost
             android:layout_width="match_parent"
-            android:layout_height="416dp"
-            android:scaleType="fitXY"
-            tools:background="@color/black" />
+            android:layout_height="wrap_content">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager2"
+                android:layout_width="match_parent"
+                android:layout_height="416dp" />
+        </com.example.vcontachim.utility.NestedScrollableHost>
 
         <LinearLayout
             android:layout_width="match_parent"

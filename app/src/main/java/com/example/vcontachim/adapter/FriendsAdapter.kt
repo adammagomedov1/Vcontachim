@@ -21,10 +21,7 @@ class FriendsAdapter : ListAdapter<Item, FriendsAdapter.FriendsViewHolder>(Frien
         val binding: ItemFriendsBinding = ItemFriendsBinding.bind(itemView)
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): FriendsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsViewHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
 
         val itemView: View = layoutInflater.inflate(

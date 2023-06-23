@@ -4,7 +4,6 @@ data class NewsUi(
     val id: Long,
     val countComment: Long,
     val date: Long,
-    val url: String?,
     val sourceId: Long,
     val countLike: Long,
     val countReposts: Long,
@@ -14,4 +13,5 @@ data class NewsUi(
     val photo200: String,
     val userLikes: Long,
     val groupId: Long,
+    val attachments: List<Attachment>
 )

@@ -51,7 +51,7 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
         binding!!.textViewCimentaries.text = photos.comments.count
 
         Glide.with(this@PhotoFragment)
-            .load(photos.sizes[0].url)
+            .load(photos.sizes.lastOrNull()?.url)
             .into(binding!!.imageView)
 
         binding!!.linearLayoutLikes.setOnClickListener(object : View.OnClickListener {

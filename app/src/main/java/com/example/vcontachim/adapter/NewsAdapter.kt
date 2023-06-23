@@ -1,13 +1,10 @@
 package com.example.vcontachim.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.icu.text.SimpleDateFormat
-import android.provider.CalendarContract.Instances
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,15 +12,19 @@ import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemHomeBinding
 import com.example.vcontachim.models.NewsUi
-import java.time.Instant
 import java.util.*
-import kotlin.coroutines.coroutineContext
 
-class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
+class NewsAdapter(private val likeListener: LikeListener) :
     ListAdapter<NewsUi, NewsAdapter.HomeViewHolder>(MainScreenDiffCallback) {
 
     class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: ItemHomeBinding = ItemHomeBinding.bind(itemView)
+
+        val photoSwitcherAdapter = PhotoSwitcherAdapter()
+
+        init {
+            binding.viewPager2.adapter = photoSwitcherAdapter
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -44,6 +45,8 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val newsUi: NewsUi = getItem(position)
 
+        holder.photoSwitcherAdapter.submitList(newsUi.attachments)
+
         holder.binding.buttonNumberOfLikes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 likeListener.onClick(newsUi)
@@ -53,10 +56,6 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
         Glide.with(holder.itemView)
             .load(newsUi.photo200)
             .into(holder.binding.imageViewAvatar)
-
-        Glide.with(holder.itemView)
-            .load(newsUi.url)
-            .into(holder.binding.imageViewPhoto)
 
         holder.binding.textViewName.text = newsUi.name
 
@@ -84,10 +83,10 @@ class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
                 holder.itemView.context.resources.getColorStateList(R.color.pink15)
         } else {
             holder.binding.buttonNumberOfLikes.setIconResource(R.drawable.like_outline_24)
-            holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.grey)
+            holder.binding.buttonNumberOfLikes.setIconTintResource(R.color.grey2)
             holder.binding.buttonNumberOfLikes.setTextColor(
                 holder.itemView.context.resources.getColor(
-                    R.color.grey
+                    R.color.grey2
                 )
             )
             holder.binding.buttonNumberOfLikes.backgroundTintList =

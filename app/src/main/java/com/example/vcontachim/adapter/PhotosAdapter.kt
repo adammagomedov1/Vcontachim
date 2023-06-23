@@ -32,7 +32,7 @@ class PhotosAdapter : ListAdapter<ItemPhotos, PhotosAdapter.PhotosViewHolder>(Ph
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
         val itemPhotos: ItemPhotos = getItem(position)
-        val sizes = itemPhotos.sizes[0]
+        val sizes = itemPhotos.sizes.lastOrNull()
 
         holder.binding.linearLayoutPhotos.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
@@ -41,7 +41,7 @@ class PhotosAdapter : ListAdapter<ItemPhotos, PhotosAdapter.PhotosViewHolder>(Ph
         })
 
         Glide.with(holder.itemView)
-            .load(sizes.url)
+            .load(sizes?.url)
             .into(holder.binding.imageViewPhotos)
 
     }

@@ -33,7 +33,7 @@ data class Comments(
 
 data class Attachment(
     val type: String,
-    val photo: Photo,
+    val photo: Photo?,
 )
 
 data class Photo(
