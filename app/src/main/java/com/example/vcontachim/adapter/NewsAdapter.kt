@@ -97,6 +97,8 @@ class NewsAdapter(private val likeListener: LikeListener) :
             holder.binding.buttonNumberOfLikes.backgroundTintList =
                 holder.itemView.context.resources.getColorStateList(R.color.grey5)
         }
+
+        holder.binding.textView.text = newsUi.text
     }
 
     object MainScreenDiffCallback : DiffUtil.ItemCallback<NewsUi>() {
