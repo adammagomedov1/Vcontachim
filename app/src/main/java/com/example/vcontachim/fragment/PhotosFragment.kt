@@ -52,8 +52,8 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
         binding!!.toolbarPhotos.subtitle = "$findOutTheNumberOfPhotos $numberOfPhotos"
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner, object : Observer<Boolean> {
-            override fun onChanged(t: Boolean?) {
-                if (t == true) {
+            override fun onChanged(value: Boolean) {
+                if (value) {
                     binding!!.progressBarPhotos.visibility = View.VISIBLE
                 } else {
                     binding!!.progressBarPhotos.visibility = View.GONE

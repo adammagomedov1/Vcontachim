@@ -23,11 +23,12 @@ class NewsViewModel : ViewModel() {
                     VcontachimApplication.vcontachimService.getRecommendedNewsfeed()
                 }
 
+                //Я здесь сохроняю в переменую отфильтрованные фильтрую посты
                 val newsList = news.response.items.filter {
                     it.attachments.getOrNull(0)?.type == "photo"
                 }
 
-                val newsUi = newsList.map {
+                val newsUi = newsList.map { it ->
                     val group: Group? =
                         news.response.groups.firstOrNull { group -> group.id == abs(it.sourceId) }
 
@@ -46,8 +47,8 @@ class NewsViewModel : ViewModel() {
                         name = group?.name ?: "${profile?.firstName} ${profile?.firstName}",
                         photo200 = group?.photo200 ?: profile!!.photo100,
                         groupId = group?.id ?: profile!!.id,
-                        url = it.attachments.getOrNull(0)?.photo?.sizes?.lastOrNull()?.url,
-                        id = it.id
+                        id = it.id,
+                        attachments = it.attachments.filter { attachment -> attachment.type == "photo" }
                     )
                     newsUi
                 }

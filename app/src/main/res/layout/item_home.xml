@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="529dp"
+    android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:background="@color/white"
     android:orientation="vertical"
@@ -53,12 +53,38 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image_view_photo"
+        <com.example.vcontachim.utility.NestedScrollableHost
             android:layout_width="match_parent"
-            android:layout_height="416dp"
-            android:scaleType="fitXY"
-            tools:background="@color/black" />
+            android:layout_height="wrap_content">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager2"
+                android:layout_width="match_parent"
+                android:layout_height="416dp" />
+
+            <FrameLayout
+                android:id="@+id/frame_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="15dp"
+                app:shapeAppearanceOverlay="@style/RoundedImageView">
+
+                <com.zhpan.indicator.IndicatorView
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:scrollbarSize="8dp"
+                    app:vpi_slide_mode="smooth"
+                    app:vpi_slider_checked_color="@color/blue"
+                    app:vpi_slider_normal_color="@color/light_grey"
+                    app:vpi_slider_radius="3dp"
+                    app:vpi_style="circle" />
+
+            </FrameLayout>
+
+        </com.example.vcontachim.utility.NestedScrollableHost>
 
         <LinearLayout
             android:layout_width="match_parent"

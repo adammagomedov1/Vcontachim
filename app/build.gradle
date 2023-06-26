@@ -42,6 +42,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.zhpanvip:viewpagerindicator:1.2.2'
+
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
 
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
