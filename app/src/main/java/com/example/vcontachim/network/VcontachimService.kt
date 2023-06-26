@@ -163,4 +163,13 @@ interface VcontachimService {
     suspend fun getRecommendedNewsfeed(
         @Query("fields") fields: String = "photo_200"
     ): News
+
+    @GET("search.getHints")
+    suspend fun getHintsSearch(
+        @Query("q") q: String,
+        @Query("fields") fields: String = "photo_max",
+        @Query("search_global") searchGlobal: Int = 1,
+        @Query("type") type: String = "profile",
+        @Query("limit") limit: Int = 50,
+    ): SearchScreen
 }

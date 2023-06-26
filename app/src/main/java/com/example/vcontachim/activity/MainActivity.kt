@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 if (item.itemId == R.id.menu_profile_bottom_nav) {
                     VcontachimApplication.router.replaceScreen(Screens.profileScreen())
                 }
+                if (item.itemId == R.id.menu_people_search_nav) {
+                    VcontachimApplication.router.navigateTo(Screens.searchScreen())
+                }
 
                 return true
             }

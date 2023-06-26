@@ -6,6 +6,11 @@
         android:title="@string/home" />
 
     <item
+        android:id="@+id/menu_people_search_nav"
+        android:icon="@drawable/search_outline_16"
+        android:title="@string/search" />
+
+    <item
         android:id="@+id/menu_profile_bottom_nav"
         android:icon="@drawable/ic_icon_profile"
         android:title="@string/profile" />
