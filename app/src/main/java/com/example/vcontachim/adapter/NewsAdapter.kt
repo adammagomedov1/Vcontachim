@@ -49,7 +49,7 @@ class NewsAdapter(private val likeListener: LikeListener) :
 
         if (newsUi.attachments.size > 1) {
             holder.binding.indicator.setupWithViewPager(holder.binding.viewPager2)
-            holder.binding.indicator.setBackgroundResource(R.color.black20)
+            holder.binding.frameLayout.setBackgroundResource(R.color.black20)
         }
 
         holder.binding.buttonNumberOfLikes.setOnClickListener(object : View.OnClickListener {

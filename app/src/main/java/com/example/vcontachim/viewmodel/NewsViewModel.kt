@@ -23,7 +23,7 @@ class NewsViewModel : ViewModel() {
                     VcontachimApplication.vcontachimService.getRecommendedNewsfeed()
                 }
 
-                //Я здесь фильтрую посты чобы полычить из них только фотки
+                //Я здесь сохроняю в переменую отфильтрованные фильтрую посты
                 val newsList = news.response.items.filter {
                     it.attachments.getOrNull(0)?.type == "photo"
                 }

@@ -63,17 +63,12 @@
                 android:layout_height="416dp" />
 
             <FrameLayout
+                android:id="@+id/frame_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="15dp">
-
-                <ImageView
-                    android:id="@+id/image_view_background_indicator"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    app:shapeAppearanceOverlay="@style/RoundedImageView" />
+                android:layout_marginBottom="15dp"
+                app:shapeAppearanceOverlay="@style/RoundedImageView">
 
                 <com.zhpan.indicator.IndicatorView
                     android:id="@+id/indicator"
@@ -81,7 +76,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scrollbarSize="8dp"
-                    app:shapeAppearanceOverlay="@style/RoundedImageView"
                     app:vpi_slide_mode="smooth"
                     app:vpi_slider_checked_color="@color/blue"
                     app:vpi_slider_normal_color="@color/light_grey"
