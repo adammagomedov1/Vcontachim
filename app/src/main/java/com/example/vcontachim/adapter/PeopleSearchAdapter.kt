@@ -55,6 +55,10 @@ class PeopleSearchAdapter :
         }
 
         holder.binding.textViewLocation.text = peopleSearchUi.description
+
+        if (peopleSearchUi.description == ""){
+            holder.binding.textViewLocation.height = 0
+        }
     }
 
     object PeopleSearchDiffCallback : DiffUtil.ItemCallback<PeopleSearchUi>() {
