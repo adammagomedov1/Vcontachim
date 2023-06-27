@@ -167,9 +167,9 @@ interface VcontachimService {
     @GET("search.getHints")
     suspend fun getHintsSearch(
         @Query("q") q: String,
-        @Query("fields") fields: String = "photo_max",
+        @Query("fields") fields: String = "photo_max,bdate,city,is_friend,online",
         @Query("search_global") searchGlobal: Int = 1,
         @Query("type") type: String = "profile",
-        @Query("limit") limit: Int = 50,
-    ): SearchScreen
+        @Query("limit") limit: Int = 50
+    ): PeopleSearch
 }
