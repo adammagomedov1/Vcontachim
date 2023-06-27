@@ -9,11 +9,11 @@ import kotlinx.coroutines.launch
 
 class PeopleSearchViewModel : ViewModel() {
 
-    val searchScreenLiveData = MutableLiveData<List<PeopleSearchUi>>()
+    val searchPeopleSearch = MutableLiveData<List<PeopleSearchUi>>()
     val processBarLiveData = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<String>()
 
-    fun loadSearchScreen(text: String) {
+    fun loadPeopleSearch(text: String) {
         viewModelScope.launch {
             try {
                 processBarLiveData.value = text.isEmpty()
@@ -38,12 +38,17 @@ class PeopleSearchViewModel : ViewModel() {
                     peopleSearchUi
                 }
 
-                processBarLiveData.value = false
-                searchScreenLiveData.value = peopleSearchUi
+                searchPeopleSearch.value = peopleSearchUi
             } catch (e: Exception) {
-                processBarLiveData.value = false
                 errorLiveData.value = e.message
+            } finally {
+                processBarLiveData.value = false
             }
         }
+    }
+
+    fun deleteSearchList() {
+        val emptyList = emptyList<PeopleSearchUi>()
+        searchPeopleSearch.value = emptyList
     }
 }

@@ -54,8 +54,7 @@ class PeopleSearchAdapter :
             holder.binding.imageViewOnline.setImageResource(R.drawable.online_composite_16)
         }
 
-        holder.binding.textViewLocation.text =
-            "${peopleSearchUi.bdate}, ${peopleSearchUi.cityTitle}"
+        holder.binding.textViewLocation.text = peopleSearchUi.description
     }
 
     object PeopleSearchDiffCallback : DiffUtil.ItemCallback<PeopleSearchUi>() {

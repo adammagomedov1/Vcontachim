@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.TextClock
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -27,10 +26,6 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPeopleSearchBinding.bind(view)
 
-        if (savedInstanceState == null) {
-            binding!!.progressBar.visibility = View.GONE
-        }
-
         binding!!.backButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 VcontachimApplication.router.exit()
@@ -39,7 +34,7 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
 
         binding!!.recyclerView.adapter = peopleSearchAdapter
 
-        viewModel.searchScreenLiveData.observe(viewLifecycleOwner) {
+        viewModel.searchPeopleSearch.observe(viewLifecycleOwner) {
             peopleSearchAdapter.submitList(it)
         }
 
@@ -71,11 +66,12 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
 
             override fun afterTextChanged(s: Editable?) {
                 s?.filter { s.contains(s, ignoreCase = true) }
-                viewModel.loadSearchScreen(s.toString())
+                viewModel.loadPeopleSearch(s.toString())
 
                 binding!!.imageViewDeleteIcon.setOnClickListener(object : View.OnClickListener {
                     override fun onClick(v: View?) {
-                        binding!!.editText.setText("")
+                        s!!.clear()
+                        viewModel.deleteSearchList()
                     }
                 })
             }
