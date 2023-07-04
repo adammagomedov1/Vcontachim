@@ -56,7 +56,7 @@ class PeopleSearchViewModel : ViewModel() {
         viewModelScope.launch {
             try {
 
-                VcontachimApplication.vcontachimService.addFriends(peopleSearchUi.id)
+                VcontachimApplication.vcontachimService.addFriend(peopleSearchUi.id)
 
                 val listPeopleSearchUi = searchPeopleSearch.value!!.toMutableList()
                 // обновляем элемент коментария на котором был клик
@@ -64,7 +64,7 @@ class PeopleSearchViewModel : ViewModel() {
                     isFriend = if (peopleSearchUi.isFriend == 1) 0 else 1
                 )
 
-                val saveIndexFromList = listPeopleSearchUi.indexOf(updatedPeopleSearchUi)
+                val saveIndexFromList = listPeopleSearchUi.indexOf(peopleSearchUi)
                 listPeopleSearchUi.set(index = saveIndexFromList, updatedPeopleSearchUi)
 
                 searchPeopleSearch.value = listPeopleSearchUi
@@ -74,20 +74,20 @@ class PeopleSearchViewModel : ViewModel() {
         }
     }
 
-    fun deleteFriends(id: PeopleSearchUi) {
+    fun deleteFriends(peopleSearchUi: PeopleSearchUi) {
         viewModelScope.launch {
             try {
 
-                VcontachimApplication.vcontachimService.deleteFriends(id.id)
+                VcontachimApplication.vcontachimService.deleteFriend(peopleSearchUi.id)
 
                 val listPeopleSearchUi = searchPeopleSearch.value!!.toMutableList()
                 // обновляем элемент коментария на котором был клик
-                val peopleSearchUi: PeopleSearchUi = id.copy(
-                    isFriend = if (id.isFriend == 1) 0 else 1
+                val updatedPeopleSearchUi: PeopleSearchUi = peopleSearchUi.copy(
+                    isFriend = if (peopleSearchUi.isFriend == 1) 0 else 1
                 )
 
-                val saveIndexFromList = listPeopleSearchUi.indexOf(id)
-                listPeopleSearchUi.set(index = saveIndexFromList, peopleSearchUi)
+                val saveIndexFromList = listPeopleSearchUi.indexOf(peopleSearchUi)
+                listPeopleSearchUi.set(index = saveIndexFromList, updatedPeopleSearchUi)
 
                 searchPeopleSearch.value = listPeopleSearchUi
             } catch (e: Exception) {

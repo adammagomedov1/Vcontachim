@@ -172,14 +172,4 @@ interface VcontachimService {
         @Query("type") type: String = "profile",
         @Query("limit") limit: Int = 50
     ): PeopleSearch
-
-    @POST("friends.add")
-    suspend fun addFriends(
-        @Query("user_id") userId: Long
-    )
-
-    @POST("friends.delete")
-    suspend fun deleteFriends(
-        @Query("user_id") userId: Long
-    )
 }
