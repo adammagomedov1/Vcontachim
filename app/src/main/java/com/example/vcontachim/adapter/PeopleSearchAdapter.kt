@@ -58,8 +58,9 @@ class PeopleSearchAdapter :
             holder.binding.textViewLocation.visibility = View.GONE
         } else {
             holder.binding.textViewLocation.visibility = View.VISIBLE
-            holder.binding.textViewLocation.text = peopleSearchUi.description
         }
+
+        holder.binding.textViewLocation.text = peopleSearchUi.description
     }
 
     object PeopleSearchDiffCallback : DiffUtil.ItemCallback<PeopleSearchUi>() {
