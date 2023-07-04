@@ -54,10 +54,11 @@ class PeopleSearchAdapter :
             holder.binding.imageViewOnline.setImageResource(R.drawable.online_composite_16)
         }
 
-        holder.binding.textViewLocation.text = peopleSearchUi.description
-
-        if (peopleSearchUi.description == ""){
-            holder.binding.textViewLocation.height = 0
+        if (peopleSearchUi.description.isEmpty()) {
+            holder.binding.textViewLocation.visibility = View.GONE
+        } else {
+            holder.binding.textViewLocation.visibility = View.VISIBLE
+            holder.binding.textViewLocation.text = peopleSearchUi.description
         }
     }
 

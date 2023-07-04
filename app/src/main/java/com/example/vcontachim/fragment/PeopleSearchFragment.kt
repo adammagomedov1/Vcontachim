@@ -68,12 +68,13 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
                 s?.filter { s.contains(s, ignoreCase = true) }
                 viewModel.loadPeopleSearch(s.toString())
 
-                binding!!.imageViewDeleteIcon.setOnClickListener(object : View.OnClickListener {
-                    override fun onClick(v: View?) {
-                        s!!.clear()
-                        viewModel.deleteSearchList()
-                    }
-                })
+            }
+        })
+
+        binding!!.imageViewDeleteIcon.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                binding!!.editText.setText("")
+                viewModel.deleteSearchList()
             }
         })
     }

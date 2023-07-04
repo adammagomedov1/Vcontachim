@@ -3,25 +3,25 @@ package com.example.vcontachim.models
 import com.google.gson.annotations.SerializedName
 
 data class PeopleSearch(
-    val response: ResponseSearchScreen,
+    val response: ResponseSearch,
 )
 
-data class ResponseSearchScreen(
+data class ResponseSearch(
     val count: Long,
-    val items: List<ItemSearchScreen>,
+    val items: List<ItemSearch>,
 )
 
-data class ItemSearchScreen(
+data class ItemSearch(
     val description: String,
     val type: String,
-    val profile: ProfileSearchScreen?,
+    val profile: ProfileSearch?,
 )
 
-data class ProfileSearchScreen(
+data class ProfileSearch(
     val id: Long,
     @SerializedName("photo_max")
     val photoMax: String,
-    val city: CitySearchScreen?,
+    val city: CitySearch?,
     val online: Int,
     @SerializedName("first_name")
     val firstName: String,
@@ -38,7 +38,7 @@ data class ProfileSearchScreen(
     val trackCode: String,
 )
 
-data class CitySearchScreen(
+data class CitySearch(
     val id: Long,
     val title: String,
 )
