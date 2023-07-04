@@ -51,4 +51,48 @@ class PeopleSearchViewModel : ViewModel() {
         val emptyList = emptyList<PeopleSearchUi>()
         searchPeopleSearch.value = emptyList
     }
+
+    fun addFriends(peopleSearchUi: PeopleSearchUi) {
+        viewModelScope.launch {
+            try {
+
+                VcontachimApplication.vcontachimService.addFriends(peopleSearchUi.id)
+
+                val listPeopleSearchUi = searchPeopleSearch.value!!.toMutableList()
+                // обновляем элемент коментария на котором был клик
+                val updatedPeopleSearchUi: PeopleSearchUi = peopleSearchUi.copy(
+                    isFriend = if (peopleSearchUi.isFriend == 1) 0 else 1
+                )
+
+                val saveIndexFromList = listPeopleSearchUi.indexOf(updatedPeopleSearchUi)
+                listPeopleSearchUi.set(index = saveIndexFromList, updatedPeopleSearchUi)
+
+                searchPeopleSearch.value = listPeopleSearchUi
+            } catch (e: Exception) {
+                errorLiveData.value = e.message
+            }
+        }
+    }
+
+    fun deleteFriends(id: PeopleSearchUi) {
+        viewModelScope.launch {
+            try {
+
+                VcontachimApplication.vcontachimService.deleteFriends(id.id)
+
+                val listPeopleSearchUi = searchPeopleSearch.value!!.toMutableList()
+                // обновляем элемент коментария на котором был клик
+                val peopleSearchUi: PeopleSearchUi = id.copy(
+                    isFriend = if (id.isFriend == 1) 0 else 1
+                )
+
+                val saveIndexFromList = listPeopleSearchUi.indexOf(id)
+                listPeopleSearchUi.set(index = saveIndexFromList, peopleSearchUi)
+
+                searchPeopleSearch.value = listPeopleSearchUi
+            } catch (e: Exception) {
+                errorLiveData.value = e.message
+            }
+        }
+    }
 }

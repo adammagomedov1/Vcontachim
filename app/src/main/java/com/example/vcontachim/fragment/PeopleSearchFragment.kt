@@ -11,6 +11,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.adapter.PeopleSearchAdapter
 import com.example.vcontachim.databinding.FragmentPeopleSearchBinding
+import com.example.vcontachim.models.PeopleSearchUi
 import com.example.vcontachim.viewmodel.PeopleSearchViewModel
 
 class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
@@ -20,11 +21,19 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
         ViewModelProvider(this)[PeopleSearchViewModel::class.java]
     }
 
-    private val peopleSearchAdapter = PeopleSearchAdapter()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPeopleSearchBinding.bind(view)
+
+        val peopleSearchAdapter = PeopleSearchAdapter(object : PeopleSearchAdapter.FriendListener {
+            override fun onClick(peopleSearchUi: PeopleSearchUi) {
+                if (peopleSearchUi.isFriend == 1) {
+                    viewModel.deleteFriends(peopleSearchUi)
+                } else {
+                    viewModel.addFriends(peopleSearchUi)
+                }
+            }
+        })
 
         binding!!.backButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {

@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.vcontachim.R
 import com.example.vcontachim.databinding.ItemPeopleSearchBinding
+import com.example.vcontachim.models.Friends
 import com.example.vcontachim.models.PeopleSearchUi
 
-class PeopleSearchAdapter :
+class PeopleSearchAdapter(val friendListener: FriendListener) :
     ListAdapter<PeopleSearchUi, PeopleSearchAdapter.PeopleSearchViewHolder>(
         PeopleSearchDiffCallback
     ) {
@@ -35,6 +36,12 @@ class PeopleSearchAdapter :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: PeopleSearchViewHolder, position: Int) {
         val peopleSearchUi: PeopleSearchUi = getItem(position)
+
+        holder.binding.imageViewIcon.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                friendListener.onClick(peopleSearchUi)
+            }
+        })
 
         Glide.with(holder.itemView)
             .load(peopleSearchUi.maxPhoto)
@@ -77,5 +84,9 @@ class PeopleSearchAdapter :
         ): Boolean {
             return oldItem == newItem
         }
+    }
+
+    interface FriendListener {
+        fun onClick(peopleSearchUi: PeopleSearchUi)
     }
 }
