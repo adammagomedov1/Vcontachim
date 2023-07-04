@@ -17,7 +17,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     private val authUrl = "https://oauth.vk.com/authorize?" +
             "client_id=51611026" +
             "&redirect_uri=https://oauth.vk.com/blank.html" +
-            "&scope=offline,photos,video,wall,friends" +
+            "&scope=offline,photos,video,wall,friends,groups" +
             "&display=mobile" +
             "&response_type=token"
 

@@ -30,11 +30,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             NavigationBarView.OnItemSelectedListener {
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-                if (item.itemId == R.id.menu_home_bottom_nav) {
-                    VcontachimApplication.router.replaceScreen(Screens.mainScreen())
-                }
-                if (item.itemId == R.id.menu_profile_bottom_nav) {
-                    VcontachimApplication.router.replaceScreen(Screens.profileScreen())
+                when (item.itemId) {
+                    R.id.menu_home_bottom_nav -> {
+                        VcontachimApplication.router.replaceScreen(Screens.mainScreen())
+                    }
+                    R.id.menu_profile_bottom_nav -> {
+                        VcontachimApplication.router.replaceScreen(Screens.profileScreen())
+                    }
+                    R.id.menu_people_search_nav -> {
+                        VcontachimApplication.router.navigateTo(Screens.searchScreen())
+                    }
                 }
 
                 return true

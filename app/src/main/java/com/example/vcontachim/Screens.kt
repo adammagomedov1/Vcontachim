@@ -60,4 +60,6 @@ object Screens {
 
     fun profileDetails(id: Long) =
         FragmentScreen { ProfileDetailsFragment.createFragment(id) }
+
+    fun searchScreen() = FragmentScreen { PeopleSearchFragment() }
 }
