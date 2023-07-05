@@ -16,7 +16,7 @@ class InterceptorToken : Interceptor {
             .build()
 
         val url = request
-            .url()
+            .url
             .newBuilder()
             .addQueryParameter("v", 5.131.toString())
             .build()
