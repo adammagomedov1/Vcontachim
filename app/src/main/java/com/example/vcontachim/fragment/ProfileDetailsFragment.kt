@@ -63,30 +63,34 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                     "${responseProfileDetail.counters.followers} $numberOfViews"
             } else {
                 if (responseProfileDetail.isFriend == 1) {
-                    binding!!.subscribeOrAddFriend.setText(R.string.in_friends)
-                    binding!!.subscribeOrAddFriend.setIconResource(R.drawable.verified_20)
-                    binding!!.subscribeOrAddFriend.setIconTintResource(R.color.light_blue)
-                    binding!!.subscribeOrAddFriend.background.setTint(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.light_grey
+                    binding!!.subscribeOrAddFriend.apply {
+                        setText(R.string.in_friends)
+                        setIconResource(R.drawable.verified_20)
+                        setIconTintResource(R.color.light_blue)
+                        background.setTint(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.light_grey
+                            )
                         )
-                    )
+                    }
                     binding!!.subscribeOrAddFriend.setTextColor(Color.parseColor("#2688EB"))
                     binding!!.subscribeOrAddFriend.setOnClickListener {
                         viewModel.deleteFriend(profileDetailSerializable)
                     }
                 } else {
-                    binding!!.subscribeOrAddFriend.setText(R.string.add_friend)
-                    binding!!.subscribeOrAddFriend.setIconResource(R.drawable.user_add_outline_20)
-                    binding!!.subscribeOrAddFriend.setIconTintResource(R.color.white)
-                    binding!!.subscribeOrAddFriend.setTextColor(Color.parseColor("#FFFFFF"))
-                    binding!!.subscribeOrAddFriend.background.setTint(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.light_blue
+                    binding!!.subscribeOrAddFriend.apply {
+                        setText(R.string.add_friend)
+                        setIconResource(R.drawable.user_add_outline_20)
+                        setIconTintResource(R.color.white)
+                        setTextColor(Color.parseColor("#FFFFFF"))
+                        background.setTint(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.light_blue
+                            )
                         )
-                    )
+                    }
                     binding!!.subscribeOrAddFriend.setOnClickListener {
                         viewModel.addFriend(profileDetailSerializable)
                     }
