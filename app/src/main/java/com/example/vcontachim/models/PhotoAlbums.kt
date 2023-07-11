@@ -21,5 +21,13 @@ data class ItemPhotoAlbums(
     val thumbSrc: String,
 
     @SerializedName("id")
-    val id : Long
+    val id: Long,
+
+    val sizes: List<SizePhotoAlbums>,
+
+    )
+
+data class SizePhotoAlbums(
+    val url: String,
+    val src: String,
 )

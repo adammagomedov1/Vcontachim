@@ -25,6 +25,7 @@ interface VcontachimService {
     @GET("photos.getAlbums")
     suspend fun getAlbumsPhotos(
         @Query("need_covers") needCovers: Int = 1,
+        @Query("photo_sizes") photoSizes: Int = 1
     ): PhotoAlbums
 
     @GET("photos.get")
