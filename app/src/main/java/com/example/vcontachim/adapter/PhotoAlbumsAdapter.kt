@@ -38,7 +38,7 @@ class PhotoAlbumsAdapter :
         val photoAlbums: ItemPhotoAlbums = getItem(position)
 
         Glide.with(holder.itemView)
-            .load(photoAlbums.thumbSrc)
+            .load(photoAlbums.sizes.lastOrNull()?.url)
             .into(holder.binding.imageViewPhotoAlbums)
 
         val followersCount: String = VcontachimApplication.context.resources.getQuantityString(

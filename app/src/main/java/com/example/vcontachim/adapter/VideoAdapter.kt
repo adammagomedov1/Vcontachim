@@ -39,7 +39,7 @@ class VideoAdapter(private val videoListener: VideoListener) :
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val itemVideo: ItemVideo = getItem(position)
-        val sizes = itemVideo.image[0]
+        val sizes = itemVideo.image.lastOrNull()
 
         holder.binding.buttonPopUpTheDialog.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -59,7 +59,7 @@ class VideoAdapter(private val videoListener: VideoListener) :
         )
 
         Glide.with(holder.itemView)
-            .load(sizes.url)
+            .load(sizes?.url)
             .into(holder.binding.imageViewVideo)
 
         holder.binding.textViewName.text = itemVideo.title
