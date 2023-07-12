@@ -13,21 +13,16 @@ data class ResponsePhotoAlbums(
 data class ItemPhotoAlbums(
     @SerializedName("size")
     val size: Long,
-
     @SerializedName("title")
     val title: String,
-
     @SerializedName("thumb_src")
     val thumbSrc: String,
-
     @SerializedName("id")
     val id: Long,
-
-    val sizes: List<SizePhotoAlbums>,
-
-    )
+    val sizes: List<SizePhotoAlbums>
+)
 
 data class SizePhotoAlbums(
     val url: String,
-    val src: String,
+    val src: String
 )
