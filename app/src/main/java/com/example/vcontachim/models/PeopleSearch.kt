@@ -23,6 +23,7 @@ data class ProfileSearch(
     val photoMax: String,
     val city: CitySearch?,
     val online: Int,
+    val verified: Int,
     @SerializedName("first_name")
     val firstName: String,
     @SerializedName("last_name")

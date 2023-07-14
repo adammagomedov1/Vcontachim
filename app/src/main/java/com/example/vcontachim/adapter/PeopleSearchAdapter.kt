@@ -43,6 +43,12 @@ class PeopleSearchAdapter(val friendListener: FriendListener) :
             }
         })
 
+        if (peopleSearchUi.verified == 1) {
+            holder.binding.imageViewVerified.setImageResource(R.drawable.hide_badge)
+        } else {
+            holder.binding.imageViewVerified.visibility = View.GONE
+        }
+
         Glide.with(holder.itemView)
             .load(peopleSearchUi.maxPhoto)
             .into(holder.binding.imageViewAvatar)

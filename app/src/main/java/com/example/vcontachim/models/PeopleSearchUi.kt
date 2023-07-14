@@ -8,5 +8,6 @@ data class PeopleSearchUi(
     val cityTitle: String?,
     val bdate: String?,
     val isFriend: Int,
-    val online: Int
+    val online: Int,
+    val verified: Int
 )
