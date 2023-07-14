@@ -14,7 +14,7 @@ import com.example.vcontachim.databinding.ItemHomeBinding
 import com.example.vcontachim.models.NewsUi
 import java.util.*
 
-class NewsAdapter(private val likeListener: LikeListener) :
+class NewsAdapter(private val likeListener: NewsAdapter.LikeListener) :
     ListAdapter<NewsUi, NewsAdapter.HomeViewHolder>(MainScreenDiffCallback) {
 
     class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,11 +45,20 @@ class NewsAdapter(private val likeListener: LikeListener) :
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val newsUi: NewsUi = getItem(position)
 
+        if (newsUi.verified == 1) {
+            holder.binding.imageViewVerified.visibility = View.VISIBLE
+        } else {
+            holder.binding.imageViewVerified.visibility = View.GONE
+        }
+
         holder.photoSwitcherAdapter.submitList(newsUi.attachments)
 
         if (newsUi.attachments.size > 1) {
             holder.binding.indicator.setupWithViewPager(holder.binding.viewPager2)
             holder.binding.frameLayout.setBackgroundResource(R.color.black20)
+        } else {
+            holder.binding.indicator.visibility = View.GONE
+            holder.binding.frameLayout.visibility = View.GONE
         }
 
         holder.binding.buttonNumberOfLikes.setOnClickListener(object : View.OnClickListener {

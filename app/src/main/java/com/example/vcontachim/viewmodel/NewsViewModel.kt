@@ -48,7 +48,8 @@ class NewsViewModel : ViewModel() {
                         photo200 = group?.photo200 ?: profile!!.photo100,
                         groupId = group?.id ?: profile!!.id,
                         id = it.id,
-                        attachments = it.attachments.filter { attachment -> attachment.type == "photo" }
+                        attachments = it.attachments.filter { attachment -> attachment.type == "photo" },
+                        verified = group?.verified ?: profile?.verified
                     )
                     newsUi
                 }

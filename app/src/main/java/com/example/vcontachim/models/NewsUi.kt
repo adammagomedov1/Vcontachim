@@ -13,5 +13,6 @@ data class NewsUi(
     val photo200: String,
     val userLikes: Long,
     val groupId: Long,
+    val verified: Int?,
     val attachments: List<Attachment>
 )

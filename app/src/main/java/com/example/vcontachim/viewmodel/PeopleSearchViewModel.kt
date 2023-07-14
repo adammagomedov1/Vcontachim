@@ -33,7 +33,8 @@ class PeopleSearchViewModel : ViewModel() {
                         isFriend = it.profile.isFriend,
                         bdate = it.profile.bdate,
                         cityTitle = it.profile.city?.title,
-                        online = it.profile.online
+                        online = it.profile.online,
+                        verified = it.profile.verified
                     )
                     peopleSearchUi
                 }

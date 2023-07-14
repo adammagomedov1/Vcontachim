@@ -1,6 +1,7 @@
 package com.example.vcontachim.fragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -8,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
-import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.adapter.PeopleSearchAdapter
 import com.example.vcontachim.databinding.FragmentPeopleSearchBinding
 import com.example.vcontachim.models.PeopleSearchUi
@@ -37,7 +37,6 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
 
         binding!!.backButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                VcontachimApplication.router.exit()
             }
         })
 
@@ -75,14 +74,16 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
 
             override fun afterTextChanged(s: Editable?) {
                 s?.filter { s.contains(s, ignoreCase = true) }
-                viewModel.loadPeopleSearch(s.toString())
+                Handler().postDelayed({
+                    viewModel.loadPeopleSearch(s.toString())
+                }, 1500)
 
             }
         })
 
         binding!!.imageViewDeleteIcon.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                binding!!.editText.setText("")
+                binding!!.editText.text.clear()
                 viewModel.deleteSearchList()
             }
         })

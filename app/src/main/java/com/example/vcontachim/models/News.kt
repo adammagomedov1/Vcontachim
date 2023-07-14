@@ -63,6 +63,7 @@ data class Views(
 data class Group(
     val id: Long,
     val name: String,
+    val verified: Int,
     @SerializedName("photo_200")
     val photo200: String,
 )
@@ -70,6 +71,7 @@ data class Group(
 data class ProfileNews(
     val id: Long,
     val screenName: String,
+    val verified: Int,
     @SerializedName("photo_100")
     val photo100: String,
     @SerializedName("first_name")
