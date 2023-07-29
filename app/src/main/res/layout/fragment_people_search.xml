@@ -38,7 +38,8 @@
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="3dp"
-                android:paddingEnd="10dp" />
+                android:paddingEnd="10dp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/image_view_delete_icon"
@@ -73,8 +74,15 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_people_search" />
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_search_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <ProgressBar
             android:id="@+id/progress_bar"

@@ -4,14 +4,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.database.SearchHistoryDao
 import com.example.vcontachim.models.PeopleSearchUi
+import com.example.vcontachim.models.SearchHistory
 import kotlinx.coroutines.launch
 
 class PeopleSearchViewModel : ViewModel() {
+    val roomDao: SearchHistoryDao = VcontachimApplication.roomDatabase.SearchHistoryDao()
 
     val searchPeopleSearch = MutableLiveData<List<PeopleSearchUi>>()
     val processBarLiveData = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<String>()
+    val searchHistoryLiveData = MutableLiveData<List<SearchHistory>>()
 
     fun loadPeopleSearch(text: String) {
         viewModelScope.launch {
@@ -94,6 +98,33 @@ class PeopleSearchViewModel : ViewModel() {
             } catch (e: Exception) {
                 errorLiveData.value = e.message
             }
+        }
+    }
+
+    fun getSearchHistoryList() {
+        viewModelScope.launch {
+            try {
+                val searchHistoryList: List<SearchHistory> = roomDao.getAllSearchHistory()
+                searchHistoryLiveData.value = searchHistoryList
+            } catch (e: Exception) {
+                errorLiveData.value = e.message
+            }
+        }
+    }
+
+    fun onRemovalClick(searchHistory: SearchHistory) {
+        viewModelScope.launch {
+            roomDao.delete(searchHistory)
+            val foodList = roomDao.getAllSearchHistory()
+            searchHistoryLiveData.value = foodList
+        }
+    }
+
+    fun onFoodAdded(searchHistory: SearchHistory) {
+        viewModelScope.launch {
+            roomDao.insertSearchHistory(searchHistory)
+            val foodList = roomDao.getAllSearchHistory()
+            searchHistoryLiveData.value = foodList
         }
     }
 }

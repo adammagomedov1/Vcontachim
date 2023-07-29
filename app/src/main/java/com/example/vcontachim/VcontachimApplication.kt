@@ -3,6 +3,7 @@ package com.example.vcontachim
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.vcontachim.network.InterceptorToken
 import com.example.vcontachim.network.VcontachimService
@@ -19,6 +20,14 @@ class VcontachimApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this.applicationContext
+
+        roomDatabase = Room.databaseBuilder(
+            this,
+            AppDatabase::class.java,
+            "vcontachim_database"
+        )
+            .allowMainThreadQueries()
+            .build()
 
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(InterceptorToken())
@@ -45,6 +54,7 @@ class VcontachimApplication : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
         lateinit var vcontachimService: VcontachimService
+        lateinit var roomDatabase: AppDatabase
         private lateinit var cicerone: Cicerone<Router>
         lateinit var router: Router
         lateinit var navigatorHolder: NavigatorHolder
