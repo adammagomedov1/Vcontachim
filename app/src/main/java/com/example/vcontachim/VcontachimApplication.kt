@@ -21,7 +21,7 @@ class VcontachimApplication : Application() {
         super.onCreate()
         context = this.applicationContext
 
-        roomDatabase = Room.databaseBuilder(
+        addDatabase = Room.databaseBuilder(
             this,
             AppDatabase::class.java,
             "vcontachim_database"
@@ -54,7 +54,7 @@ class VcontachimApplication : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
         lateinit var vcontachimService: VcontachimService
-        lateinit var roomDatabase: AppDatabase
+        lateinit var addDatabase: AppDatabase
         private lateinit var cicerone: Cicerone<Router>
         lateinit var router: Router
         lateinit var navigatorHolder: NavigatorHolder

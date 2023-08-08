@@ -34,6 +34,8 @@
     <string name="recommended">Рекомендованные</string>
     <string name="global_search">ГЛОБАЛЬНЫЙ ПОИСК (ЛЮДИ)</string>
     <string name="search">Поиск</string>
+    <string name="clear">очистить</string>
+    <string name="search_history">История поиска</string>
 
     <plurals name="number_of_photos">
         <item quantity="one">фотография</item>

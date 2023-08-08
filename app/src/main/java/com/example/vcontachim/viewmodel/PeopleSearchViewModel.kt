@@ -10,7 +10,7 @@ import com.example.vcontachim.models.SearchHistory
 import kotlinx.coroutines.launch
 
 class PeopleSearchViewModel : ViewModel() {
-    val roomDao: SearchHistoryDao = VcontachimApplication.roomDatabase.SearchHistoryDao()
+    val roomDao: SearchHistoryDao = VcontachimApplication.addDatabase.SearchHistoryDao()
 
     val searchPeopleSearch = MutableLiveData<List<PeopleSearchUi>>()
     val processBarLiveData = MutableLiveData<Boolean>()
@@ -103,12 +103,8 @@ class PeopleSearchViewModel : ViewModel() {
 
     fun getSearchHistoryList() {
         viewModelScope.launch {
-            try {
                 val searchHistoryList: List<SearchHistory> = roomDao.getAllSearchHistory()
                 searchHistoryLiveData.value = searchHistoryList
-            } catch (e: Exception) {
-                errorLiveData.value = e.message
-            }
         }
     }
 
