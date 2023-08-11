@@ -29,114 +29,129 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPeopleSearchBinding.bind(view)
+        binding!!.apply {
+            viewModel.apply {
 
-        val peopleSearchAdapter = PeopleSearchAdapter(object : PeopleSearchAdapter.FriendListener {
-            override fun onClick(peopleSearchUi: PeopleSearchUi) {
-                if (peopleSearchUi.isFriend == 1) {
-                    viewModel.deleteFriends(peopleSearchUi)
-                } else {
-                    viewModel.addFriends(peopleSearchUi)
-                }
-            }
-        })
+                val peopleSearchAdapter =
+                    PeopleSearchAdapter(object : PeopleSearchAdapter.FriendListener {
+                        override fun onClick(peopleSearchUi: PeopleSearchUi) {
+                            if (peopleSearchUi.isFriend == 1) {
+                                deleteFriends(peopleSearchUi)
+                            } else {
+                                addFriends(peopleSearchUi)
+                            }
+                        }
+                    })
 
-        val adapterSearchHistory =
-            SearchHistoryAdapter(clickListener = object : SearchHistoryAdapter.ClickListener {
-                override fun onClick(text: String) {
-                    binding!!.editText.setText(text)
-                }
+                val adapterSearchHistory =
+                    SearchHistoryAdapter(clickListener = object :
+                        SearchHistoryAdapter.ClickListener {
+                        override fun onClick(text: String) {
+                            editText.setText(text)
+                        }
 
-                override fun onDeleteClick(searchHistory: SearchHistory) {
-                    viewModel.onRemovalSearchHistoryClick(searchHistory)
-                }
-            })
+                        override fun onDeleteClick(searchHistory: SearchHistory) {
+                            onRemovalSearchHistoryClick(searchHistory)
+                        }
+                    })
 
-        binding!!.recyclerView.adapter = peopleSearchAdapter
-        binding!!.recyclerViewSearchHistory.adapter = adapterSearchHistory
+                recyclerView.adapter = peopleSearchAdapter
+                recyclerViewSearchHistory.adapter = adapterSearchHistory
 
-        binding!!.editText.setOnEditorActionListener(object : TextView.OnEditorActionListener {
-            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    val takeTextFromEditText = binding!!.editText.text.toString()
-                    if (takeTextFromEditText.isNotBlank()) {
-                        val saveToLibrary = SearchHistory(searchHistory = takeTextFromEditText)
-                        viewModel.onSearchHistoryAdded(saveToLibrary)
-                        viewModel.getSearchHistoryList()
+                editText.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+                    override fun onEditorAction(
+                        v: TextView?,
+                        actionId: Int,
+                        event: KeyEvent?
+                    ): Boolean {
+                        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                            val takeTextFromEditText = editText.text.toString()
+                            if (takeTextFromEditText.isNotBlank()) {
+                                val saveToLibrary =
+                                    SearchHistory(searchHistory = takeTextFromEditText)
+                                onSearchHistoryAdded(saveToLibrary)
+                                getSearchHistoryList()
+                            }
+                            return true
+                        }
+                        return false
                     }
-                    return true
+                })
+
+                clearList.setOnClickListener {
+                    onDeletingSearchHistoryListPress()
                 }
-                return false
-            }
-        })
 
-        binding!!.clearList.setOnClickListener {
-            viewModel.onDeletingSearchHistoryListPress()
-        }
-
-        viewModel.searchPeopleSearch.observe(viewLifecycleOwner) {
-            peopleSearchAdapter.submitList(it)
-        }
-
-        viewModel.processBarLiveData.observe(viewLifecycleOwner) {
-            if (it == true) {
-                binding!!.progressBar.visibility = View.VISIBLE
-            } else {
-                binding!!.progressBar.visibility = View.GONE
-            }
-        }
-
-        viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val toast = Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
-        }
-
-        binding!!.editText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(
-                s: CharSequence?,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                viewModel.loadPeopleSearch(s.toString())
-
-                if (s!!.isNotEmpty()) {
-                    binding!!.recyclerViewSearchHistory.visibility = View.GONE
-                    binding!!.recyclerView.visibility = View.VISIBLE
-                    binding!!.textViewForHistoryAndSearch.setText(R.string.global_search)
-                    binding!!.clearList.visibility = View.GONE
-                } else {
-                    binding!!.recyclerView.visibility = View.GONE
-                    binding!!.recyclerViewSearchHistory.visibility = View.VISIBLE
-                    binding!!.textViewForHistoryAndSearch.setText(R.string.search_history)
-                    binding!!.clearList.visibility = View.VISIBLE
+                searchPeopleSearch.observe(viewLifecycleOwner) {
+                    peopleSearchAdapter.submitList(it)
                 }
-            }
-        })
 
-        binding!!.imageViewDeleteIcon.setOnClickListener(object : OnClickListener {
-            override fun onClick(v: View?) {
-                binding!!.editText.text.clear()
-                viewModel.deleteSearchList()
-            }
-        })
+                processBarLiveData.observe(viewLifecycleOwner) {
+                    if (it == true) {
+                        progressBar.visibility = View.VISIBLE
+                    } else {
+                        progressBar.visibility = View.GONE
+                    }
+                }
 
-        viewModel.searchHistoryLiveData.observe(viewLifecycleOwner) {
-            adapterSearchHistory.submitList(it)
-            adapterSearchHistory.notifyDataSetChanged()
+                errorLiveData.observe(viewLifecycleOwner) {
+                    val toast = Toast.makeText(
+                        requireContext(),
+                        it,
+                        Toast.LENGTH_LONG
+                    )
+                    toast.show()
+                }
+
+                editText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+                        loadPeopleSearch(s.toString())
+
+                        if (s!!.isNotEmpty()) {
+                            recyclerViewSearchHistory.visibility = View.GONE
+                            recyclerView.visibility = View.VISIBLE
+                            textViewForHistoryAndSearch.setText(R.string.global_search)
+                            clearList.visibility = View.GONE
+                        } else {
+                            recyclerView.visibility = View.GONE
+                            recyclerViewSearchHistory.visibility = View.VISIBLE
+                            textViewForHistoryAndSearch.setText(R.string.search_history)
+                            clearList.visibility = View.VISIBLE
+                        }
+                    }
+                })
+
+                imageViewDeleteIcon.setOnClickListener(object : OnClickListener {
+                    override fun onClick(v: View?) {
+                        editText.text.clear()
+                        viewModel.deleteSearchList()
+                    }
+                })
+
+                searchHistoryLiveData.observe(viewLifecycleOwner) {
+                    adapterSearchHistory.submitList(it)
+                }
+
+                getSearchHistoryList()
+            }
         }
-
-        viewModel.getSearchHistoryList()
     }
 }
