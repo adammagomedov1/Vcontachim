@@ -1,6 +1,5 @@
 package com.example.vcontachim.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -27,7 +26,6 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
         ViewModelProvider(this)[PeopleSearchViewModel::class.java]
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPeopleSearchBinding.bind(view)
@@ -42,27 +40,28 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
             }
         })
 
-        val adapter =
+        val adapterSearchHistory =
             SearchHistoryAdapter(clickListener = object : SearchHistoryAdapter.ClickListener {
                 override fun onClick(text: String) {
                     binding!!.editText.setText(text)
                 }
 
-                override fun deleteButton(searchHistory: SearchHistory) {
-                    viewModel.onRemovalClick(searchHistory)
+                override fun onDeleteClick(searchHistory: SearchHistory) {
+                    viewModel.onRemovalSearchHistoryClick(searchHistory)
                 }
             })
 
         binding!!.recyclerView.adapter = peopleSearchAdapter
-        binding!!.recyclerViewSearchHistory.adapter = adapter
+        binding!!.recyclerViewSearchHistory.adapter = adapterSearchHistory
 
         binding!!.editText.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if (binding!!.editText.text.toString().isNotEmpty()) {
-                        val takeTextFromEditText = binding!!.editText.text.toString()
+                    val takeTextFromEditText = binding!!.editText.text.toString()
+                    if (takeTextFromEditText.isNotBlank()) {
                         val saveToLibrary = SearchHistory(searchHistory = takeTextFromEditText)
                         viewModel.onSearchHistoryAdded(saveToLibrary)
+                        viewModel.getSearchHistoryList()
                     }
                     return true
                 }
@@ -71,8 +70,7 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
         })
 
         binding!!.clearList.setOnClickListener {
-            viewModel.whenDeletingListPress()
-            adapter.notifyDataSetChanged()
+            viewModel.onDeletingSearchHistoryListPress()
         }
 
         viewModel.searchPeopleSearch.observe(viewLifecycleOwner) {
@@ -116,12 +114,12 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
                 if (s!!.isNotEmpty()) {
                     binding!!.recyclerViewSearchHistory.visibility = View.GONE
                     binding!!.recyclerView.visibility = View.VISIBLE
-                    binding!!.staticText.setText(R.string.global_search)
+                    binding!!.textViewForHistoryAndSearch.setText(R.string.global_search)
                     binding!!.clearList.visibility = View.GONE
                 } else {
                     binding!!.recyclerView.visibility = View.GONE
                     binding!!.recyclerViewSearchHistory.visibility = View.VISIBLE
-                    binding!!.staticText.setText(R.string.search_history)
+                    binding!!.textViewForHistoryAndSearch.setText(R.string.search_history)
                     binding!!.clearList.visibility = View.VISIBLE
                 }
             }
@@ -135,8 +133,8 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
         })
 
         viewModel.searchHistoryLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-            adapter.notifyDataSetChanged()
+            adapterSearchHistory.submitList(it)
+            adapterSearchHistory.notifyDataSetChanged()
         }
 
         viewModel.getSearchHistoryList()

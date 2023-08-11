@@ -10,7 +10,7 @@ import com.example.vcontachim.models.SearchHistory
 import kotlinx.coroutines.launch
 
 class PeopleSearchViewModel : ViewModel() {
-    private val roomDao: SearchHistoryDao = VcontachimApplication.addDatabase.SearchHistoryDao()
+    private val roomDao: SearchHistoryDao = VcontachimApplication.addDatabase.searchHistoryDao()
 
     val searchPeopleSearch = MutableLiveData<List<PeopleSearchUi>>()
     val processBarLiveData = MutableLiveData<Boolean>()
@@ -108,27 +108,24 @@ class PeopleSearchViewModel : ViewModel() {
         }
     }
 
-    fun onRemovalClick(searchHistory: SearchHistory) {
+    fun onRemovalSearchHistoryClick(searchHistory: SearchHistory) {
         viewModelScope.launch {
             roomDao.delete(searchHistory)
-            val searchHistoryList = roomDao.getAllSearchHistory()
-            searchHistoryLiveData.value = searchHistoryList
+            getSearchHistoryList()
         }
     }
 
-    fun whenDeletingListPress() {
+    fun onDeletingSearchHistoryListPress() {
         viewModelScope.launch {
-            VcontachimApplication.addDatabase.SearchHistoryDao().deleteList()
-            val searchHistoryList = roomDao.getAllSearchHistory()
-            searchHistoryLiveData.value = searchHistoryList
+            VcontachimApplication.addDatabase.searchHistoryDao().deleteList()
+            getSearchHistoryList()
         }
     }
 
     fun onSearchHistoryAdded(searchHistory: SearchHistory) {
         viewModelScope.launch {
             roomDao.insertSearchHistory(searchHistory)
-            val searchHistoryList = roomDao.getAllSearchHistory()
-            searchHistoryLiveData.value = searchHistoryList
+            getSearchHistoryList()
         }
     }
 }

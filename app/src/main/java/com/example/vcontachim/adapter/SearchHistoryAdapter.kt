@@ -40,7 +40,7 @@ class SearchHistoryAdapter(val clickListener: ClickListener) :
         holder.binding.textViewSearchHistory.text = searchHistory.searchHistory
 
         holder.binding.imageViewSearchHistory.setOnClickListener {
-            clickListener.deleteButton(searchHistory)
+            clickListener.onDeleteClick(searchHistory)
         }
     }
 
@@ -62,6 +62,6 @@ class SearchHistoryAdapter(val clickListener: ClickListener) :
 
     interface ClickListener {
         fun onClick(text: String)
-        fun deleteButton(searchHistory: SearchHistory)
+        fun onDeleteClick(searchHistory: SearchHistory)
     }
 }

@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.vcontachim.database.AppDatabase
 import com.example.vcontachim.network.InterceptorToken
 import com.example.vcontachim.network.VcontachimService
 import com.github.terrakok.cicerone.Cicerone
@@ -26,7 +27,6 @@ class VcontachimApplication : Application() {
             AppDatabase::class.java,
             "vcontachim_database"
         )
-            .allowMainThreadQueries()
             .build()
 
         val client: OkHttpClient = OkHttpClient.Builder()
