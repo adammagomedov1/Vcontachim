@@ -44,7 +44,6 @@ class SearchHistoryAdapter(val clickListener: ClickListener) :
         }
     }
 
-
     object SearchHistoryDiffCallback : DiffUtil.ItemCallback<SearchHistory>() {
         override fun areItemsTheSame(
             oldItem: SearchHistory,
