@@ -10,7 +10,7 @@ import com.example.vcontachim.models.SearchHistory
     entities = arrayOf(SearchHistory::class),
     version = 1,
     exportSchema = true,
-//    autoMigrations = [AutoMigration(from = 0, to = 1)]
+//    autoMigrations = [AutoMigration(from = 1, to = 2)]
 )
 
 abstract class AppDatabase : RoomDatabase() {

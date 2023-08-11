@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vcontachim.R
-import com.example.vcontachim.databinding.ItemPeopleSearchBinding
 import com.example.vcontachim.databinding.ItemSearchHistoryBinding
-import com.example.vcontachim.models.PeopleSearch
-import com.example.vcontachim.models.PeopleSearchUi
 import com.example.vcontachim.models.SearchHistory
 
 class SearchHistoryAdapter(val clickListener: ClickListener) :
@@ -34,14 +31,16 @@ class SearchHistoryAdapter(val clickListener: ClickListener) :
     }
 
     override fun onBindViewHolder(holder: SearchHistoryViewHolder, position: Int) {
-        val peopleSearchUi: SearchHistory = getItem(position)
+        val searchHistory: SearchHistory = getItem(position)
 
         holder.binding.textViewSearchHistory.setOnClickListener {
-            clickListener.onClick(holder.binding.textViewSearchHistory.toString())
+            clickListener.onClick(holder.binding.textViewSearchHistory.text.toString())
         }
 
-        holder.binding.imageViewSearchHistory.setOnClickListener {
+        holder.binding.textViewSearchHistory.text = searchHistory.searchHistory
 
+        holder.binding.imageViewSearchHistory.setOnClickListener {
+            clickListener.deleteButton(searchHistory)
         }
     }
 

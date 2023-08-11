@@ -10,7 +10,7 @@ import com.example.vcontachim.models.SearchHistory
 import kotlinx.coroutines.launch
 
 class PeopleSearchViewModel : ViewModel() {
-    val roomDao: SearchHistoryDao = VcontachimApplication.addDatabase.SearchHistoryDao()
+    private val roomDao: SearchHistoryDao = VcontachimApplication.addDatabase.SearchHistoryDao()
 
     val searchPeopleSearch = MutableLiveData<List<PeopleSearchUi>>()
     val processBarLiveData = MutableLiveData<Boolean>()
@@ -103,24 +103,32 @@ class PeopleSearchViewModel : ViewModel() {
 
     fun getSearchHistoryList() {
         viewModelScope.launch {
-                val searchHistoryList: List<SearchHistory> = roomDao.getAllSearchHistory()
-                searchHistoryLiveData.value = searchHistoryList
+            val searchHistoryList: List<SearchHistory> = roomDao.getAllSearchHistory()
+            searchHistoryLiveData.value = searchHistoryList.take(6).reversed()
         }
     }
 
     fun onRemovalClick(searchHistory: SearchHistory) {
         viewModelScope.launch {
             roomDao.delete(searchHistory)
-            val foodList = roomDao.getAllSearchHistory()
-            searchHistoryLiveData.value = foodList
+            val searchHistoryList = roomDao.getAllSearchHistory()
+            searchHistoryLiveData.value = searchHistoryList
         }
     }
 
-    fun onFoodAdded(searchHistory: SearchHistory) {
+    fun whenDeletingListPress() {
+        viewModelScope.launch {
+            VcontachimApplication.addDatabase.SearchHistoryDao().deleteList()
+            val searchHistoryList = roomDao.getAllSearchHistory()
+            searchHistoryLiveData.value = searchHistoryList
+        }
+    }
+
+    fun onSearchHistoryAdded(searchHistory: SearchHistory) {
         viewModelScope.launch {
             roomDao.insertSearchHistory(searchHistory)
-            val foodList = roomDao.getAllSearchHistory()
-            searchHistoryLiveData.value = foodList
+            val searchHistoryList = roomDao.getAllSearchHistory()
+            searchHistoryLiveData.value = searchHistoryList
         }
     }
 }

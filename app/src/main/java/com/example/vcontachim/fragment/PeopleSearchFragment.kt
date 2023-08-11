@@ -13,10 +13,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
-import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.adapter.PeopleSearchAdapter
 import com.example.vcontachim.adapter.SearchHistoryAdapter
-import com.example.vcontachim.database.SearchHistoryDao
 import com.example.vcontachim.databinding.FragmentPeopleSearchBinding
 import com.example.vcontachim.models.PeopleSearchUi
 import com.example.vcontachim.models.SearchHistory
@@ -34,33 +32,6 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPeopleSearchBinding.bind(view)
 
-        binding!!.staticText.setText(R.string.search_history)
-        binding!!.recyclerViewSearchHistory.visibility = View.VISIBLE
-
-        val adapter =
-            SearchHistoryAdapter(clickListener = object : SearchHistoryAdapter.ClickListener {
-                override fun onClick(text: String) {
-
-                    binding!!.editText.setText(text)
-                }
-
-                override fun deleteButton(searchHistory: SearchHistory) {
-                    viewModel.onRemovalClick(searchHistory)
-                }
-            })
-
-        binding!!.editText.setOnEditorActionListener(object : TextView.OnEditorActionListener {
-            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    val vol = binding!!.editText.toString()
-                    val bob = SearchHistory(searchHistory = vol)
-                    viewModel.onFoodAdded(bob)
-                    return true
-                }
-                return false
-            }
-        })
-
         val peopleSearchAdapter = PeopleSearchAdapter(object : PeopleSearchAdapter.FriendListener {
             override fun onClick(peopleSearchUi: PeopleSearchUi) {
                 if (peopleSearchUi.isFriend == 1) {
@@ -71,8 +42,37 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
             }
         })
 
-        binding!!.backButton.setOnClickListener {
+        val adapter =
+            SearchHistoryAdapter(clickListener = object : SearchHistoryAdapter.ClickListener {
+                override fun onClick(text: String) {
+                    binding!!.editText.setText(text)
+                }
 
+                override fun deleteButton(searchHistory: SearchHistory) {
+                    viewModel.onRemovalClick(searchHistory)
+                }
+            })
+
+        binding!!.recyclerView.adapter = peopleSearchAdapter
+        binding!!.recyclerViewSearchHistory.adapter = adapter
+
+        binding!!.editText.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    if (binding!!.editText.text.toString().isNotEmpty()) {
+                        val takeTextFromEditText = binding!!.editText.text.toString()
+                        val saveToLibrary = SearchHistory(searchHistory = takeTextFromEditText)
+                        viewModel.onSearchHistoryAdded(saveToLibrary)
+                    }
+                    return true
+                }
+                return false
+            }
+        })
+
+        binding!!.clearList.setOnClickListener {
+            viewModel.whenDeletingListPress()
+            adapter.notifyDataSetChanged()
         }
 
         viewModel.searchPeopleSearch.observe(viewLifecycleOwner) {
@@ -114,13 +114,11 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
                 viewModel.loadPeopleSearch(s.toString())
 
                 if (s!!.isNotEmpty()) {
-                    binding!!.recyclerView.adapter = peopleSearchAdapter
                     binding!!.recyclerViewSearchHistory.visibility = View.GONE
                     binding!!.recyclerView.visibility = View.VISIBLE
                     binding!!.staticText.setText(R.string.global_search)
                     binding!!.clearList.visibility = View.GONE
                 } else {
-                    binding!!.recyclerViewSearchHistory.adapter = adapter
                     binding!!.recyclerView.visibility = View.GONE
                     binding!!.recyclerViewSearchHistory.visibility = View.VISIBLE
                     binding!!.staticText.setText(R.string.search_history)
