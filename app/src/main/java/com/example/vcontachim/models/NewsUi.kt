@@ -10,7 +10,7 @@ data class NewsUi(
     val text: String,
     val countViews: Long,
     val name: String,
-    val photo200: String,
+    val photo200: String?,
     val userLikes: Long,
     val groupId: Long,
     val verified: Int?,

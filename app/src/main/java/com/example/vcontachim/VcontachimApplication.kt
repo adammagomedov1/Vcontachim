@@ -3,7 +3,9 @@ package com.example.vcontachim
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.vcontachim.database.AppDatabase
 import com.example.vcontachim.network.InterceptorToken
 import com.example.vcontachim.network.VcontachimService
 import com.github.terrakok.cicerone.Cicerone
@@ -19,6 +21,13 @@ class VcontachimApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this.applicationContext
+
+        addDatabase = Room.databaseBuilder(
+            this,
+            AppDatabase::class.java,
+            "vcontachim_database"
+        )
+            .build()
 
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(InterceptorToken())
@@ -45,6 +54,7 @@ class VcontachimApplication : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
         lateinit var vcontachimService: VcontachimService
+        lateinit var addDatabase: AppDatabase
         private lateinit var cicerone: Cicerone<Router>
         lateinit var router: Router
         lateinit var navigatorHolder: NavigatorHolder
