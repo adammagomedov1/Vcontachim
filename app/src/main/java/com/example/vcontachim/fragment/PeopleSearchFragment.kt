@@ -29,30 +29,31 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPeopleSearchBinding.bind(view)
+
+        val peopleSearchAdapter =
+            PeopleSearchAdapter(object : PeopleSearchAdapter.FriendListener {
+                override fun onClick(peopleSearchUi: PeopleSearchUi) {
+                    if (peopleSearchUi.isFriend == 1) {
+                        viewModel.deleteFriends(peopleSearchUi)
+                    } else {
+                        viewModel.addFriends(peopleSearchUi)
+                    }
+                }
+            })
+
+        val adapterSearchHistory =
+            SearchHistoryAdapter(clickListener = object :
+                SearchHistoryAdapter.ClickListener {
+                override fun onClick(text: String) {
+                    binding!!.editText.setText(text)
+                }
+
+                override fun onDeleteClick(searchHistory: SearchHistory) {
+                    viewModel.onRemovalSearchHistoryClick(searchHistory)
+                }
+            })
+
         binding!!.apply {
-
-            val peopleSearchAdapter =
-                PeopleSearchAdapter(object : PeopleSearchAdapter.FriendListener {
-                    override fun onClick(peopleSearchUi: PeopleSearchUi) {
-                        if (peopleSearchUi.isFriend == 1) {
-                            viewModel.deleteFriends(peopleSearchUi)
-                        } else {
-                            viewModel.addFriends(peopleSearchUi)
-                        }
-                    }
-                })
-
-            val adapterSearchHistory =
-                SearchHistoryAdapter(clickListener = object :
-                    SearchHistoryAdapter.ClickListener {
-                    override fun onClick(text: String) {
-                        editText.setText(text)
-                    }
-
-                    override fun onDeleteClick(searchHistory: SearchHistory) {
-                        viewModel.onRemovalSearchHistoryClick(searchHistory)
-                    }
-                })
 
             recyclerView.adapter = peopleSearchAdapter
             recyclerViewSearchHistory.adapter = adapterSearchHistory
@@ -131,25 +132,26 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
                     viewModel.deleteSearchList()
                 }
             })
-
-            viewModel.errorLiveData.observe(viewLifecycleOwner) {
-                val toast = Toast.makeText(
-                    requireContext(),
-                    it,
-                    Toast.LENGTH_LONG
-                )
-                toast.show()
-            }
-
-            viewModel.searchHistoryLiveData.observe(viewLifecycleOwner) {
-                adapterSearchHistory.submitList(it)
-            }
-
-            viewModel.searchPeopleSearch.observe(viewLifecycleOwner) {
-                peopleSearchAdapter.submitList(it)
-            }
-
-            viewModel.getSearchHistoryList()
         }
+
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            val toast = Toast.makeText(
+                requireContext(),
+                it,
+                Toast.LENGTH_LONG
+            )
+            toast.show()
+        }
+
+        viewModel.searchHistoryLiveData.observe(viewLifecycleOwner) {
+            adapterSearchHistory.submitList(it)
+        }
+
+        viewModel.searchPeopleSearch.observe(viewLifecycleOwner) {
+            peopleSearchAdapter.submitList(it)
+        }
+
+        viewModel.getSearchHistoryList()
+
     }
 }
