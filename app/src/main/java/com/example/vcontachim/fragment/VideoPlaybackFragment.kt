@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,12 +12,12 @@ import com.example.vcontachim.Screens
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.FragmentVideoPlaybackBinding
 import com.example.vcontachim.models.ItemVideo
+import com.example.vcontachim.utility.showToast
 import com.example.vcontachim.viewmodel.VideoPlaybackViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
@@ -97,12 +96,7 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         })
 
         videoModel.errorLiveData.observe(viewLifecycleOwner) {
-            val toast = Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            showToast(text = it)
         }
 
         videoModel.videoLikesViewData.observe(viewLifecycleOwner) {

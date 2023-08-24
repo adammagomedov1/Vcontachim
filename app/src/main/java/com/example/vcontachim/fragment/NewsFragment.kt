@@ -2,7 +2,6 @@ package com.example.vcontachim.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.models.EnumNews
@@ -10,6 +9,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.adapter.NewsAdapter
 import com.example.vcontachim.databinding.FragmentNewsBinding
 import com.example.vcontachim.models.NewsUi
+import com.example.vcontachim.utility.showToast
 import com.example.vcontachim.viewmodel.NewsViewModel
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
@@ -47,12 +47,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val toast = Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            showToast(text = it)
         }
 
         val enumSerializable = requireArguments().getSerializable(SAVE_ENUM_KEY)

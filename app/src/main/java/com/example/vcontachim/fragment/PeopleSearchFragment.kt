@@ -8,7 +8,6 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
@@ -17,6 +16,7 @@ import com.example.vcontachim.adapter.SearchHistoryAdapter
 import com.example.vcontachim.databinding.FragmentPeopleSearchBinding
 import com.example.vcontachim.models.PeopleSearchUi
 import com.example.vcontachim.models.SearchHistory
+import com.example.vcontachim.utility.showToast
 import com.example.vcontachim.viewmodel.PeopleSearchViewModel
 
 class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
@@ -135,12 +135,7 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val toast = Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            showToast(text = it)
         }
 
         viewModel.searchHistoryLiveData.observe(viewLifecycleOwner) {

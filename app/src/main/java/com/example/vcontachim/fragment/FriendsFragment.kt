@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
+import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.adapter.FriendsAdapter
 import com.example.vcontachim.databinding.FragmentFriendsBinding
-import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.utility.showSnackbar
 import com.example.vcontachim.viewmodel.FriendsViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class FriendsFragment : Fragment(R.layout.fragment_friends) {
     private var binding: FragmentFriendsBinding? = null
@@ -50,12 +50,7 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val snackbar: Snackbar = Snackbar.make(
-                requireView(),
-                it,
-                Snackbar.LENGTH_LONG
-            )
-            snackbar.show()
+            showSnackbar(text = it)
         }
         viewModel.loadList()
     }

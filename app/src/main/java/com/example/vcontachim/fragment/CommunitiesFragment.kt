@@ -10,8 +10,8 @@ import com.example.vcontachim.R
 import com.example.vcontachim.adapter.CommunitiesAdapter
 import com.example.vcontachim.databinding.FragmentCommunitiesBinding
 import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.utility.showSnackbar
 import com.example.vcontachim.viewmodel.CommunitiesViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
 
@@ -51,12 +51,7 @@ class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val snacbar: Snackbar = Snackbar.make(
-                requireView(),
-                it,
-                Snackbar.LENGTH_LONG
-            )
-            snacbar.show()
+            showSnackbar(text = it)
         }
 
         viewModel.loadCommunities()
