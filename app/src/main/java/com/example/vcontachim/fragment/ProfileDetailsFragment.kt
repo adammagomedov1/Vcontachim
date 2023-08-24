@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +12,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.FragmentProfileDetailsBinding
 import com.example.vcontachim.models.*
-import com.example.vcontachim.utility.toast
+import com.example.vcontachim.utility.showToast
 import com.example.vcontachim.viewmodel.ProfileDetailsViewModel
 
 class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
@@ -127,7 +126,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            toast(text = it)
+            showToast(text = it)
         }
     }
 

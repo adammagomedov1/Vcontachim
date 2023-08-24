@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
@@ -14,7 +13,7 @@ import com.example.vcontachim.databinding.FragmentVideoCommentBinding
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.models.VideoCommentUi
 import com.example.vcontachim.utility.KeyboardUtility
-import com.example.vcontachim.utility.toast
+import com.example.vcontachim.utility.showToast
 import com.example.vcontachim.viewmodel.VideoCommentViewModel
 
 class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
@@ -65,7 +64,7 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
                             KeyboardUtility.hideKeyboard(view = view)
 
                             viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
-                                toast(text = getText(R.string.сomment_added).toString())
+                                showToast(text = getText(R.string.сomment_added).toString())
                             }
                         }
                     })
@@ -84,7 +83,7 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            toast(text = it)
+            showToast(text = it)
         }
 
         viewModel.loadVideoComment(itemVideo)

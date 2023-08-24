@@ -15,9 +15,8 @@ import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.FragmentProfileBinding
 import com.example.vcontachim.models.Response
 import com.example.vcontachim.VcontachimApplication
-import com.example.vcontachim.utility.snackbar
+import com.example.vcontachim.utility.showSnackbar
 import com.example.vcontachim.viewmodel.ProfileViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private var binding: FragmentProfileBinding? = null
@@ -82,7 +81,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            snackbar(text = it)
+            showSnackbar(text = it)
         }
 
         viewModel.loadProfile()

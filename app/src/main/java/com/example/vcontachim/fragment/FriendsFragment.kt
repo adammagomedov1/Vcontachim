@@ -10,7 +10,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.adapter.FriendsAdapter
 import com.example.vcontachim.databinding.FragmentFriendsBinding
-import com.example.vcontachim.utility.snackbar
+import com.example.vcontachim.utility.showSnackbar
 import com.example.vcontachim.viewmodel.FriendsViewModel
 
 class FriendsFragment : Fragment(R.layout.fragment_friends) {
@@ -50,7 +50,7 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            snackbar(text = it)
+            showSnackbar(text = it)
         }
         viewModel.loadList()
     }

@@ -11,9 +11,8 @@ import com.example.vcontachim.Screens
 import com.example.vcontachim.databinding.FragmentPhotoBinding
 import com.example.vcontachim.models.ItemPhotos
 import com.example.vcontachim.VcontachimApplication
-import com.example.vcontachim.utility.snackbar
+import com.example.vcontachim.utility.showSnackbar
 import com.example.vcontachim.viewmodel.PhotoViewModel
-import com.google.android.material.snackbar.Snackbar
 import java.io.Serializable
 
 class PhotoFragment : Fragment(R.layout.fragment_photo) {
@@ -66,7 +65,7 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            snackbar(text = it)
+            showSnackbar(text = it)
         }
 
         viewModel.likesLiveData.observe(viewLifecycleOwner) {

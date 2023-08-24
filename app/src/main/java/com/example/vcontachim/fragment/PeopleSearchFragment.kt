@@ -16,7 +16,7 @@ import com.example.vcontachim.adapter.SearchHistoryAdapter
 import com.example.vcontachim.databinding.FragmentPeopleSearchBinding
 import com.example.vcontachim.models.PeopleSearchUi
 import com.example.vcontachim.models.SearchHistory
-import com.example.vcontachim.utility.toast
+import com.example.vcontachim.utility.showToast
 import com.example.vcontachim.viewmodel.PeopleSearchViewModel
 
 class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
@@ -135,7 +135,7 @@ class PeopleSearchFragment : Fragment(R.layout.fragment_people_search) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            toast(text = it)
+            showToast(text = it)
         }
 
         viewModel.searchHistoryLiveData.observe(viewLifecycleOwner) {

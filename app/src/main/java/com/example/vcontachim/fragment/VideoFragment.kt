@@ -5,7 +5,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vcontachim.R
@@ -14,10 +13,9 @@ import com.example.vcontachim.adapter.VideoAdapter
 import com.example.vcontachim.dalogs.VideoMenuBottomSheetDialog
 import com.example.vcontachim.databinding.FragmentVideoBinding
 import com.example.vcontachim.models.ItemVideo
-import com.example.vcontachim.utility.snackbar
-import com.example.vcontachim.utility.toast
+import com.example.vcontachim.utility.showSnackbar
+import com.example.vcontachim.utility.showToast
 import com.example.vcontachim.viewmodel.VideoViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class VideoFragment : Fragment(R.layout.fragment_video) {
     private var binding: FragmentVideoBinding? = null
@@ -53,7 +51,7 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
                                 val clip = ClipData.newPlainText("label", itemVideo.player)
                                 clipboard.setPrimaryClip(clip)
 
-                                toast(text = getText(R.string.link_copied).toString())
+                                showToast(text = getText(R.string.link_copied).toString())
                             }
                         })
                 addBottomDialogDeleteVideo.show()
@@ -77,7 +75,7 @@ class VideoFragment : Fragment(R.layout.fragment_video) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            snackbar(text = it)
+            showSnackbar(text = it)
         }
 
         viewModel.videoDeleteLiveData.observe(viewLifecycleOwner) {

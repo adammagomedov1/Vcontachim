@@ -10,7 +10,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.adapter.CommunitiesAdapter
 import com.example.vcontachim.databinding.FragmentCommunitiesBinding
 import com.example.vcontachim.VcontachimApplication
-import com.example.vcontachim.utility.snackbar
+import com.example.vcontachim.utility.showSnackbar
 import com.example.vcontachim.viewmodel.CommunitiesViewModel
 
 class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
@@ -51,7 +51,7 @@ class CommunitiesFragment : Fragment(R.layout.fragment_communities) {
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            snackbar(text = it)
+            showSnackbar(text = it)
         }
 
         viewModel.loadCommunities()

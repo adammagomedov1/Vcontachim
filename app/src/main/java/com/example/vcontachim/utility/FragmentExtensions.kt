@@ -4,7 +4,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
-fun Fragment.snackbar(text: String) {
+fun Fragment.showSnackbar(text: String) {
     val snackbar = Snackbar.make(
         requireView(),
         text,
@@ -13,7 +13,7 @@ fun Fragment.snackbar(text: String) {
     snackbar.show()
 }
 
-fun Fragment.toast(text: String) {
+fun Fragment.showToast(text: String) {
     val toast = Toast.makeText(
         requireContext(),
         text,
