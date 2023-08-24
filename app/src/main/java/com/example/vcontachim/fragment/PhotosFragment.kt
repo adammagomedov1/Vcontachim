@@ -10,6 +10,7 @@ import com.example.vcontachim.adapter.PhotosAdapter
 import com.example.vcontachim.databinding.FragmentPhotosBinding
 import com.example.vcontachim.models.ItemPhotoAlbums
 import com.example.vcontachim.VcontachimApplication
+import com.example.vcontachim.utility.snackbar
 import com.example.vcontachim.viewmodel.PhotosViewModels
 import com.google.android.material.snackbar.Snackbar
 
@@ -62,12 +63,7 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val snackbar = Snackbar.make(
-                requireView(),
-                it,
-                Snackbar.LENGTH_LONG
-            )
-            snackbar.show()
+            snackbar(text = it)
         }
         viewModel.loadList(takeALongId)
     }

@@ -14,6 +14,7 @@ import com.example.vcontachim.databinding.FragmentVideoCommentBinding
 import com.example.vcontachim.models.ItemVideo
 import com.example.vcontachim.models.VideoCommentUi
 import com.example.vcontachim.utility.KeyboardUtility
+import com.example.vcontachim.utility.toast
 import com.example.vcontachim.viewmodel.VideoCommentViewModel
 
 class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
@@ -64,12 +65,7 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
                             KeyboardUtility.hideKeyboard(view = view)
 
                             viewModel.addCommentLiveData.observe(viewLifecycleOwner) {
-                                val toast = Toast.makeText(
-                                    requireContext(),
-                                    R.string.сomment_added,
-                                    Toast.LENGTH_LONG
-                                )
-                                toast.show()
+                                toast(text = getText(R.string.сomment_added).toString())
                             }
                         }
                     })
@@ -88,12 +84,7 @@ class VideoCommentFragment : Fragment(R.layout.fragment_video_comment) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val toast = Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            toast(text = it)
         }
 
         viewModel.loadVideoComment(itemVideo)

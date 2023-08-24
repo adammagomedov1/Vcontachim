@@ -13,6 +13,7 @@ import com.example.vcontachim.R
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.FragmentProfileDetailsBinding
 import com.example.vcontachim.models.*
+import com.example.vcontachim.utility.toast
 import com.example.vcontachim.viewmodel.ProfileDetailsViewModel
 
 class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
@@ -126,12 +127,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val toast = Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            toast(text = it)
         }
     }
 

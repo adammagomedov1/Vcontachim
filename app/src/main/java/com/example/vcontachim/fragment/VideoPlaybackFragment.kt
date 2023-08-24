@@ -13,6 +13,7 @@ import com.example.vcontachim.Screens
 import com.example.vcontachim.VcontachimApplication
 import com.example.vcontachim.databinding.FragmentVideoPlaybackBinding
 import com.example.vcontachim.models.ItemVideo
+import com.example.vcontachim.utility.toast
 import com.example.vcontachim.viewmodel.VideoPlaybackViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -97,12 +98,7 @@ class VideoPlaybackFragment : Fragment(R.layout.fragment_video_playback) {
         })
 
         videoModel.errorLiveData.observe(viewLifecycleOwner) {
-            val toast = Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            toast(text = it)
         }
 
         videoModel.videoLikesViewData.observe(viewLifecycleOwner) {

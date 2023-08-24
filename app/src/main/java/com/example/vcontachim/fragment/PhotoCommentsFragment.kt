@@ -14,6 +14,7 @@ import com.example.vcontachim.databinding.FragmentPhotoCommentsBinding
 import com.example.vcontachim.models.ItemPhotos
 import com.example.vcontachim.models.PhotoCommentsUi
 import com.example.vcontachim.utility.KeyboardUtility
+import com.example.vcontachim.utility.toast
 import com.example.vcontachim.viewmodel.PhotoCommentsViewModel
 import java.io.Serializable
 
@@ -107,12 +108,7 @@ class PhotoCommentsFragment : Fragment(R.layout.fragment_photo_comments) {
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            val toast = Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            )
-            toast.show()
+            toast(text = it)
         }
 
         viewModel.loadPhotoComments(photos)
