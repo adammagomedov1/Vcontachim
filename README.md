@@ -10,3 +10,4 @@ Android приложение для работы с VK.
 
 Скриншоты:
 
+![Главная](https://github.com/adammagomedov1/Vcontachim/blob/master/screenshots/Main.jpg)
