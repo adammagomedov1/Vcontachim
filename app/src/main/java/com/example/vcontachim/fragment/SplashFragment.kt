@@ -1,6 +1,5 @@
 package com.example.vcontachim.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -16,17 +15,14 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sharedPreferences = VcontachimApplication.context.getSharedPreferences(
-            "vcontachim",
-            Context.MODE_PRIVATE
-        )
+        val sharedPreferences = VcontachimApplication.sharedPreferencesHelper
 
-        val editor: String? = sharedPreferences.getString("auth", null)
+        val tookToken: String? = sharedPreferences.tookToken
 
         lifecycleScope.launch {
             delay(timeMillis = 3000)
 
-            if (editor == null) {
+            if (tookToken == null) {
                 navigateAccountLoginScreen()
             } else {
                 navigateMain()

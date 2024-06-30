@@ -16,10 +16,10 @@ class AccountLoginScreenFragment : Fragment(R.layout.fragment_account_login_scre
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAccountLoginScreenBinding.bind(view)
 
-        binding!!.loginScreenButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                VcontachimApplication.router.replaceScreen(Screens.auth())
-            }
-        })
+        binding!!.loginScreenButton.setOnClickListener {
+            VcontachimApplication.router.replaceScreen(
+                Screens.auth()
+            )
+        }
     }
 }
